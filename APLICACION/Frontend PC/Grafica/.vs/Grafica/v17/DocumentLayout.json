@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BB0EA659-F813-48B1-82A4-F64D5FE06BA0}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\aplicacion\\frontend pc\\grafica\\grafica\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BB0EA659-F813-48B1-82A4-F64D5FE06BA0}|Grafica\\Grafica.csproj|solutionrelative:grafica\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica\\Form1.cs",
+              "RelativeDocumentMoniker": "Grafica\\Form1.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Grafica\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T14:57:31.895Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

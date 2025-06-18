@@ -1,0 +1,16 @@
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\bin\Debug\Grafica1.exe.config
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\bin\Debug\Grafica1.exe
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\bin\Debug\Grafica1.pdb
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.csproj.AssemblyReference.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\MainWindow.g.cs
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\App.g.cs
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1_MarkupCompile.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1_MarkupCompile.lref
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\MainWindow.baml
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.g.resources
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.Properties.Resources.resources
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.csproj.GenerateResource.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.csproj.CoreCompileInputs.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.exe
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.pdb
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Grafica1.exe.config

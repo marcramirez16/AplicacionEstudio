@@ -1,0 +1,222 @@
+﻿<Window x:Class="Ventana_Principal.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow"
+        Height="450" Width="800"
+        FontFamily="Poppins"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryDarkColor" Color="#1E1E2F"/>
+        <SolidColorBrush x:Key="HoverGrayColor" Color="#2E2E3E"/>
+        <SolidColorBrush x:Key="PrimaryTextColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="SecundaryTextColor" Color="#BBC1D1"/>
+        <SolidColorBrush x:Key="PrimaryGrayColor" Color="#BBC1D1"/>
+
+        <Style x:Key="TabItemStyle" TargetType="TabItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecundaryTextColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="0 0 5 0"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Padding" Value="10 10"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border CornerRadius="5"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Margin="{TemplateBinding Margin}"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              SnapsToDevicePixels="True"
+                                              Margin="{TemplateBinding Padding}"
+                                              ContentSource="Header"
+                                              Focusable="False"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource HoverGrayColor}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryGrayColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource PrimaryGrayColor}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TabControlStyle" TargetType="TabControl">
+            <Setter Property="Background" Value="{DynamicResource HoverGrayColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid SnapsToDevicePixels="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TabPanel Grid.Row="0"
+                                      Background="Transparent"
+                                      IsItemsHost="True"
+                                      HorizontalAlignment="Left"/>
+                            <Border Grid.Row="1"
+                                    CornerRadius="5"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter ContentSource="SelectedContent"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  SnapsToDevicePixels="True"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Botón estilizado -->
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource PrimaryGrayColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="FontWeight" Value="600"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource HoverGrayColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource PrimaryGrayColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Background="{DynamicResource PrimaryDarkColor}">
+        <!-- Border principal con esquinas redondeadas -->
+        <Border CornerRadius="10"
+                Background="{DynamicResource HoverGrayColor}"
+                Margin="20"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Padding="10">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- Área principal con tabs -->
+                    <ColumnDefinition Width="3*"/>
+
+                    <!-- Área para el panel lateral (inicialmente oculta) -->
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Panel superior con TabControl y botón -->
+                <DockPanel Grid.Column="0" LastChildFill="True" VerticalAlignment="Top" Height="50">
+                    <TabControl Style="{DynamicResource TabControlStyle}" 
+                                Width="Auto" 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Stretch"
+                                Margin="0"
+                                MinWidth="300">
+                        <TabItem Header="RESUMENES" Style="{DynamicResource TabItemStyle}">
+                            <Grid>
+                                <TextBlock Text="Home"
+                                           Foreground="{DynamicResource SecundaryTextColor}"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="Home2" Style="{DynamicResource TabItemStyle}">
+                            <Grid>
+                                <TextBlock Text="Resumenes"
+                                           Foreground="{DynamicResource SecundaryTextColor}"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+
+                    <!-- Botón para mostrar menú lateral -->
+                    <Button x:Name="ToggleMenuButton"
+                    Style="{StaticResource StyledButton}"
+                    Width="30"
+                    Click="ToggleMenuButton_Click"
+                    DockPanel.Dock="Right">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Source="/Images/icono_hamburguesa.png" Width="16" Height="16" Margin="0, 0, 8, 0"/>
+                        </StackPanel>
+                    </Button>
+
+
+                </DockPanel>
+
+                <!-- Contenido principal (debajo del DockPanel, llena la columna) -->
+                <TabControl Grid.Column="0" Margin="0,50,0,0"
+                            Style="{DynamicResource TabControlStyle}"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
+                    <!-- Aquí se podrían poner otros contenidos si quieres -->
+                </TabControl>
+
+                <!-- Panel deslizable derecho -->
+                <Border x:Name="RightMenuPanel"
+                        Grid.Column="1"
+                        Background="{DynamicResource PrimaryGrayColor}"
+                        CornerRadius="0 10 10 0"
+                        Padding="20"
+                        Visibility="Collapsed"
+                        >
+                    <StackPanel>
+                        <TextBlock Text="Menú" 
+                                   Foreground="{DynamicResource PrimaryTextColor}" 
+                                   FontSize="18" FontWeight="Bold" Margin="0 0 0 15"/>
+                        <Button Style="{StaticResource StyledButton}" Content="Opción 1" Margin="0 5"/>
+                        <Button Style="{StaticResource StyledButton}" Content="Opción 2" Margin="0 5"/>
+                        <Button Style="{StaticResource StyledButton}" Content="Opción 3" Margin="0 5"/>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Window> 

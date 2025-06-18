@@ -1,0 +1,15 @@
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\bin\Debug\Ventana Principal.exe.config
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\bin\Debug\Ventana Principal.exe
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\bin\Debug\Ventana Principal.pdb
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.csproj.AssemblyReference.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\MainWindow.g.cs
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\App.g.cs
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal_MarkupCompile.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\MainWindow.baml
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.g.resources
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana_Principal.Properties.Resources.resources
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.csproj.GenerateResource.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.csproj.CoreCompileInputs.cache
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.exe
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.pdb
+C:\Users\marcr\Desktop\APLICACION\Frontend PC\control personalizado\Ventana Principal\Ventana Principal\obj\Debug\Ventana Principal.exe.config
