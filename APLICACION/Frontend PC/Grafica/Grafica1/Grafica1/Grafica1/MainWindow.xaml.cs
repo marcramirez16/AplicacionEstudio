@@ -7,29 +7,30 @@ namespace Grafica1
 {
     public partial class MainWindow : Window
     {
-        private bool menuOpen = true;
+        private double miniPanelOriginalWidth;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            miniPanelOriginalWidth = MiniPanelBox.Width;
+
         }
 
-        private void ToggleMenuButton_Click(object sender, RoutedEventArgs e)
+        private void ToggleMiniMenu_Click(object sender, RoutedEventArgs e)
         {
             Grid parentGrid = (Grid)RightMenuPanel.Parent;
 
-            if (!menuOpen)
+            if (RightMenuPanel.Visibility == Visibility.Collapsed)
             {
-                parentGrid.ColumnDefinitions[1].Width = new GridLength(0.6, GridUnitType.Star);
+                parentGrid.ColumnDefinitions[2].Width = new GridLength(0.6, GridUnitType.Star);
                 RightMenuPanel.Visibility = Visibility.Visible;
             }
             else
             {
-                parentGrid.ColumnDefinitions[1].Width = new GridLength(0);
+                parentGrid.ColumnDefinitions[2].Width = new GridLength(0);
                 RightMenuPanel.Visibility = Visibility.Collapsed;
             }
-
-            menuOpen = !menuOpen;
         }
 
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,5 +62,31 @@ namespace Grafica1
                 ContentArea.Content = null;
             }
         }
+
+        private bool isPanelVisible = true;
+
+        private void ToggleMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPanelVisible)
+            {
+                MiniPanelBox.Visibility = Visibility.Collapsed;
+                ToggleMenuButton.Margin = new Thickness(0); // centrado junto al RightMenu
+                ToggleMenuButton.Visibility = Visibility.Hidden;
+                ToggleMenuButtonabrir.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MiniPanelBox.Visibility = Visibility.Visible;
+                //ToggleMenuButton.Margin = new Thickness(0, 0, 5, 0); // botón entre caja y menú
+                ToggleMenuButton.Visibility = Visibility.Visible;
+                ToggleMenuButtonabrir.Visibility = Visibility.Hidden;
+
+            }
+
+            isPanelVisible = !isPanelVisible;
+        }
+
     }
+
+
 }
