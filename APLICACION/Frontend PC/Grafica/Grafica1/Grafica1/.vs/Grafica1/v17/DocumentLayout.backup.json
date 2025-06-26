@@ -1,14 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\",
+  "WorkspaceRootPath": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\iniciosession.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\iniciosession.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\iniciosession.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\iniciosession.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\registro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\registro.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\registro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\registro.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\grafica1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\grafica1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\grafica\\grafica1\\grafica1\\grafica1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CA18ED8B-5352-47DC-ABEA-CA51C989B0F7}|Grafica1\\Grafica1.csproj|solutionrelative:grafica1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,15 +38,77 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Registro.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\Registro.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica1\\Registro.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\Registro.xaml.cs",
+              "RelativeToolTip": "Grafica1\\Registro.xaml.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T18:16:29.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Registro.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\Registro.xaml",
+              "RelativeDocumentMoniker": "Grafica1\\Registro.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\Registro.xaml",
+              "RelativeToolTip": "Grafica1\\Registro.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-26T18:15:59.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "InicioSession.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\InicioSession.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica1\\InicioSession.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\InicioSession.xaml.cs",
+              "RelativeToolTip": "Grafica1\\InicioSession.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAgwDgAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T14:02:19.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InicioSession.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\InicioSession.xaml",
+              "RelativeDocumentMoniker": "Grafica1\\InicioSession.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\InicioSession.xaml",
+              "RelativeToolTip": "Grafica1\\InicioSession.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-26T13:53:12.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\App.xaml",
+              "RelativeDocumentMoniker": "Grafica1\\App.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\App.xaml",
+              "RelativeToolTip": "Grafica1\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-26T11:33:57.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Grafica1\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml",
               "RelativeToolTip": "Grafica1\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-18T20:13:23.594Z",
@@ -34,15 +116,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Grafica1\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\marcr\\Desktop\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Grafica\\Grafica1\\Grafica1\\Grafica1\\MainWindow.xaml.cs",
               "RelativeToolTip": "Grafica1\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T20:13:23.149Z"
+              "WhenOpened": "2025-06-18T20:13:23.149Z",
+              "EditorCaption": ""
             }
           ]
         }

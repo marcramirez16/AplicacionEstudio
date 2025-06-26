@@ -1,21 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using System.Windows.Media;
-
 namespace Grafica1
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
     {
         private double miniPanelOriginalWidth;
 
         public MainWindow()
         {
+
             InitializeComponent();
 
             miniPanelOriginalWidth = MiniPanelBox.Width;
 
         }
+
+        private void RemoveWindowBorder()
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            var margins = new MARGINS() { cxLeftWidth = 0, cxRightWidth = 0, cyTopHeight = 0, cyBottomHeight = 0 };
+            DwmExtendFrameIntoClientArea(hwnd, ref margins);
+        }
+
+        // Interop structs y métodos necesarios
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MARGINS
+        {
+            public int cxLeftWidth;
+            public int cxRightWidth;
+            public int cyTopHeight;
+            public int cyBottomHeight;
+        }
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref MARGINS pMarInset);
 
         private void ToggleMiniMenu_Click(object sender, RoutedEventArgs e)
         {
