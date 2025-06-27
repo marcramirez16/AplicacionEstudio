@@ -5,7 +5,7 @@ import java.io.File;
 public class Assignatura extends Usuario{
 
 //atributos
-    private int idAssignatura;
+    private long idAssignatura;
     private String nombreAssignatura;
 
     private String solonombreAssignatura;
@@ -21,7 +21,7 @@ public class Assignatura extends Usuario{
      * @param nombreAssignatura
      */
     //constructor crear Assignatura por parametro
-    public Assignatura(int idusuario, int idAssignatura, String nombreAssignatura) {
+    public Assignatura(long idusuario, Long idAssignatura, String nombreAssignatura) {
         super(idusuario);
         this.idAssignatura = idAssignatura;
         this.nombreAssignatura = nombreAssignatura;
@@ -45,9 +45,8 @@ public class Assignatura extends Usuario{
         String[] partes = nombreAssignatura.split("\\.");
 
         this.nombreAssignatura = nombreAssignatura;
-        this.idAssignatura = Integer.parseInt(partes[0]);
+        this.idAssignatura = Long.parseLong(partes[0]);
         this.solonombreAssignatura = partes[1];
-
         this.rutaPadreAssignatura = super.getRutaUsuario();
         this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
 
@@ -67,7 +66,7 @@ public class Assignatura extends Usuario{
 
         this.nombreAssignatura = crearNombreAssignaturaNueva();
         String[] partes = this.nombreAssignatura.split("\\.");
-        this.idAssignatura = Integer.parseInt(partes[0]);
+        this.idAssignatura = Long.parseLong(partes[0]);
 
         this.rutaPadreAssignatura = super.getRutaUsuario();
         this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
@@ -82,7 +81,7 @@ public class Assignatura extends Usuario{
     //Crear un nuevo nombre con un id superior al maximo...
     public String crearNombreAssignaturaNueva(){
         //Saver el id de la ultima Assignatura
-        int ultimoid = buscarUltimoId(this.getRutaPadreAssignatura());
+        long ultimoid = buscarUltimoId(this.getRutaPadreAssignatura());
 
         //agregar ruta con su +id.nombre+
         String nombre = ultimoid + "." + this.solonombreAssignatura;
@@ -111,11 +110,11 @@ public class Assignatura extends Usuario{
      * @return id de la assignatura nueva a crear
      */
     //metodo para buscar el ultimo numero de la carpeta:
-    public int buscarUltimoId(String rutaPadre){
+    public Long buscarUltimoId(String rutaPadre){
         File carpeta = new File(rutaPadre);
 
         //Recorrer los directorios y guardar el id mas alto en la variable numeromaximo
-        int numeromaximo = 0;
+        long numeromaximo = 0;
 
         if (carpeta.exists() && carpeta.isDirectory()) {
             File[] archivos = carpeta.listFiles();
@@ -125,7 +124,7 @@ public class Assignatura extends Usuario{
                         String nombre = archivo.getName();
 
                         String numero = nombre.split("\\.")[0];
-                        int num = Integer.parseInt(numero);
+                        long num = Long.parseLong(numero);
                         if(num > numeromaximo){
                             numeromaximo = num;
                         }
@@ -138,11 +137,11 @@ public class Assignatura extends Usuario{
 
 
     //getters y setters
-    public int getIdAssignatura() {
+    public long getIdAssignatura() {
         return idAssignatura;
     }
 
-    public void setIdAssignatura(int idAssignatura) {
+    public void setIdAssignatura(long idAssignatura) {
         this.idAssignatura = idAssignatura;
     }
 

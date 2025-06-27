@@ -1,12 +1,11 @@
 package com.example.demo.Servidor_Archivos;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import static com.example.demo.Servidor_Archivos.RutaServidor.FILE_NAME;
 
 public class Servidor_Archivo {
 
@@ -18,6 +17,7 @@ public class Servidor_Archivo {
 
 //Atributos
     public Usuario usuario;
+    ConexionApi conexion;
 
 //Constructores
 
@@ -25,9 +25,23 @@ public class Servidor_Archivo {
      * constructor vacio
      */
     public Servidor_Archivo() {
+        usuario = new Usuario();
+        conexion = new ConexionApi();
     }
 
 //Metodos
+    /**
+     * Metodo para obtener el id usuario iniciado
+     */
+    public String obteneridusuarioiniciado() {
+        Properties props = new Properties();
+        try (InputStream in = new FileInputStream(FILE_NAME)) {
+            props.load(in);
+            return props.getProperty("idusuario");
+        } catch (IOException e) {
+            return null;
+        }
+    }
 //Devolver lista de los archivos/temas/assignaturas....
     /**
      * Devolver Archvios de un tema
@@ -105,15 +119,27 @@ public class Servidor_Archivo {
     }
 
     /**
-     * Metodo para crear usuario y gaurdarlo en properties
+     * Metodo para crear carpeta usuario en el servidor de archvios usuario.
+     * @param usuario
      */
-    public void crearUsuarioyIniciarlo(){
-        //Iniciar usuario por defecto
-        Usuario usuario = new Usuario("marcrami", "12345", "m@gmail.com");
-        usuario.setIdusuario(1);
-        usuario.guardaridusuarioiniciado();
-        this.usuario = usuario;
+    public boolean crearCarpetaUsuario(Usuario usuario){
+        String ruta = RutaServidor.rutaServidor + "Servidor de Archivos\\" + usuario.getIdusuario();
+
+        File carpeta = new File(ruta);
+
+        if (!carpeta.exists()) {  // Comprueba si ya existe la carpeta
+            boolean creada = carpeta.mkdirs(); // Crea la carpeta
+            if (creada) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
+
+
 
 //Otros metodos
     /**

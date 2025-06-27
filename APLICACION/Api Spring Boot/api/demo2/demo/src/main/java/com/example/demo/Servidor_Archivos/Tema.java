@@ -5,7 +5,7 @@ import java.io.File;
 public class Tema extends Assignatura{
 
 //atributos
-    private int idTema;
+    private long idTema;
     private String nombreTema;
     private String solonombreTema;
     private String rutaPadreTema;
@@ -23,7 +23,7 @@ public class Tema extends Assignatura{
      */
     //constructor sin nombre y "id", se han de añadir por parametro
     //constructor crear tema por parametro "vijila el id agregado..."
-    public Tema(int idusuario, int idAssignatura, String nombreAssignatura, int idTema, String nombreTema) {
+    public Tema(long idusuario, long idAssignatura, String nombreAssignatura, long idTema, String nombreTema) {
         super(idusuario, idAssignatura, nombreAssignatura);
         this.idTema = idTema;
         this.nombreTema =  idTema +"." + this.nombreTema;
@@ -45,7 +45,7 @@ public class Tema extends Assignatura{
     public Tema(Assignatura assignatura, String nombreTema){
         super(assignatura.getIdusuario(), assignatura.getIdAssignatura(), assignatura.getNombreAssignatura());
         String[] partes = nombreTema.split("\\.");
-        this.idTema = Integer.parseInt(partes[0]);
+        this.idTema = Long.parseLong(partes[0]);
         this.solonombreTema = partes[1];
         this.nombreTema = nombreTema;
 
@@ -80,7 +80,7 @@ public class Tema extends Assignatura{
     //Crear un nuevo nombre con un id superior al maximo...
     public String crearNombreTemaNuevo(){
         //Saver el id de la ultima Assignatura
-        int ultimoid = buscarUltimoId(this.getrutaAssignatura());
+        long ultimoid = buscarUltimoId(this.getrutaAssignatura());
 
         //agregar ruta con su +id.nombre+
         String nombre = ultimoid + "." + this.solonombreTema;
@@ -108,11 +108,11 @@ public class Tema extends Assignatura{
      * @param 'ruta assignaturas, donde estan los temas'
      * @return id para el nuevo tema
      */
-    public int buscarUltimoId(String rutaPadre){
+    public Long buscarUltimoId(String rutaPadre){
         File carpeta = new File(rutaPadre);
 
         //Recorrer los directorios y guardar el id mas alto en la variable numeromaximo
-        int numeromaximo = 0;
+        long numeromaximo = 0;
 
         if (carpeta.exists() && carpeta.isDirectory()) {
             File[] archivos = carpeta.listFiles();
@@ -122,7 +122,7 @@ public class Tema extends Assignatura{
                         String nombre = archivo.getName();
 
                         String numero = nombre.split("\\.")[0];
-                        int num = Integer.parseInt(numero);
+                        long num = Long.parseLong(numero);
                         if(num > numeromaximo){
                             numeromaximo = num;
                         }
@@ -134,11 +134,11 @@ public class Tema extends Assignatura{
     }
 
     //getters y setters
-    public int getIdTema() {
+    public long getIdTema() {
         return idTema;
     }
 
-    public void setIdTema(int idTema) {
+    public void setIdTema(long idTema) {
         this.idTema = idTema;
     }
 

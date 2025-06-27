@@ -143,7 +143,7 @@ ShowTitleBar="False"
                            FontWeight="SemiBold"
                          Margin="15,0,15,5"
                            Grid.Row="2"/>
-                                <TextBox x:Name="UsuarioTextBox"
+                         <TextBox x:Name="UsuarioTextBox"
                          Height="32"
                          CaretBrush="Black"
                          Background="White"
@@ -151,7 +151,8 @@ ShowTitleBar="False"
                          FontSize="14"
                          Margin="15,0,15,15"
                          Padding="5"
-                         Grid.Row="3" TextChanged="UsuarioTextBox_TextChanged"/>
+                         Grid.Row="3" 
+                      />
 
                                 <!-- Contraseña -->
                                 <TextBlock Text="Contraseña"

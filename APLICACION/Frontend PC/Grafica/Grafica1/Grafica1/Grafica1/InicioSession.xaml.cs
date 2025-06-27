@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Grafica1.Entidades;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,11 +28,51 @@ namespace Grafica1
 
         }
 
-        private void Ingresar_Click(object sender, RoutedEventArgs e)
+        private async void Ingresar_Click(object sender, RoutedEventArgs e)
         {
             string usuario = UsuarioTextBox.Text;
-            string contrasena = ContrasenaBox.Password;
+            string contraseña = ContrasenaBox.Password;
 
+            //Crear usuario
+            EUsuario usuarioe = new EUsuario
+            {
+                usuario = usuario,
+                contraseña = contraseña,
+                email = ""
+            };
+
+            ControllerApiOut controller = new ControllerApiOut();
+            try
+            {
+                EUsuario respuesta = await ControllerApiOut.IniciarSesion(usuarioe);
+
+
+                if (!string.IsNullOrEmpty(respuesta.usuario) &&
+                    !string.IsNullOrEmpty(respuesta.contraseña) &&
+                    !string.IsNullOrEmpty(respuesta.email))
+                {
+                    ErrorText.Text = respuesta.usuario;
+                    ErrorText.Visibility = Visibility.Visible;
+
+                    MainWindow main = new MainWindow(respuesta); // pasar el usuario como parametro
+                    main.WindowState = WindowState.Maximized;  
+                    main.Show();
+                    this.Close(); 
+                }
+                else {
+                    ErrorText.Text = "Usuario o contraseña incorrecta";
+                    ErrorText.Visibility = Visibility.Visible;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorText.Text = "Error, No se pudo guardar el usuario";
+                ErrorText.Visibility = Visibility.Visible;
+
+            }
+
+            /*
             // Simulación de validación
             if (usuario == "admin" && contrasena == "1234")
             {
@@ -42,13 +85,15 @@ namespace Grafica1
             {
                 ErrorText.Text = "Usuario o contraseña incorrectos";
                 ErrorText.Visibility = Visibility.Visible;
-            }
+            }*/
         }
 
-        private void UsuarioTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
 
+        /// <summary>
+        /// Abrir el formulario de registro...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Registro_Click(object sender, RoutedEventArgs e)
         {
             Registro registro = new Registro();

@@ -8,7 +8,7 @@ import static com.example.demo.Servidor_Archivos.RutaServidor.FILE_NAME;
 public class Usuario {
 
 //Atributos
-    private int idusuario;
+    private long idusuario;
     private String nombreUsuario;
     private String correo;
     private String contraseña;
@@ -18,6 +18,8 @@ public class Usuario {
 
 //constructores sobrecarga
 
+    public Usuario(){}
+
     /**
      * constructor para crear usuario a partir de parametros
      * @param idusuario
@@ -26,7 +28,7 @@ public class Usuario {
      * @param contraseña
      */
     //crear usuario por parametros
-    public Usuario(int idusuario, String nombreUsuario, String correo, String contraseña) {
+    public Usuario(long idusuario, String nombreUsuario, String correo, String contraseña) {
         this.idusuario = idusuario;
         this.nombreUsuario = nombreUsuario;
         this.correo = correo;
@@ -52,7 +54,7 @@ public class Usuario {
      * @param idusuario
      */
     //metodo para solo obtener el usuario solo a partir de su id, entrando en la bd
-    public Usuario(int idusuario){
+    public Usuario(long idusuario){
         this.idusuario = idusuario;
     }
 
@@ -72,6 +74,8 @@ public class Usuario {
 
 
     }
+
+
 
     /**
      * Metodo para guardar el usuario en properties
@@ -103,11 +107,11 @@ public class Usuario {
      * @param 'ruta del servidor, alli se encuentran todos los usuarios'
      * @return retorna el nuemro del usuario correspondiente al ultimo
      */
-    public int buscarUltimoId(String rutaPadre){
+    public Long buscarUltimoId(String rutaPadre){
         File carpeta = new File(rutaPadre);
 
         //Recorrer los directorios y guardar el id mas alto en la variable numeromaximo
-        int numeromaximo = 0;
+        long numeromaximo = 0;
 
         if (carpeta.exists() && carpeta.isDirectory()) {
             File[] archivos = carpeta.listFiles();
@@ -122,15 +126,17 @@ public class Usuario {
                         } else {
                             numero = nombre;
                         }
+                        long num = Long.parseLong(numero);
 
-                        int num = Integer.parseInt(numero);
+                        //Long num = Integer.parseInt(numero);
                         if(num > numeromaximo){
                             numeromaximo = num;
                         }
                     }}}}
-        if(numeromaximo != 0){ //si no es 0 poner a 1
+        if (numeromaximo != 0) { //si no es 0 poner a 1
             numeromaximo++;
         }
+
         return numeromaximo;
     }
 
@@ -138,11 +144,11 @@ public class Usuario {
 
     //getters y setters
 
-    public int getIdusuario() {
+    public long getIdusuario() {
         return idusuario;
     }
 
-    public void setIdusuario(int idusuario) {
+    public void setIdusuario(long idusuario) {
         this.idusuario = idusuario;
     }
 

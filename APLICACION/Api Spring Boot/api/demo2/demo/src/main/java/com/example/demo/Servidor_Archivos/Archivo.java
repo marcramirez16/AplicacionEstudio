@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class Archivo extends Tema{
 
 //Atributos
-    private int idArchivo;
+    private long idArchivo;
 
     private String nombreArchivo;
     private String solonombreArchivo;
@@ -32,7 +32,7 @@ public class Archivo extends Tema{
      * @param nombreArchivo
      */
     //constructor crear archivo por parametros "vijila el id, que no se sobrescriban..."
-    public Archivo(int idusuario, int idAssignatura, String nombreAssignatura, int idTema, String nombreTema, int idArchivo, String rutaArchivo, String nombreArchivo) {
+    public Archivo(long idusuario, long idAssignatura, String nombreAssignatura, long idTema, String nombreTema, long idArchivo, String rutaArchivo, String nombreArchivo) {
         super(idusuario, idAssignatura, nombreAssignatura, idTema, nombreTema);
         this.idArchivo = idArchivo;
         this.nombreArchivo = nombreArchivo;
@@ -55,7 +55,7 @@ public class Archivo extends Tema{
         super(tema.getIdusuario(), tema.getIdAssignatura(), tema.getNombreAssignatura(), tema.getIdTema(), tema.getNombreTema());
 
         String[] partes = nombreArchivo.split("\\.");
-        this.idArchivo = Integer.parseInt(partes[0]);
+        this.idArchivo = Long.parseLong(partes[0]);
         this.solonombreArchivo = partes[1];
 
         this.nombreArchivo = nombreArchivo;
@@ -78,7 +78,7 @@ public class Archivo extends Tema{
 
         this.nombreArchivo = crearNombreArchivoNuevo();
         String[] partes = nombreArchivo.split("\\.");
-        this.idArchivo = Integer.parseInt(partes[0]);
+        this.idArchivo = Long.parseLong(partes[0]);
 
         this.rutaPadreArchivo = super.getRutaTema();
         this.rutaArchivo = this.rutaPadreArchivo + this.nombreArchivo;
@@ -93,7 +93,7 @@ public class Archivo extends Tema{
     //Crear un nuevo nombre con un id superior al maximo...
     public String crearNombreArchivoNuevo(){
         //Saver el id de la ultima Assignatura
-        int ultimoid = buscarUltimoId(this.getRutaTema());
+        long ultimoid = buscarUltimoId(this.getRutaTema());
 
         //agregar ruta con su +id.nombre+
         String nombre = ultimoid + "." + this.solonombreArchivo;
@@ -143,11 +143,11 @@ public class Archivo extends Tema{
      * @return retorna el id nuevo que toca, uno superior al maximo
      */
     //metodo para buscar el ultimo numero de la carpeta:
-    public int buscarUltimoId(String rutaPadre){
+    public Long buscarUltimoId(String rutaPadre){
         File carpeta = new File(rutaPadre);
 
         //Recorrer los directorios y guardar el id mas alto en la variable numeromaximo
-        int numeromaximo = 0;
+        long numeromaximo = 0;
 
         if (carpeta.exists() && carpeta.isDirectory()) {
             File[] archivos = carpeta.listFiles();
@@ -157,7 +157,7 @@ public class Archivo extends Tema{
                         String nombre = archivo.getName();
 
                         String numero = nombre.split("\\.")[0];
-                        int num = Integer.parseInt(numero);
+                        long num = Long.parseLong(numero);
                         if(num > numeromaximo){
                             numeromaximo = num;
                         }

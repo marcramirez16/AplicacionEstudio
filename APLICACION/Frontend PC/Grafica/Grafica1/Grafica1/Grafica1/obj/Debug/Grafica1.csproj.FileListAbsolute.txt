@@ -46,3 +46,5 @@ C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Grafica\Grafica1\Grafic
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\InicioSession.baml
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Registro.baml
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\obj\Debug\Registro.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Grafica\Grafica1\Grafica1\Grafica1\bin\Debug\Newtonsoft.Json.xml

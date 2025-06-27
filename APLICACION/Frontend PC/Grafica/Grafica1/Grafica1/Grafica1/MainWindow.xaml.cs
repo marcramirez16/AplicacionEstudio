@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
@@ -11,13 +12,30 @@ namespace Grafica1
     {
         private double miniPanelOriginalWidth;
 
-        public MainWindow()
+        public MainWindow(EUsuario usuario)
         {
 
             InitializeComponent();
 
             miniPanelOriginalWidth = MiniPanelBox.Width;
 
+            //Inicializar todos los componentes con el usuario adecuado
+            CargarAsignaturasAsync();
+
+        }
+
+        private async Task CargarAsignaturasAsync()
+        {
+            try
+            {
+                List<string> asignaturas = await ControllerApiOut.ObtenerListaAsignaturas();
+
+                AssignaturasComboBox.ItemsSource = asignaturas;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar asignaturas: " + ex.Message);
+            }
         }
 
         private void RemoveWindowBorder()

@@ -24,8 +24,32 @@ namespace Grafica1
             InitializeComponent();
         }
 
-        private void Registrar_Click(object sender, RoutedEventArgs e)
+        private async void Registrar_Click(object sender, RoutedEventArgs e)
         {
+            String usuario = NombreUsuarioTextBox.Text;
+            String correo = CorreoTextBox.Text;
+            String contraseña = ContrasenaBox.Password;
+
+            //Crear usuario
+            EUsuario usuarioe = new EUsuario
+            {
+                usuario = usuario,
+                contraseña = contraseña,
+                email = correo
+            };
+
+            ControllerApiOut controller = new ControllerApiOut();
+            try {
+                string respuesta = await ControllerApiOut.EnviarUsuario(usuarioe);
+                MensajeText.Text = respuesta;
+                MensajeText.Visibility = Visibility.Visible;
+                
+            } catch (Exception ex)
+            {
+                MensajeText.Text = "Error, No se pudo guardar el usuario";
+                MensajeText.Visibility = Visibility.Visible;
+
+            }
 
         }
     }

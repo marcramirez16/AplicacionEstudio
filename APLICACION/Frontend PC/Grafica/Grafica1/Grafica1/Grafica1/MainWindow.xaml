@@ -253,13 +253,13 @@ WindowTitleBrush="Transparent"
                                 FontWeight="Bold"
                                 FontSize="16"
                                 Margin="0 10 0 0"/>
-                            <ComboBox Margin="0 10 0 5"
+                            <ComboBox 
+                                x:Name="AssignaturasComboBox"
+                                Margin="0 10 0 5"
                   Foreground="Black"
                   Background="White"
                   Height="25"
                   Width="140">
-                                <ComboBoxItem Content="Primera opción" />
-                                <ComboBoxItem Content="Segunda opción" />
                             </ComboBox>
                             <ComboBox Margin="0 10 0 5"
                   Foreground="Black"
