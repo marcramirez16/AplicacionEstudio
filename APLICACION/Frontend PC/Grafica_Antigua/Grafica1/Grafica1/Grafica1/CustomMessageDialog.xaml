@@ -1,0 +1,83 @@
+﻿<Dialogs:BaseMetroDialog x:Class="Grafica1.CustomMessageDialog"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:Dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                         Width="600"
+                         Background="{DynamicResource PrimaryDarkColor}"
+                         Padding="10">
+
+    <Dialogs:BaseMetroDialog.Effect>
+        <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="0" Opacity="0.3" />
+    </Dialogs:BaseMetroDialog.Effect>
+
+    <Grid Margin="0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Texto Asignatura o Tema -->
+            <RowDefinition Height="Auto" />
+            <!-- Input asignatura ComboBox o TextBox -->
+            <RowDefinition Height="Auto" />
+            <!-- Texto nombre tema -->
+            <RowDefinition Height="Auto" />
+            <!-- Input nombre tema -->
+            <RowDefinition Height="Auto" />
+            <!-- Botones -->
+        </Grid.RowDefinitions>
+
+        <!-- Texto para modo Asignatura -->
+        <TextBlock x:Name="LabelAsignaturaTextBox" Text="Introduce la Asignatura:"
+                   Foreground="White" FontSize="16" Margin="0,10,0,5"
+                   Grid.Row="0" />
+
+        <!-- TextBox para asignatura (modo Asignatura) -->
+        <TextBox x:Name="AssignaturaTextBox"
+                 FontSize="16"
+                 Grid.Row="1"
+                 MinWidth="200" />
+
+        <!-- Texto para modo Tema (selección de asignatura) -->
+        <TextBlock x:Name="LabelAsignaturaComboBox" Text="Selecciona la Asignatura:"
+                   Foreground="White" FontSize="16" Margin="0,10,0,5"
+                   Grid.Row="0" Visibility="Collapsed" />
+
+        <!-- ComboBox para asignaturas (modo Tema) -->
+        <ComboBox x:Name="AssignaturaComboBox"
+                  FontSize="16"
+                  Grid.Row="1"
+                  MinWidth="200"
+                  Visibility="Collapsed" />
+
+        <!-- Texto nombre del tema (modo Tema) -->
+        <TextBlock x:Name="LabelTemaTextBox" Text="Introduce el nombre del Tema:"
+                   Foreground="White" FontSize="16" Margin="0,10,0,5"
+                   Grid.Row="2"
+                   Visibility="Collapsed" />
+
+        <!-- TextBox nombre del tema (modo Tema) -->
+        <TextBox x:Name="TemaTextBox"
+                 FontSize="16"
+                 Grid.Row="3"
+                 MinWidth="200"
+                 Visibility="Collapsed" />
+
+        <!-- Botones -->
+        <Grid Grid.Row="4" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Cancelar"
+                    Width="80"
+                    HorizontalAlignment="Left"
+                    Grid.Column="0"
+                    Click="OnCancelClick" />
+
+            <Button Content="Aceptar"
+                    Width="80"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Click="OnAcceptClick" />
+        </Grid>
+    </Grid>
+</Dialogs:BaseMetroDialog>

@@ -56,6 +56,8 @@ public class Usuario {
     //metodo para solo obtener el usuario solo a partir de su id, entrando en la bd
     public Usuario(long idusuario){
         this.idusuario = idusuario;
+        this.rutaUsuario = RutaServidor.rutaServidor + "Servidor de Archivos\\" + this.getIdusuario();
+
     }
 
     /**
@@ -102,6 +104,8 @@ public class Usuario {
             return null;
         }
     }
+
+
     /**
      * Metodo para buscar el ultimo id del usuario maximo, este recorre todas las carpetas de usuario para encontrarlas
      * @param 'ruta del servidor, alli se encuentran todos los usuarios'

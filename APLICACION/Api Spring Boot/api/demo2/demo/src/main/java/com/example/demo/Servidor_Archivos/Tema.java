@@ -71,6 +71,7 @@ public class Tema extends Assignatura{
 
         this.rutaPadreTema = super.getrutaAssignatura();
         this.rutaTema = this.rutaPadreTema + "\\" + this.nombreTema;
+        System.out.println("-----La ruta del tema es la siguiente:" + this.rutaTema);
     }
 
     /**
@@ -127,7 +128,7 @@ public class Tema extends Assignatura{
                             numeromaximo = num;
                         }
                     }}}}
-        if(numeromaximo != 0){ //si no es 0 poner a 1
+        if(numeromaximo == 0){ //si es 0 poner a 1
             numeromaximo++;
         }
         return numeromaximo;

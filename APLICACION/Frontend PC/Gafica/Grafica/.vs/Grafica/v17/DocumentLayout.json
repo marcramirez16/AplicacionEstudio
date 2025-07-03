@@ -1,0 +1,380 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\grafica\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\grafica\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\controllerapiout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\controllerapiout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\registerwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\registerwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\registerwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\registerwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\estilos\\stylesmainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\estilos\\stylesmainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\grafica\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\custommessagedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\panelmenu1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\panelmenu1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\custommessagedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\grafica\\themes\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\themes\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\grafica\\themes\\thememanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\themes\\thememanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\panelmenu2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\panelmenu2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\grafica\\grafica\\grafica\\ventanassecundarias\\panelmenu3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\panelmenu3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\grafica\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 21,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ControllerApiOut.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\ControllerApiOut.cs",
+              "RelativeDocumentMoniker": "Grafica\\ControllerApiOut.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\ControllerApiOut.cs",
+              "RelativeToolTip": "Grafica\\ControllerApiOut.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T08:06:45.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RegisterWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\RegisterWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\RegisterWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\RegisterWindow.xaml.cs",
+              "RelativeToolTip": "Grafica\\RegisterWindow.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T18:13:47.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegisterWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\RegisterWindow.xaml",
+              "RelativeDocumentMoniker": "Grafica\\RegisterWindow.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\RegisterWindow.xaml",
+              "RelativeToolTip": "Grafica\\RegisterWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T18:13:45.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\LoginWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "Grafica\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T18:02:59.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "Grafica\\LoginWindow.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\LoginWindow.xaml",
+              "RelativeToolTip": "Grafica\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T17:58:14.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustomMessageDialogComboBox.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAA3wDgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T17:40:24.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomMessageDialogComboBox.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T17:39:58.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CustomMessageDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAAAIcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T16:39:16.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CustomMessageDialog.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T16:31:57.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StylesMainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Estilos\\StylesMainWindow.xaml",
+              "RelativeDocumentMoniker": "Grafica\\Estilos\\StylesMainWindow.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Estilos\\StylesMainWindow.xaml",
+              "RelativeToolTip": "Grafica\\Estilos\\StylesMainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T16:05:44.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UIElement.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs",
+              "ToolTip": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs [Solo lectura]",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs [Solo lectura]",
+              "ViewState": "AgIAAPIZAAAAAAAAAAAhwP0ZAAACAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T14:53:14.814Z",
+              "EditorCaption": " [Solo lectura]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PanelMenu3.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T14:18:55.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PanelMenu2.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T14:18:33.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PanelMenu1.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-02T14:17:53.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "FrameworkTemplate.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs",
+              "ToolTip": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs [Solo lectura]",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs [Solo lectura]",
+              "ViewState": "AgIAAFQDAAAAAAAAAAAswGADAAADAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T13:10:01.99Z",
+              "EditorCaption": " [Solo lectura]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\App.xaml",
+              "RelativeDocumentMoniker": "Grafica\\App.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\App.xaml",
+              "RelativeToolTip": "Grafica\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-01T18:51:34.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\App.config",
+              "RelativeDocumentMoniker": "Grafica\\App.config",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\App.config",
+              "RelativeToolTip": "Grafica\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-07-01T18:51:33.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ThemeManager.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Themes\\ThemeManager.cs",
+              "RelativeDocumentMoniker": "Grafica\\Themes\\ThemeManager.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Themes\\ThemeManager.cs",
+              "RelativeToolTip": "Grafica\\Themes\\ThemeManager.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAiwA8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T16:37:41.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DarkTheme.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Themes\\DarkTheme.xaml",
+              "RelativeDocumentMoniker": "Grafica\\Themes\\DarkTheme.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Themes\\DarkTheme.xaml",
+              "RelativeToolTip": "Grafica\\Themes\\DarkTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-01T16:36:16.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "LightTheme.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Themes\\LightTheme.xaml",
+              "RelativeDocumentMoniker": "Grafica\\Themes\\LightTheme.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\Themes\\LightTheme.xaml",
+              "RelativeToolTip": "Grafica\\Themes\\LightTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-01T16:35:14.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Grafica\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\MainWindow.xaml",
+              "RelativeToolTip": "Grafica\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-01T16:24:34.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Grafica\\Grafica\\Grafica\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Grafica\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAcwG8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T16:24:34.081Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

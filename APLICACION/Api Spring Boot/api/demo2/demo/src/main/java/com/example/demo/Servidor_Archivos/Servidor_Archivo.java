@@ -42,6 +42,28 @@ public class Servidor_Archivo {
             return null;
         }
     }
+
+    /**
+     * Metodo para Cerrar sesion, borrar el id usuario
+     */
+    public String cerrarUsuario() {
+        Properties props = new Properties();
+
+        try (InputStream in = new FileInputStream(FILE_NAME)) {
+            props.load(in);
+        } catch (IOException e) {
+            return "No se pudo cargar el archivo de sesión.";
+        }
+        props.remove("idusuario");
+
+        try (OutputStream out = new FileOutputStream(FILE_NAME)) {
+            props.store(out, "User session - ID eliminado");
+            return "Sesión cerrada correctamente.";
+        } catch (IOException e) {
+            return "Error al guardar los cambios.";
+        }
+    }
+
 //Devolver lista de los archivos/temas/assignaturas....
     /**
      * Devolver Archvios de un tema
@@ -65,6 +87,19 @@ public class Servidor_Archivo {
                 }
             }
         }
+
+        // Ordenar la lista por numeros
+        nombresArchivos.sort((a, b) -> {
+            try {
+                // Extraer el número antes del primer punto
+                int numA = Integer.parseInt(a.substring(0, a.indexOf('.')));
+                int numB = Integer.parseInt(b.substring(0, b.indexOf('.')));
+                return Integer.compare(numA, numB);
+            } catch (Exception e) {
+                // Si falla la conversión o no tiene punto, poner al final o al inicio
+                return a.compareTo(b);
+            }
+        });
 
         return nombresArchivos;
     }

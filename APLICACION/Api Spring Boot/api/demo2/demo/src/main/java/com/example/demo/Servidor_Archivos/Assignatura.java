@@ -29,7 +29,7 @@ public class Assignatura extends Usuario{
         String[] partes = nombreAssignatura.split("\\.");
         this.solonombreAssignatura = partes[1];
 
-        this.rutaPadreAssignatura = super.getRutaUsuario();
+        this.rutaPadreAssignatura = super.getRutaUsuario() + "\\";
         this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
     }
 
@@ -49,7 +49,6 @@ public class Assignatura extends Usuario{
         this.solonombreAssignatura = partes[1];
         this.rutaPadreAssignatura = super.getRutaUsuario();
         this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
-
     }
 
     /**
@@ -63,13 +62,14 @@ public class Assignatura extends Usuario{
         super(usuario.getIdusuario());
 
         this.solonombreAssignatura = solonombreAssignatura;
+        this.rutaPadreAssignatura = super.getRutaUsuario() + "\\";
 
         this.nombreAssignatura = crearNombreAssignaturaNueva();
+        this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
+
         String[] partes = this.nombreAssignatura.split("\\.");
         this.idAssignatura = Long.parseLong(partes[0]);
 
-        this.rutaPadreAssignatura = super.getRutaUsuario();
-        this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
 
     }
 
@@ -82,6 +82,7 @@ public class Assignatura extends Usuario{
     public String crearNombreAssignaturaNueva(){
         //Saver el id de la ultima Assignatura
         long ultimoid = buscarUltimoId(this.getRutaPadreAssignatura());
+        ultimoid = ultimoid + 1;
 
         //agregar ruta con su +id.nombre+
         String nombre = ultimoid + "." + this.solonombreAssignatura;
@@ -90,11 +91,13 @@ public class Assignatura extends Usuario{
     }
 
     /**
-     * Agregar un Assignatura
+     * Agregar un Assignatura carpeta
      * @param 'nombre assignatura'
      **/
-    public boolean agregarAssignatura(String nombre_assignatura){
-        File carpeta = new File(this.rutaAssignatura);
+    public boolean agregarAssignatura(){
+        try {
+
+            File carpeta = new File(this.rutaAssignatura);
         if (carpeta.mkdirs()) {
             System.out.println("Carpeta creada exitosamente en: " + carpeta.getAbsolutePath());
             return true;
@@ -102,7 +105,15 @@ public class Assignatura extends Usuario{
             System.out.println("No se pudo crear la carpeta o ya existe.");
             return false;
         }
+        } catch (SecurityException se) {
+            System.out.println("Permiso denegado: " + se.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error inesperado: " + e.getMessage());
+            return false;
+        }
     }
+
 
     /**
      * Metodo para retornar el nuevo id de la assignatura, recorre todas las assignaturas para ver id
@@ -129,9 +140,10 @@ public class Assignatura extends Usuario{
                             numeromaximo = num;
                         }
                     }}}}
-        if(numeromaximo != 0){ //si no es 0 poner a 1
+        if(numeromaximo == 0){ //si es 0 poner a 1
             numeromaximo++;
         }
+
         return numeromaximo;
     }
 

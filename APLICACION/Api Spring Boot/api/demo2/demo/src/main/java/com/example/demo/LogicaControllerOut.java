@@ -34,45 +34,52 @@ public class LogicaControllerOut {
      */
     @GetMapping("/DevolverListaAssignaturas")
     public List<String> DevolverListaAssignaturas(){
-        //servidor.crearUsuarioyIniciarlo();
-
         //obtener id del usuario seleccionado
         String stringid = servidor.obteneridusuarioiniciado();
         long longid = Long.parseLong(stringid);
         servidor.usuario.setIdusuario(longid);
 
-
         return servidor.DevolverListaAssignaturas();
     }
 
-//Metodos para retornar de la bd sql
     /**
-     * Retornar usuario: Iniciar session de un usuario "usuario, contraseña"
-     * @param usuario
+     * Metodo para devolver los Temas
+     * @return assignatura
      */
-    @PostMapping("/iniciarusuario")
-    public ResponseEntity<?> iniciarSession(@RequestBody EUsuario usuario) {
-        //Buscar usuario por contraseña y usuario
-        Optional<EUsuario> usuarioEncontrado = usuarioRepository.findByUsuarioAndContraseña(
-                usuario.getUsuario(), usuario.getContraseña()
-        );
+    @GetMapping("/DevolverListaTemas")
+    public List<String> DevolverListaTemas(String Assignatura){
+        //obtener id del usuario seleccionado
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
 
-        if (usuarioEncontrado.isPresent()) {
-            //Usuario iniciado con Exito.
-            // Guardarlo en properties para hacerlo persistente
-            EUsuario usuarioentidadresp = usuarioEncontrado.get();
-            Usuario usuarion = new Usuario(usuarioentidadresp.getId(), usuarioentidadresp.getUsuario(), usuarioentidadresp.getEmail(), usuarioentidadresp.getContraseña());
-            usuarion.guardaridusuarioiniciado();
-
-            //Retornar el usuario entity al frontend
-            return ResponseEntity.ok(usuarioEncontrado.get()); // Devuelve el usuario
-        } else {
-            //Usuario no iniciado...
-            return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body("Usuario o contraseña incorrectos"); // Devuelve mensaje de error
-        }
+        return servidor.DevolverListaTemas(Assignatura);
     }
 
+    /**
+     * Metodo para devolver archivos
+     * @param Assignatura
+     * @param Tema
+     * @return
+     */
+    @GetMapping("/DevolverListaArchivos")
+    public List<String> DevolverListaArchivos(String Assignatura, String Tema){
+        //obtener id del usuario seleccionado
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        return servidor.DevolverListaArchivos(Assignatura, Tema);
+    }
+
+//metodos sql y Properties
+    /**
+     * Retornar usuario: Retornar el usuario iniciado
+     */
+    @GetMapping("/usuarioiniciado")
+    public boolean usuarioIniciado() {
+        String usuario = servidor.obteneridusuarioiniciado();
+        return usuario != null;
+    }
 
 }

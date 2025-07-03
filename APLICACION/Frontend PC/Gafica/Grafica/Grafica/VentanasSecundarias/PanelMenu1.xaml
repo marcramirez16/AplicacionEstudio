@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Grafica.PanelMenu1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Grafica"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource ColorPanelIntermedio}">
+
+    <Grid Margin="10">
+        <!-- Ejemplo de contenido: un TextBlock y un botón -->
+        <StackPanel>
+            <TextBlock Text="Panel1" 
+                       FontSize="18"
+                       Foreground="{DynamicResource PrimaryTextColor}"
+                       Margin="0,0,0,10"/>
+            <Button Content="Acción 1" Width="150" Height="35"/>
+            <Button Content="Acción 2" Width="150" Height="35" Margin="0,5,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
