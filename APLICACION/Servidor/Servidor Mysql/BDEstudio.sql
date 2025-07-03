@@ -6,10 +6,11 @@ USE AplicacionEstudio;
 
 CREATE TABLE Usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    usuario VARCHAR(25),
+    usuario VARCHAR(25) UNIQUE,
     contraseña VARCHAR(25),
-    correo VARCHAR(25)
+    email VARCHAR(25) UNIQUE
 );
 
-DELETE FROM Usuario WHERE id = 3;
+
+#DELETE FROM Usuario WHERE id = 3;
 select * from Usuario;
