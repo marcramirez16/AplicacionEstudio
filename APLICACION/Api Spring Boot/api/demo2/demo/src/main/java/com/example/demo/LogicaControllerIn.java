@@ -2,10 +2,8 @@ package com.example.demo;
 
 import com.example.demo.Controladores.UsuarioRepository;
 import com.example.demo.Entidades.EUsuario;
-import com.example.demo.Servidor_Archivos.Assignatura;
-import com.example.demo.Servidor_Archivos.Servidor_Archivo;
-import com.example.demo.Servidor_Archivos.Tema;
-import com.example.demo.Servidor_Archivos.Usuario;
+import com.example.demo.Servidor_Archivos.*;
+import org.apache.commons.math3.analysis.function.Asin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -64,6 +62,34 @@ public class LogicaControllerIn {
 
         return tema.agregarTema();
     }
+
+    /**
+     * Metodo para agregar un archivo nuevo
+      * @param nombreAssignatura
+     * @param nombreTema
+     * @param nombreArchivo
+     * @return
+     */
+    @PostMapping("/crearArchivo")
+    public boolean crearArchivo(String nombreAssignatura , String nombreTema, String nombreArchivo) {
+
+        System.out.println("nombreasignatura: " + nombreAssignatura + " nombretema: " + nombreTema + " nombreArchivo: " + nombreArchivo);
+        //obtener id usuario
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        Assignatura asignatura = new Assignatura(servidor.usuario, nombreAssignatura);
+
+        //Obtener Tema
+        Tema tema = new Tema(asignatura, nombreTema);
+
+        //Obtener Archivo
+        Archivo archivo = new Archivo(nombreArchivo, tema);
+
+            return archivo.agregarArchivo();
+    }
+
 
 //Metodos sql y properties
     //usuario
@@ -145,5 +171,35 @@ public class LogicaControllerIn {
         String usuario = servidor.cerrarUsuario();
     }
 
+    /**
+     * Metodo para agregar el archivo seleccionado en properties...
+     * @param nombreAsignatura
+     * @param nombreTema
+     * @param nombreArchivo
+     * @return
+     */
+    @PostMapping("/SeleccionarArchivo")
+    public boolean SeleccionarArchivo(String nombreAsignatura, String nombreTema, String nombreArchivo){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
 
+
+        Assignatura asignatura = new Assignatura(servidor.usuario, nombreAsignatura);
+
+        Tema tema = new Tema(asignatura, nombreTema);
+        Archivo archivo= new Archivo(tema, nombreArchivo);
+
+        return archivo.seleccionarArchivo();
+    }
+
+    /**
+     * Metodo para deseleccionar el archivo actual en properties...
+     * @return
+     */
+    @PostMapping("/DeseleccionarArchivo")
+    public String DeSeleccionarArchivo(){
+
+        return servidor.DeseleccionarArchivo();
+    }
 }

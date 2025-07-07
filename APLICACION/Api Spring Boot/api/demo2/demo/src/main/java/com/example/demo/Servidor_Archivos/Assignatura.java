@@ -33,6 +33,9 @@ public class Assignatura extends Usuario{
         this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
     }
 
+    public Assignatura(){
+
+    }
     /**
      * Metodo para recuperar la assignatura
      * @param usuario
@@ -48,8 +51,9 @@ public class Assignatura extends Usuario{
         this.idAssignatura = Long.parseLong(partes[0]);
         this.solonombreAssignatura = partes[1];
         this.rutaPadreAssignatura = super.getRutaUsuario();
-        this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
+        this.rutaAssignatura = rutaPadreAssignatura + "\\" + this.getNombreAssignatura();
     }
+
 
     /**
      * constructor para crear una nueva assignatura
@@ -69,7 +73,6 @@ public class Assignatura extends Usuario{
 
         String[] partes = this.nombreAssignatura.split("\\.");
         this.idAssignatura = Long.parseLong(partes[0]);
-
 
     }
 
@@ -95,6 +98,7 @@ public class Assignatura extends Usuario{
      * @param 'nombre assignatura'
      **/
     public boolean agregarAssignatura(){
+        if(!this.solonombreAssignatura.contains(".")){
         try {
 
             File carpeta = new File(this.rutaAssignatura);
@@ -112,6 +116,56 @@ public class Assignatura extends Usuario{
             System.out.println("Error inesperado: " + e.getMessage());
             return false;
         }
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Metodo para borrar la carpeta de la asignatura
+     * @return
+     */
+    public boolean borrarAsignatura() {
+        long idmax = this.idAssignatura; //obtener el id
+        File carpeta = new File(this.rutaAssignatura);
+        try {
+            if (borrarCarpetaRecursiva(carpeta)) {
+                // luego renombrar las demás carpetas
+                File[] archivos = carpeta.getParentFile().listFiles();
+                if (archivos != null) {
+                    for (File archivo : archivos) {
+                        if (archivo.isDirectory()) {
+                            String[] partes = archivo.getName().split("\\.", 2);
+                            long numeroid = Long.parseLong(partes[0]);
+                            if (numeroid > idmax) {
+                                long nuevoNumero = numeroid - 1;
+                                String nuevoNombre = nuevoNumero + "." + partes[1];
+                                File carpetaNueva = new File(archivo.getParent(), nuevoNombre);
+                                archivo.renameTo(carpetaNueva);
+                            }
+                        }
+                    }
+                }
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    private boolean borrarCarpetaRecursiva(File carpeta) {
+        if (carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    borrarCarpetaRecursiva(archivo);
+                }
+            }
+        }
+        return carpeta.delete(); // una vez vacía, se elimina
     }
 
 

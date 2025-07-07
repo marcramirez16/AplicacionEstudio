@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class EUsuario
 {
-    public long? idusuario { get; set; }  // puede ser null al enviar
+    public long? idusuario { get; set; } 
     public string usuario { get; set; }
     public string contraseña { get; set; }
     public string email { get; set; }

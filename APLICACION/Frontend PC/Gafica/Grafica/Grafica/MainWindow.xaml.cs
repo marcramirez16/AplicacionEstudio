@@ -1,8 +1,11 @@
-﻿using Grafica.Themes;
+﻿using Grafica.entidades;
+using Grafica.Themes;
 using Grafica.VentanasSecundarias;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System.IO;
 
 namespace Grafica
 {
@@ -45,6 +49,7 @@ namespace Grafica
 
             Titulo_Lista.Text = "Lista Asignaturas"; //AGREGAR TITULO ASIGNATURAS
 
+            deseleccionararchivoselec();
 
         }
 
@@ -52,7 +57,10 @@ namespace Grafica
         //METODOS QUE REALIZAN ACCIONES
         //---------------------------------------------------------
 
+        private async void deseleccionararchivoselec() {
+            await ControllerApiOut.DeseleccionarArchivo();
 
+        }
 
 
         //----metodos que cargan datos de la api en la ventana...
@@ -199,11 +207,27 @@ namespace Grafica
             var listbox = sender as ListBox;
             if (listbox != null && listbox.SelectedItem != null)
             {
+
+                string asignatura = AsignaturaCombobox.SelectedItem as string;
+
+                string tema = ComboboxTemas.SelectedItem as string;
+
                 string seleccionado = listbox.SelectedItem.ToString();
 
-
+                agregarArchivoSeleccionadoAsync(asignatura, tema, seleccionado);
             }
         }
+
+        private async Task agregarArchivoSeleccionadoAsync(String asignatura, String tema, String archivo) {
+           
+            await ControllerApiOut.SeleccionarArchivo(asignatura, tema, archivo);
+            
+            Archivo archivo2 = await ControllerApiOut.ObtenerArchivoSeleccionado();
+            ArchivoSelect.Text = archivo2.nombreArchivo;
+            //MessageBox.Show(archivo2.nombreArchivo);
+
+        }
+
         /// <summary>
         /// Cargar todas las asignaturas en la lista grande, tambien metodo para seleccionar asignatura ymostrar temas
         /// </summary>
@@ -321,6 +345,9 @@ namespace Grafica
                 string valor = AsignaturaCombobox.SelectedItem as string;
 
                 CargarArchivosAsync(valor, seleccionado);
+
+                ComboboxTemas.SelectedItem = seleccionado;
+
                 Titulo_Lista.Text = "Lista Archivos de " + seleccionado;
             }
         }
@@ -353,8 +380,271 @@ namespace Grafica
         }
 
 
- 
-       
+
+        //----Abrir, Entrenar, carpetas y archivos...  
+        /// <summary>
+        /// Metodo para exportar una carpeta asignatura
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Boton_Exportar_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SoloCombobox();
+            dialog.Owner = this; // importante para centrar
+            dialog.Title = "Exportar Asignatura";
+
+            List<string> asignaturas = await ControllerApiOut.ObtenerListaAsignaturas();
+            dialog.SetDialogMode(asignaturas);
+
+            // Aplica desenfoque a la ventana principal
+            var blurEffect = new System.Windows.Media.Effects.BlurEffect { Radius = 6 };
+            this.Effect = blurEffect;
+
+            // Mostrar diálogo modal, se abrirá centrado sobre la ventana padre
+            bool? result = dialog.ShowDialog();
+
+            // Quitar desenfoque
+            this.Effect = null;
+
+
+
+            if (result == true)
+            {
+
+                string asignatura = dialog.AssignaturaName;
+
+                string rutaas = await ControllerApiOut.ObtenerRutaAsignatura(asignatura);
+
+                if (!Directory.Exists(rutaas))
+                {
+                    MessageBox.Show("La ruta de la asignatura no existe: " + rutaas);
+                    return;
+                }
+
+                // Seleccionar carpeta de destino
+                var folderDialog = new CommonOpenFileDialog
+                {
+                    IsFolderPicker = true,
+                    Title = "Selecciona la carpeta de destino para exportar la asignatura"
+                };
+
+                if (folderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    string destino = System.IO.Path.Combine(folderDialog.FileName, System.IO.Path.GetFileName(rutaas));
+                    try
+                    {
+                        DirectoryCopy(rutaas, destino, true);
+                        MessageBox.Show("Exportación completada con éxito.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al exportar: " + ex.Message);
+                    }
+                }
+
+            }
+
+        }
+
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException("No se encontró el directorio de origen: " + sourceDirName);
+
+            if (!Directory.Exists(destDirName))
+                Directory.CreateDirectory(destDirName);
+
+            // Copiar archivos
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = System.IO.Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            // Copiar subdirectorios
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metodo para borrar asignatura, selecciona la asignatura que borrar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void borrarAsingatura(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SoloCombobox();
+            dialog.Owner = this; // importante para centrar
+            dialog.Title = "Borrar Asignatura";
+
+            List<string> asignaturas = await ControllerApiOut.ObtenerListaAsignaturas();
+            dialog.SetDialogMode(asignaturas);
+
+            // Aplica desenfoque a la ventana principal
+            var blurEffect = new System.Windows.Media.Effects.BlurEffect { Radius = 6 };
+            this.Effect = blurEffect;
+
+            // Mostrar diálogo modal, se abrirá centrado sobre la ventana padre
+            bool? result = dialog.ShowDialog();
+
+            // Quitar desenfoque
+            this.Effect = null;
+
+            if (result == true)
+            {
+
+                string asignatura = dialog.AssignaturaName;
+
+  
+                    var result2 = MessageBox.Show("¿Deseas Borrar la Asingatura: " + dialog.AssignaturaName + "?", "Confirmar",
+                                   MessageBoxButton.YesNo,
+                                   MessageBoxImage.Question);
+
+                if (result2 == MessageBoxResult.Yes)
+                {
+                    Boolean resultado = await ControllerApiOut.borrarAsignatura(asignatura);
+                    if (!resultado)
+                    {
+                        MessageBox.Show("Error al borrar la asignatura.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }  }
+        }
+
+        /// <summary>
+        /// Metodo para borrar tema
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void borrarTema(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SoloCombobox2();
+            dialog.Owner = this; // importante para centrar
+            dialog.Title = "Borrar Tema";
+
+            List<string> asignaturas = await ControllerApiOut.ObtenerListaAsignaturas();
+            dialog.SetAsignaturas(asignaturas);
+
+            dialog.OnAsignaturaSeleccionada = async (asignaturaSeleccionada) =>
+            {
+                List<string> temas = await ControllerApiOut.ObtenerListaTemas(asignaturaSeleccionada);
+                dialog.SetTemas(asignaturaSeleccionada, temas);
+            };
+
+            // Desenfoque
+            this.Effect = new System.Windows.Media.Effects.BlurEffect { Radius = 6 };
+
+            bool? result = dialog.ShowDialog();
+
+            this.Effect = null; // Quitar desenfoque
+
+            if (result == true)
+            {
+
+                string asignatura = dialog.AsignaturaName;
+                string tema = dialog.TemaName;
+
+
+                var result2 = MessageBox.Show("¿Deseas Borrar el Tema: " + dialog.TemaName + "?", "Confirmar",
+                               MessageBoxButton.YesNo,
+                               MessageBoxImage.Question);
+
+                if (result2 == MessageBoxResult.Yes)
+                {
+                    Boolean resultado = await ControllerApiOut.borrarTema(asignatura, tema);
+                    if (!resultado)
+                    {
+                        MessageBox.Show("Error al borrar el tema.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Metodo para borrar Archivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void borrarArchivo(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SoloCombobox3();
+            dialog.Owner = this; // importante para centrar
+            dialog.Title = "Borrar Archivo";
+
+            List<string> asignaturas = await ControllerApiOut.ObtenerListaAsignaturas();
+            dialog.SetAsignaturas(asignaturas);
+
+            dialog.OnAsignaturaSeleccionada = async (asignaturaSeleccionada) =>
+            {
+                List<string> temas = await ControllerApiOut.ObtenerListaTemas(asignaturaSeleccionada);
+                dialog.SetTemas(asignaturaSeleccionada, temas);
+
+            };
+
+            dialog.OnTemaSeleccionado = async (asignatura, tema) =>
+            {
+                List<string> archivos = await ControllerApiOut.ObtenerListaArchivos(asignatura, tema);
+                dialog.SetArchivos(asignatura, archivos);
+            };
+
+            // Desenfoque
+            this.Effect = new System.Windows.Media.Effects.BlurEffect { Radius = 6 };
+
+            bool? result = dialog.ShowDialog();
+
+            this.Effect = null; // Quitar desenfoque
+
+            if (result == true)
+            {
+
+                string asignatura = dialog.AsignaturaName;
+                string tema = dialog.TemaName;
+                string archivo = dialog.ArchivoName;
+
+                var result2 = MessageBox.Show("¿Deseas Borrar el archivo: " + dialog.ArchivoName + "?", "Confirmar",
+                               MessageBoxButton.YesNo,
+                               MessageBoxImage.Question);
+
+                if (result2 == MessageBoxResult.Yes)
+                {
+                    Boolean resultado = await ControllerApiOut.borrarArchivo(asignatura, tema, archivo);
+                    if (!resultado)
+                    {
+                        MessageBox.Show("Error al borrar el archivo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+
+            }
+        }
+
+
+
+        /// <summary>
+        /// Metodo para abrir el archivo seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void AbrirArch(object sender, RoutedEventArgs e) {
+            Archivo archivo2 = await ControllerApiOut.ObtenerArchivoSeleccionado();
+
+            if (archivo2 != null)
+            {
+                Process.Start(new ProcessStartInfo(archivo2.rutaArchivo) { UseShellExecute = true });
+            }
+            else { MessageBox.Show("Ningun Archivo Seleccionado!"); }
+
+        }
         //----Crear asignaturas, temas, archivos...
         /// <summary>
         /// Metodo para crear neuva asignatura
@@ -451,6 +741,62 @@ namespace Grafica
 
             }
         }
+
+        /// <summary>
+        /// Metodo para crear nuevo archivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void CrearArchivo_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CustomMessageDialogComboBox2();
+            dialog.Owner = this;
+
+            List<string> asignaturas = await ControllerApiOut.ObtenerListaAsignaturas();
+            dialog.SetAsignaturas(asignaturas);
+
+            dialog.OnAsignaturaSeleccionada = async (asignaturaSeleccionada) =>
+            {
+                List<string> temas = await ControllerApiOut.ObtenerListaTemas(asignaturaSeleccionada);
+                dialog.SetTemas(asignaturaSeleccionada, temas);
+            };
+
+            // Desenfoque
+            this.Effect = new System.Windows.Media.Effects.BlurEffect { Radius = 6 };
+
+            bool? result = dialog.ShowDialog();
+
+            this.Effect = null; // Quitar desenfoque
+
+            if (result == true)
+            {
+                string asignatura = dialog.AsignaturaName;
+                string tema = dialog.TemaName;
+                string nombreArchivo = dialog.NombreArchivo;
+
+                // Intentamos agregar el archivo.
+                bool exito = await ControllerApiOut.AgregarArchivo(asignatura, tema, nombreArchivo);
+
+                if (exito)
+                {
+                    AsignaturaCombobox.SelectedItem = asignatura;
+                    ComboboxTemas.SelectedItem = tema;
+
+                    CargarAsignaturasAsync();
+                    CargarTemasAsync(asignatura);
+                    CargarTemasEnLista(asignatura);
+                    Titulo_Lista.Text = "Lista Temas de " + asignatura;
+                }
+                else
+                {
+
+                    // Si el archivo no se creó correctamente, mostramos el mensaje de error.
+                    MessageBox.Show("Error al crear el archivo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+
 
 
         //-----
@@ -583,17 +929,35 @@ namespace Grafica
                 ThemeManager.ApplyTheme("Light");
                 Tema_Icono.Source = new BitmapImage(new Uri("/Image/boton_blanco_brillo.png", UriKind.Relative));
                 ListaGrandealiniciar();
+
+                //Inicializar todos los componentes con el usuario adecuado
+                CargarAsignaturasAsync(); //Cargar asignaturas en combobox
+                CargarAsignaurasEnLista(); //Cargar asignaturas en la lista
+                ComboboxTemas.SelectedIndex = 0;
+                Titulo_Lista.Text = "Lista Asignaturas"; //AGREGAR TITULO ASIGNATURAS
+
+
             }
+
+
             else
             { //modo oscuro
 
                 ThemeManager.ApplyTheme("Dark");
                 Tema_Icono.Source = new BitmapImage(new Uri("/Image/boton_negro_oscuro.png", UriKind.Relative));
                 ListaGrandealiniciar();
+
+                //Inicializar todos los componentes con el usuario adecuado
+                CargarAsignaturasAsync(); //Cargar asignaturas en combobox
+                CargarAsignaurasEnLista(); //Cargar asignaturas en la lista
+                ComboboxTemas.SelectedIndex = 0;
+                Titulo_Lista.Text = "Lista Asignaturas"; //AGREGAR TITULO ASIGNATURAS
+
             }
 
             modoOscuroActivo = !modoOscuroActivo;
         }
+     
 
         //Metodos para cambiar de Thema
         /// <summary>

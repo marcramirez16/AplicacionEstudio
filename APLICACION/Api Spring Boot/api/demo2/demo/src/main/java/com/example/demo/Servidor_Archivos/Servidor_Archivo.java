@@ -31,6 +31,43 @@ public class Servidor_Archivo {
 
 //Metodos
     /**
+     * Metodo para obtener la ruta archvio seleccionado
+     */
+    public String retornarArchivoSeleccionado() {
+        Properties props = new Properties();
+        try (InputStream in = new FileInputStream(FILE_NAME)) {
+            props.load(in);
+            return props.getProperty("archivoSeleccionado");
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Metodo para deseleccionar el archivo actual
+     * @return
+     */
+    public String DeseleccionarArchivo() {
+        Properties props = new Properties();
+
+        try (InputStream in = new FileInputStream(FILE_NAME)) {
+            props.load(in);
+        } catch (IOException e) {
+            return "No se pudo cargar el archivo de sesión.";
+        }
+
+        props.remove("archivoSeleccionado");
+
+        try (OutputStream out = new FileOutputStream(FILE_NAME)) {
+            props.store(out, "Archivo deseleccionado");
+            return "archivo deseleccionado correctamente.";
+        } catch (IOException e) {
+            return "Error al deseleccionar los cambios.";
+        }
+    }
+
+
+    /**
      * Metodo para obtener el id usuario iniciado
      */
     public String obteneridusuarioiniciado() {
@@ -50,19 +87,21 @@ public class Servidor_Archivo {
         Properties props = new Properties();
 
         try (InputStream in = new FileInputStream(FILE_NAME)) {
-            props.load(in);
+            props.load(in); // ✅ Cargas todas las propiedades actuales
         } catch (IOException e) {
             return "No se pudo cargar el archivo de sesión.";
         }
-        props.remove("idusuario");
+
+        props.remove("idusuario"); // ✅ Solo eliminas el usuario, no todo
 
         try (OutputStream out = new FileOutputStream(FILE_NAME)) {
-            props.store(out, "User session - ID eliminado");
+            props.store(out, "User session - ID eliminado"); // ✅ Guardas el resto
             return "Sesión cerrada correctamente.";
         } catch (IOException e) {
             return "Error al guardar los cambios.";
         }
     }
+
 
 //Devolver lista de los archivos/temas/assignaturas....
     /**

@@ -3,28 +3,80 @@
   "WorkspaceRootPath": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\gafica\\grafica\\grafica\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\solocombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\solocombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\solocombobox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\solocombobox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|c:\\users\\marcr\\desktop\\escritorio\\aplicacion\\frontend pc\\gafica\\grafica\\grafica\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\controllerapiout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\controllerapiout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\solocombobox3.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\solocombobox3.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\solocombobox3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\solocombobox3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\solocombobox2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\solocombobox2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\solocombobox2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\solocombobox2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\controllerapiout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\controllerapiout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialogcombobox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\entidades\\archivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\entidades\\archivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\entidades\\rutaapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\entidades\\rutaapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\entidades\\eusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\entidades\\eusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\registerwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\registerwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\registerwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\estilos\\stylesmainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -49,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\custommessagedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|solutionrelative:grafica\\ventanassecundarias\\custommessagedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BA661BB2-4B88-4498-861D-04CC4561B54D}|Grafica\\Grafica.csproj|C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\grafica\\ventanassecundarias\\panelmenu1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -96,23 +140,163 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 21,
+          "SelectedChildIndex": 32,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "SoloCombobox3.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox3.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\SoloCombobox3.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox3.xaml.cs",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\SoloCombobox3.xaml.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAHoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T15:45:34.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SoloCombobox3.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox3.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\SoloCombobox3.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox3.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\SoloCombobox3.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-06T15:43:13.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SoloCombobox2.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox2.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\SoloCombobox2.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox2.xaml.cs",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\SoloCombobox2.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T15:13:09.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SoloCombobox2.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox2.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\SoloCombobox2.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox2.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\SoloCombobox2.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-06T15:11:38.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SoloCombobox.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\SoloCombobox.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox.xaml.cs",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\SoloCombobox.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T14:47:03.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SoloCombobox.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\SoloCombobox.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\SoloCombobox.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\SoloCombobox.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-06T14:44:17.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CustomMessageDialogComboBox2.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml.cs",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml.cs",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T14:24:42.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CustomMessageDialogComboBox2.xaml",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml",
+              "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml",
+              "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox2.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-05T14:23:06.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "RutaApi.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\entidades\\RutaApi.cs",
+              "RelativeDocumentMoniker": "Grafica\\entidades\\RutaApi.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\entidades\\RutaApi.cs",
+              "RelativeToolTip": "Grafica\\entidades\\RutaApi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T11:26:04.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "EUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\entidades\\EUsuario.cs",
+              "RelativeDocumentMoniker": "Grafica\\entidades\\EUsuario.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\entidades\\EUsuario.cs",
+              "RelativeToolTip": "Grafica\\entidades\\EUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T11:23:03.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Archivo.cs",
+              "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\entidades\\Archivo.cs",
+              "RelativeDocumentMoniker": "Grafica\\entidades\\Archivo.cs",
+              "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\entidades\\Archivo.cs",
+              "RelativeToolTip": "Grafica\\entidades\\Archivo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T11:22:12.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ControllerApiOut.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\ControllerApiOut.cs",
               "RelativeDocumentMoniker": "Grafica\\ControllerApiOut.cs",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\ControllerApiOut.cs",
               "RelativeToolTip": "Grafica\\ControllerApiOut.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOEBAAAAAAAAAAAYwOIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T08:06:45.105Z"
+              "WhenOpened": "2025-07-03T08:06:45.105Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 19,
               "Title": "RegisterWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\RegisterWindow.xaml.cs",
               "RelativeDocumentMoniker": "Grafica\\RegisterWindow.xaml.cs",
@@ -120,68 +304,74 @@
               "RelativeToolTip": "Grafica\\RegisterWindow.xaml.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T18:13:47.405Z"
+              "WhenOpened": "2025-07-02T18:13:47.405Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 20,
               "Title": "RegisterWindow.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\RegisterWindow.xaml",
               "RelativeDocumentMoniker": "Grafica\\RegisterWindow.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\RegisterWindow.xaml",
               "RelativeToolTip": "Grafica\\RegisterWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T18:13:45.002Z"
+              "WhenOpened": "2025-07-02T18:13:45.002Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "LoginWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\LoginWindow.xaml.cs",
               "RelativeDocumentMoniker": "Grafica\\LoginWindow.xaml.cs",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\LoginWindow.xaml.cs",
               "RelativeToolTip": "Grafica\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAwwGMAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T18:02:59.971Z"
+              "WhenOpened": "2025-07-02T18:02:59.971Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "LoginWindow.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "Grafica\\LoginWindow.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\LoginWindow.xaml",
               "RelativeToolTip": "Grafica\\LoginWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T17:58:14.675Z"
+              "WhenOpened": "2025-07-02T17:58:14.675Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "CustomMessageDialogComboBox.xaml.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAA3wDgAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T17:40:24.12Z"
+              "WhenOpened": "2025-07-02T17:40:24.12Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
               "Title": "CustomMessageDialogComboBox.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialogComboBox.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T17:39:58.54Z"
+              "WhenOpened": "2025-07-02T17:39:58.54Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 25,
               "Title": "CustomMessageDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
@@ -189,103 +379,110 @@
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml.cs",
               "ViewState": "AgIAAHwAAAAAAAAAAAAAAIcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T16:39:16.01Z"
+              "WhenOpened": "2025-07-02T16:39:16.01Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "CustomMessageDialog.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\CustomMessageDialog.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T16:31:57.826Z"
+              "WhenOpened": "2025-07-02T16:31:57.826Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 21,
               "Title": "StylesMainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Estilos\\StylesMainWindow.xaml",
               "RelativeDocumentMoniker": "Grafica\\Estilos\\StylesMainWindow.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Estilos\\StylesMainWindow.xaml",
               "RelativeToolTip": "Grafica\\Estilos\\StylesMainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T16:05:44.96Z"
+              "WhenOpened": "2025-07-02T16:05:44.96Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "UIElement.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs",
-              "ToolTip": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs [Solo lectura]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs [Solo lectura]",
+              "ToolTip": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f9ee7a567e6214e166f2da46cf1f973e6f27ff75c80c829d4c21ac9726af3d6f\\UIElement.cs",
               "ViewState": "AgIAAPIZAAAAAAAAAAAhwP0ZAAACAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T14:53:14.814Z",
-              "EditorCaption": " [Solo lectura]"
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 30,
               "Title": "PanelMenu3.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\PanelMenu3.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T14:18:55.935Z"
+              "WhenOpened": "2025-07-02T14:18:55.935Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "PanelMenu2.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\PanelMenu2.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T14:18:33.415Z"
+              "WhenOpened": "2025-07-02T14:18:33.415Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 24,
               "Title": "PanelMenu1.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
               "RelativeDocumentMoniker": "Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
               "RelativeToolTip": "Grafica\\VentanasSecundarias\\PanelMenu1.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-02T14:17:53.306Z"
+              "WhenOpened": "2025-07-02T14:17:53.306Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 31,
               "Title": "FrameworkTemplate.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs",
-              "ToolTip": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs [Solo lectura]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs [Solo lectura]",
+              "ToolTip": "C:\\Users\\marcr\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\73e1a1d8e19e47eee26c313ece4ab382f1f2344cbe83592aaed6b968c67fd6ca\\FrameworkTemplate.cs",
               "ViewState": "AgIAAFQDAAAAAAAAAAAswGADAAADAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-02T13:10:01.99Z",
-              "EditorCaption": " [Solo lectura]"
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 22,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\App.xaml",
               "RelativeDocumentMoniker": "Grafica\\App.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\App.xaml",
               "RelativeToolTip": "Grafica\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-01T18:51:34.504Z"
+              "WhenOpened": "2025-07-01T18:51:34.504Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 32,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\App.config",
               "RelativeDocumentMoniker": "Grafica\\App.config",
@@ -293,11 +490,12 @@
               "RelativeToolTip": "Grafica\\App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-07-01T18:51:33.677Z"
+              "WhenOpened": "2025-07-01T18:51:33.677Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 27,
               "Title": "ThemeManager.cs",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Themes\\ThemeManager.cs",
               "RelativeDocumentMoniker": "Grafica\\Themes\\ThemeManager.cs",
@@ -305,40 +503,44 @@
               "RelativeToolTip": "Grafica\\Themes\\ThemeManager.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAiwA8AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T16:37:41.874Z"
+              "WhenOpened": "2025-07-01T16:37:41.874Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 23,
               "Title": "DarkTheme.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Themes\\DarkTheme.xaml",
               "RelativeDocumentMoniker": "Grafica\\Themes\\DarkTheme.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Themes\\DarkTheme.xaml",
               "RelativeToolTip": "Grafica\\Themes\\DarkTheme.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-01T16:36:16.474Z"
+              "WhenOpened": "2025-07-01T16:36:16.474Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 26,
               "Title": "LightTheme.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Themes\\LightTheme.xaml",
               "RelativeDocumentMoniker": "Grafica\\Themes\\LightTheme.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\Themes\\LightTheme.xaml",
               "RelativeToolTip": "Grafica\\Themes\\LightTheme.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-01T16:35:14.724Z"
+              "WhenOpened": "2025-07-01T16:35:14.724Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Grafica\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\MainWindow.xaml",
               "RelativeToolTip": "Grafica\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-01T16:24:34.452Z"
+              "WhenOpened": "2025-07-01T16:24:34.452Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -348,7 +550,7 @@
               "RelativeDocumentMoniker": "Grafica\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Frontend PC\\Gafica\\Grafica\\Grafica\\MainWindow.xaml.cs",
               "RelativeToolTip": "Grafica\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAcwIMAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAEYCAAAAAAAAAAAswEYCAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-01T16:24:34.081Z",
               "EditorCaption": ""

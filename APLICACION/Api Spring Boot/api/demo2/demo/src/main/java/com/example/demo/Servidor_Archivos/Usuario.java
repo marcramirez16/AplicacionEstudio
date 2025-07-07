@@ -77,15 +77,21 @@ public class Usuario {
 
     }
 
-
-
     /**
      * Metodo para guardar el usuario en properties
      */
-    public void guardaridusuarioiniciado(){
+    public void guardaridusuarioiniciado() {
         Properties props = new Properties();
+
+        try (InputStream in = new FileInputStream(FILE_NAME)) {
+            props.load(in);
+        } catch (IOException e) {
+            // ignorar si no existe aún
+        }
+
         String idstring = String.valueOf(this.idusuario);
         props.setProperty("idusuario", idstring);
+
         try (OutputStream out = new FileOutputStream(FILE_NAME)) {
             props.store(out, "User session");
         } catch (IOException e) {

@@ -49,10 +49,16 @@ public class Tema extends Assignatura{
         this.solonombreTema = partes[1];
         this.nombreTema = nombreTema;
 
-        this.rutaPadreTema = super.getrutaAssignatura();
+        this.rutaPadreTema = assignatura.getrutaAssignatura();
         this.rutaTema = this.rutaPadreTema + "\\" + this.nombreTema;
+
     }
 
+    public Tema(){
+        super();
+
+
+    }
     /**
      * Constructor para crear un nuevo Tema 'crea el id automaticamente'
      * @param solonombreTema
@@ -71,7 +77,6 @@ public class Tema extends Assignatura{
 
         this.rutaPadreTema = super.getrutaAssignatura();
         this.rutaTema = this.rutaPadreTema + "\\" + this.nombreTema;
-        System.out.println("-----La ruta del tema es la siguiente:" + this.rutaTema);
     }
 
     /**
@@ -95,13 +100,63 @@ public class Tema extends Assignatura{
      **/
     public boolean agregarTema(){
         File carpeta = new File(this.getRutaTema());
-        if (carpeta.mkdirs()) {
-            System.out.println("Carpeta creada exitosamente en: " + carpeta.getAbsolutePath());
-            return true;
-        } else {
-            System.out.println("No se pudo crear la carpeta o ya existe.");
+        if(!this.solonombreTema.contains(".")) {
+
+            if (carpeta.mkdirs()) {
+                System.out.println("Carpeta creada exitosamente en: " + carpeta.getAbsolutePath());
+                return true;
+            } else {
+                System.out.println("No se pudo crear la carpeta o ya existe.");
+                return false;
+            }
+        }else{return false;}
+    }
+
+    /**
+     * Metodo para borrar la carpeta de la asignatura
+     * @return
+     */
+    public boolean borrarTema() {
+        long idmax = this.idTema; //obtener el id
+        File carpeta = new File(this.rutaTema);
+        try {
+            if (borrarCarpetaRecursiva(carpeta)) {
+                // luego renombrar las demás carpetas
+                File[] archivos = carpeta.getParentFile().listFiles();
+                if (archivos != null) {
+                    for (File archivo : archivos) {
+                        if (archivo.isDirectory()) {
+                            String[] partes = archivo.getName().split("\\.", 2);
+                            long numeroid = Long.parseLong(partes[0]);
+                            if (numeroid > idmax) {
+                                long nuevoNumero = numeroid - 1;
+                                String nuevoNombre = nuevoNumero + "." + partes[1];
+                                File carpetaNueva = new File(archivo.getParent(), nuevoNombre);
+                                archivo.renameTo(carpetaNueva);
+                            }
+                        }
+                    }
+                }
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
             return false;
         }
+
+    }
+    private boolean borrarCarpetaRecursiva(File carpeta) {
+        if (carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    borrarCarpetaRecursiva(archivo);
+                }
+            }
+        }
+        return carpeta.delete(); // una vez vacía, se elimina
     }
 
     /**

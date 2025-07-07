@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Grafica1.Entidades
+namespace Grafica.entidades
 {
     internal class RutaApi
     {

@@ -1,8 +1,7 @@
-﻿using Grafica1.Entidades;
+﻿using Grafica.entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +24,8 @@ public class ControllerApiOut
         using (HttpClient client = new HttpClient())
         {
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            string url = RutaApi.ruta + "crearusuario"; //ruta de la api + llamada
+            
+            string url = RutaApi.ruta + "crearusuario"; 
 
             HttpResponseMessage response = await client.PostAsync(url, content);
 
@@ -255,7 +254,257 @@ public class ControllerApiOut
             return false;
         }
     }
+
+    /// <summary>
+    /// Metodo para agregar Archivo nuevo
+    /// </summary>
+    /// <returns></returns>
+    public static async Task<bool> AgregarArchivo(String nombreAssignatura, String nombreTema, String nombreArchivo)
+    {
+
+        string url = RutaApi.ruta + "crearArchivo";
+
+        var parametros = new Dictionary<string, string>
+            {
+                { "nombreAssignatura", nombreAssignatura },
+                { "nombreTema", nombreTema},
+                { "nombreArchivo", nombreArchivo}
+            };
+
+        var content = new FormUrlEncodedContent(parametros);
+        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            await response.Content.ReadAsStringAsync();
+            return true;
         }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Metdo para insertar el archivo seleccionado
+    /// </summary>
+    /// <param name="nombreAsignatura"></param>
+    /// <param name="nombreTema"></param>
+    /// <param name="nombreArchivo"></param>
+    /// <returns>true/false</returns>
+    public static async Task<bool> SeleccionarArchivo(string nombreAsignatura, string nombreTema, string nombreArchivo)
+    {
+        string url = RutaApi.ruta + "SeleccionarArchivo";
+
+        var parametros = new Dictionary<string, string>
+    {
+        { "nombreAsignatura", nombreAsignatura },
+        { "nombreTema", nombreTema },
+        { "nombreArchivo", nombreArchivo }
+    };
+
+        var content = new FormUrlEncodedContent(parametros);
+
+        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string result = await response.Content.ReadAsStringAsync();
+            return bool.Parse(result); 
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Metodo para deseleccionar el archivo que esta seleccionado actualmente
+    /// </summary>
+    /// <returns>true/false</returns>
+    public static async Task<string> DeseleccionarArchivo()
+    {
+        string url = RutaApi.ruta + "DeseleccionarArchivo";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.PostAsync(url, null); 
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return null; 
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para obtener el archivo seleccionado
+    /// </summary>
+    /// <returns>Archivo/null</returns>
+    public static async Task<Archivo> ObtenerArchivoSeleccionado()
+    {
+        string url = RutaApi.ruta + "ArchivoSeleccionado";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.PostAsync(url, null);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Archivo>(json);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+    }
+    /// <summary>
+    /// Abrir archivo seleccionado
+    /// </summary>
+    /// <returns></returns>
+    public static async Task<bool> AbrirArchivo()
+    {
+
+        string url = RutaApi.ruta + "AbrirArchivo";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                await response.Content.ReadAsStringAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para borrar asignatura "carpeta"
+    /// </summary>
+    /// <param name="nombreAsignatura"></param>
+    /// <returns></returns>
+    public static async Task<bool> borrarAsignatura(string nombreAsignatura)
+    {
+        string url = RutaApi.ruta + "BorrarAsignatura";
+
+        var parametros = new Dictionary<string, string>
+    {
+        { "nombreAsignatura", nombreAsignatura}
+    };
+
+        var content = new FormUrlEncodedContent(parametros);
+
+        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string result = await response.Content.ReadAsStringAsync();
+            return bool.Parse(result);
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Metodo para borrar el tema
+    /// </summary>
+    /// <param name="nombreAsignatura"></param>
+    /// <param name="nombreTema"></param>
+    /// <returns></returns>
+    public static async Task<bool> borrarTema(string nombreAsignatura, string nombreTema)
+    {
+        string url = RutaApi.ruta + "BorrarTema";
+
+        var parametros = new Dictionary<string, string>
+    {
+        { "nombreAsignatura", nombreAsignatura},
+         { "nombreTema", nombreTema}
+    };
+
+        var content = new FormUrlEncodedContent(parametros);
+
+        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string result = await response.Content.ReadAsStringAsync();
+            return bool.Parse(result);
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Metodo para borrar el archivo
+    /// </summary>
+    /// <param name="nombreAsignatura"></param>
+    /// <param name="nombreTema"></param>
+    /// <returns></returns>
+    public static async Task<bool> borrarArchivo(string nombreAsignatura, string nombreTema, string nombreArchivo)
+    {
+        string url = RutaApi.ruta + "BorrarArchivo";
+
+        var parametros = new Dictionary<string, string>
+    {
+        { "nombreAsignatura", nombreAsignatura},
+         { "nombreTema", nombreTema},
+          { "nombreArchivo", nombreArchivo}
+
+    };
+
+        var content = new FormUrlEncodedContent(parametros);
+
+        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            string result = await response.Content.ReadAsStringAsync();
+            return bool.Parse(result);
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Metodo para obtener la ruta de una asignatura
+    /// </summary>
+    /// <param name="nombreAsignatura"></param>
+    /// <returns>ruta asignatura</returns>
+    public static async Task<string> ObtenerRutaAsignatura(String nombreAsignatura)
+    {
+
+        string url = RutaApi.ruta + "RutaAsignatura";
+
+        var parametros = new Dictionary<string, string>
+        {
+            { "nombreAsignatura", nombreAsignatura }
+        };
+
+        var content = new FormUrlEncodedContent(parametros);
+        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            
+            return await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+}
 
 
 

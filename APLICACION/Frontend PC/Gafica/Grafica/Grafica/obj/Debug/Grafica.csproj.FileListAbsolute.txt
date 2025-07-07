@@ -92,3 +92,15 @@ C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\Grafica.csproj.Up2Date
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\Grafica.exe
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\Grafica.pdb
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\CustomMessageDialogComboBox2.baml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\CustomMessageDialogComboBox2.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\SoloCombobox.baml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\SoloCombobox.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\SoloCombobox2.baml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\SoloCombobox2.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\SoloCombobox3.baml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\SoloCombobox3.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
