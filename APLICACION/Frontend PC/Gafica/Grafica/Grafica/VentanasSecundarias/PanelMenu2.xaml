@@ -7,7 +7,217 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{DynamicResource ColorPanelIntermedio}">
-    
-    <Grid>
-    </Grid>
+
+    <Border Padding="8" Background="Transparent">
+        <StackPanel Orientation="Vertical">
+
+            <!-- Fila 1: Negrita, cursiva, subrayado -->
+            <StackPanel Orientation="Horizontal" Background="#EEE" Margin="0,0,0,8">
+                <Button x:Name="BtnBold" ToolTip="Negrita" Width="34" Margin="2" Click="BtnBold_Click">
+                    <TextBlock Text="B" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+                <Button x:Name="BtnItalic" ToolTip="Cursiva" Width="34" Margin="2" Click="BtnItalic_Click">
+                    <TextBlock Text="I" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+
+
+
+                <Button x:Name="BtnUnderlineColor"
+        Width="35"
+        Height="30"
+        Margin="2"
+        Click="BtnUnderlineColor_Click">
+
+                    <!-- Imagen -->
+                    <Image Source="/image/colorletras.png"
+                           Width="16"
+                           Height="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Margin="-2,0,0,0"/>
+
+                    <!-- Flecha -->
+
+
+                </Button>
+
+                <Button x:Name="nom" ToolTip="Negrita" Width="34" Margin="2" Click="colorfondo">
+                    <Image Source="/image/fondopintar.png" Width="16" Height="16"/>
+                </Button>
+                <ComboBox x:Name="U"
+                Width="40"
+                Margin="2,2,2,2"
+                SelectionChanged="A_SelectionChanged">
+                    <ComboBox.Template>
+                        <ControlTemplate TargetType="ComboBox">
+                            <Grid>
+                                <!-- Parte visible del ComboBox -->
+                                <Border x:Name="Border"
+                              BorderBrush="Gray"
+                              BorderThickness="1"
+                              CornerRadius="2"
+                              Background="#EEE">
+                                    <Grid Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="38">
+                                        <Grid.ColumnDefinitions>
+                                            <!-- Columna para imagen -->
+                                            <ColumnDefinition Width="*"/>
+                                            <!-- Columna para flecha -->
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Imagen fija (moviéndola un poco a la izquierda) -->
+                                        <Image Source="/image/subrayar.png"
+                     Width="13"
+                     Height="15"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Margin="-2,0,0,0"/>
+
+                                        <!-- Botón de despliegue -->
+                                        <ToggleButton Grid.Column="1"
+                            Focusable="False"
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press"
+                            Background="Transparent"
+                            BorderBrush="Transparent" HorizontalAlignment="Center" Width="20" Height="28" VerticalAlignment="Top">
+                                            <Path VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Data="M 0 0 L 4 4 L 8 0 Z"
+                        Fill="Black"/>
+                                        </ToggleButton>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Lista desplegable -->
+                                <Popup Name="Popup"
+                         Placement="Bottom"
+                         IsOpen="{TemplateBinding IsDropDownOpen}"
+                         AllowsTransparency="True"
+                         Focusable="False"
+                         PopupAnimation="Slide">
+                                    <Border Background="White"
+                  BorderThickness="1"
+                  BorderBrush="Gray">
+                                        <ScrollViewer>
+                                            <StackPanel IsItemsHost="True"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </ControlTemplate>
+                    </ComboBox.Template>
+
+
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Margin" Value="0,4,0,4"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+
+
+
+                    <ComboBoxItem>
+                        <TextBlock>Lines:</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel>
+                            <Rectangle Height="2" Fill="Black" Width="100"/>
+                            <Rectangle Height="2" Fill="Black" Width="100" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <Rectangle Height="2" Width="100" Stroke="Black" StrokeDashArray="1,2"/>
+                    </ComboBoxItem>
+
+                    <ComboBoxItem>
+                        <Rectangle Height="2" Width="100" Stroke="Black" StrokeDashArray="4,2"/>
+                    </ComboBoxItem>
+
+                    <!-- Línea gruesa -->
+                    <ComboBoxItem>
+                        <Rectangle Height="4" Fill="Black" Width="100"/>
+                    </ComboBoxItem>
+
+                    <!-- Línea fina gris -->
+                    <ComboBoxItem>
+                        <Rectangle Height="1" Fill="Gray" Width="100"/>
+                    </ComboBoxItem>
+
+                    <!-- Línea ondulada simulada -->
+          
+                    <ComboBoxItem>
+                        <Rectangle Height="2" Fill="Black" Width="100"/>
+                    </ComboBoxItem>
+                    
+                    <!-- Línea gruesa roja -->
+                    <ComboBoxItem>
+                        <Rectangle Height="4" Fill="Red" Width="100"/>
+                    </ComboBoxItem>
+
+                    <!-- Línea gruesa azul -->
+                    <ComboBoxItem>
+                        <Rectangle Height="4" Fill="Blue" Width="100"/>
+                    </ComboBoxItem>
+
+                    <!-- Línea gruesa amarilla -->
+                    <ComboBoxItem>
+                        <Rectangle Height="4" Fill="Yellow" Width="100"/>
+                    </ComboBoxItem>
+                    
+                    <ComboBoxItem>
+                        <TextBlock></TextBlock>
+                    </ComboBoxItem>
+
+                </ComboBox>
+
+            </StackPanel>
+
+            <!-- Fila 4: Alineaciones -->
+            <StackPanel Orientation="Horizontal" Background="#EEE" Margin="0,0,0,8">
+
+                <ComboBox x:Name="FontFamilyCombo" Width="150"  Height="25" Margin="3" SelectionChanged="FontFamilyCombo_SelectionChanged_1">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Source}" FontFamily="{Binding}" FontSize="14"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                <!-- Fila 3: Combo tamaño -->
+                <ComboBox x:Name="FontSizeCombo" Width="40" Height="25" Margin="2, 2, 5, 2"
+                      SelectionChanged="FontSizeCombo_SelectionChanged">
+                    <ComboBoxItem>10</ComboBoxItem>
+                    <ComboBoxItem>15</ComboBoxItem>
+                    <ComboBoxItem>20</ComboBoxItem>
+                    <ComboBoxItem>25</ComboBoxItem>
+                    <ComboBoxItem>30</ComboBoxItem>
+                    <ComboBoxItem>35</ComboBoxItem>
+                    <ComboBoxItem>40</ComboBoxItem>
+                    <ComboBoxItem>45</ComboBoxItem>
+                    <ComboBoxItem>50</ComboBoxItem>
+                    <ComboBoxItem>55</ComboBoxItem>
+                    <ComboBoxItem>60</ComboBoxItem>
+                    <ComboBoxItem>65</ComboBoxItem>
+                    <ComboBoxItem>70</ComboBoxItem>
+                    <ComboBoxItem>75</ComboBoxItem>
+                    <ComboBoxItem>80</ComboBoxItem>
+                    <ComboBoxItem>85</ComboBoxItem>
+                    <ComboBoxItem>90</ComboBoxItem>
+
+                </ComboBox>
+            </StackPanel>
+
+
+
+
+            <!-- Botones grandes -->
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                <Button Name="boton_menu1" Click="boton_menu1_Click" Content="CREAR TEMA" Height="100" Margin="0,0,0,6" Cursor="Hand"/>
+                <Button Name="boton_menu2" Click="boton_menu2_Click" Content="CREAR SUBTEMA" Height="100" Margin="0,0,0,6" Cursor="Hand"/>
+                <Button Name="boton_menu3" Click="boton_menu3_Click" Content="AGRANDAR BLOQUE SUBTEMA" Height="100" Margin="0,0,0,6" Cursor="Hand"/>
+                <Button Name="boton_menu4" Click="boton_menu4_Click" Content="VER PREGUNTAS BASE TEMA" Height="100" Cursor="Hand"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Border>
 </UserControl>

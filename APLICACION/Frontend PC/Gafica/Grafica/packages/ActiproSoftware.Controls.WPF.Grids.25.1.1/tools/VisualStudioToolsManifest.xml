@@ -1,0 +1,11 @@
+<FileList>
+	<File Reference="ActiproSoftware.Grids.Wpf.dll">
+		<ToolboxItems UIFramework="WPF" VSCategory="Actipro Grids (for WPF)" BlendCategory="Actipro Grids (for WPF)">
+
+			<Item Type="ActiproSoftware.Windows.Controls.Grids.PropertyGrid" />
+			<Item Type="ActiproSoftware.Windows.Controls.Grids.TreeListBox" />
+			<Item Type="ActiproSoftware.Windows.Controls.Grids.TreeListView" />
+
+		</ToolboxItems>
+	</File>
+</FileList>

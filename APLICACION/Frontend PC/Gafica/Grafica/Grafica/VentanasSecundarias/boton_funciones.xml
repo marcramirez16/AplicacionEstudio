@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<botones>
+  <negrita>0</negrita>
+  <curvado>0</curvado>
+  <color_letra>ff060606</color_letra>
+  <color_fondo>0</color_fondo>
+  <subrallado>0</subrallado>
+  <fuente>Arial</fuente>
+  <tamaño>15</tamaño>
+</botones>
+<!--
+xml por defecto:
+
+<?xml version="1.0" encoding="utf-8"?>
+<botones>
+  <negrita>0</negrita>
+  <curvado>0</curvado>
+  <color_letra>0</color_letra>
+  <color_fondo>0</color_fondo>
+  <subrallado>0</subrallado>
+  <fuente>Arial</fuente>
+  <tamaño>15</tamaño>
+</botones>-->

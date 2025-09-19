@@ -1,0 +1,11 @@
+﻿<Window x:Class="Grafica.Prueva"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        Title="Mi App con Calc"
+        Width="800" Height="600">
+        <Grid>
+        <wfi:WindowsFormsHost Name="formsHost"/>
+    </Grid>
+</Window>
