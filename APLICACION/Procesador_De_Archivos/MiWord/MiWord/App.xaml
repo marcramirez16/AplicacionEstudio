@@ -1,0 +1,11 @@
+﻿<Application x:Class="MiWord.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MiWord"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="PrimaryDarkColor" Color="#1A1B24"/>
+        <SolidColorBrush x:Key="IntermediateColor" Color="#2D2F36"/>
+        <SolidColorBrush x:Key="SecundaryTextColor" Color="#E0E0E0"/>
+    </Application.Resources>
+</Application>

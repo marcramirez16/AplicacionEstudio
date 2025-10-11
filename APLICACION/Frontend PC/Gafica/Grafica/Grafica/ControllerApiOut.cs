@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 
 public class ControllerApiOut
@@ -363,6 +364,7 @@ public class ControllerApiOut
         }
 
     }
+
     /// <summary>
     /// Abrir archivo seleccionado
     /// </summary>
@@ -501,6 +503,34 @@ public class ControllerApiOut
         else
         {
             return null;
+        }
+    }
+
+    /// <summary>
+    /// Metodo para agregar el servidor de archivos al mysql "ejecutar al iniciar sesion"
+    /// </summary>
+    /// insertarcarpetasusuarioensql
+    public static async Task<bool> InsertarServidorMysql()
+    {
+        string url = RutaApi.ruta + "InsertarServidorMysql";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var content = new StringContent("");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+                MessageBox.Show("true");
+            }
+            else
+            {
+                return false;
+                MessageBox.Show("false");
+
+            }
         }
     }
 

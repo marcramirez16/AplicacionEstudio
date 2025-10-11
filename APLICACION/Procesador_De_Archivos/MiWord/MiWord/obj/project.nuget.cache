@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "HKWsDICewHE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\marcr\\Desktop\\Escritorio\\APLICACION\\Procesador_De_Archivos\\MiWord\\MiWord\\MiWord.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marcr\\.nuget\\packages\\controlzex\\7.0.1\\controlzex.7.0.1.nupkg.sha512",
+    "C:\\Users\\marcr\\.nuget\\packages\\fluent.ribbon\\11.0.1\\fluent.ribbon.11.0.1.nupkg.sha512",
+    "C:\\Users\\marcr\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
+    "C:\\Users\\marcr\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

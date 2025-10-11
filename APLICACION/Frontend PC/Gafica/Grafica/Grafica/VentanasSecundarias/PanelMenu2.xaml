@@ -215,7 +215,7 @@
                 <Button Name="boton_menu1" Click="boton_menu1_Click" Content="CREAR TEMA" Height="100" Margin="0,0,0,6" Cursor="Hand"/>
                 <Button Name="boton_menu2" Click="boton_menu2_Click" Content="CREAR SUBTEMA" Height="100" Margin="0,0,0,6" Cursor="Hand"/>
                 <Button Name="boton_menu3" Click="boton_menu3_Click" Content="AGRANDAR BLOQUE SUBTEMA" Height="100" Margin="0,0,0,6" Cursor="Hand"/>
-                <Button Name="boton_menu4" Click="boton_menu4_Click" Content="VER PREGUNTAS BASE TEMA" Height="100" Cursor="Hand"/>
+                <Button Name="boton_menu4" Click="boton_menu4_Click" Content="PREGUNTAS TEMA" Height="100" Cursor="Hand"/>
             </StackPanel>
 
         </StackPanel>

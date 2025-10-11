@@ -29,7 +29,7 @@ namespace Grafica
     {
         private ListBox lista;
 
-        public MainWindow(EUsuario eusuario)
+        public MainWindow()
         {
             InitializeComponent();
             //Activar modo oscuro por defecto
@@ -50,17 +50,22 @@ namespace Grafica
 
             deseleccionararchivoselec();
 
+            ResetearMysqlServidorArchivos(); //insertar los documentos servidor de archivos del usuario al mysql
         }
 
         //---------------------------------------------------------
         //METODOS QUE REALIZAN ACCIONES
         //---------------------------------------------------------
-
         private async void deseleccionararchivoselec() {
             await ControllerApiOut.DeseleccionarArchivo();
 
         }
 
+        //metodo para ingresar "resetear" el servidor de archivos del usuario en el mysql
+        private async void ResetearMysqlServidorArchivos() {
+            MessageBox.Show("sincronizando sql");
+            await ControllerApiOut.InsertarServidorMysql();
+        }
 
         //----metodos que cargan datos de la api en la ventana...
         /// <summary>

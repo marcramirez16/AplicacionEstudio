@@ -56,9 +56,8 @@ public class Tema extends Assignatura{
 
     public Tema(){
         super();
-
-
     }
+
     /**
      * Constructor para crear un nuevo Tema 'crea el id automaticamente'
      * @param solonombreTema

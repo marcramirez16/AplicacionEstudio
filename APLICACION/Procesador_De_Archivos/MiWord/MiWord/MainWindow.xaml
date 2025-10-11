@@ -1,0 +1,135 @@
+﻿<Fluent:RibbonWindow x:Class="MiWord.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:wc="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        mc:Ignorable="d"
+        Title="Mi Word"
+        Height="600"
+        Width="1000"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        Background="{DynamicResource PrimaryDarkColor}">
+
+    <!-- WindowChrome para permitir redimensionado y quitar botones nativos -->
+    <wc:WindowChrome.WindowChrome>
+        <wc:WindowChrome CaptionHeight="0"
+                         ResizeBorderThickness="6"
+                         GlassFrameThickness="0"
+                         UseAeroCaptionButtons="False"/>
+    </wc:WindowChrome.WindowChrome>
+
+    <DockPanel>
+
+        <!-- HEADER PERSONALIZADO -->
+        <Grid Name="rctHeader"
+              DockPanel.Dock="Top"
+              Height="40"
+              Background="{DynamicResource IntermediateColor}"
+              PreviewMouseLeftButtonDown="rctHeader_PreviewMouseLeftButtonDown"
+              MouseLeftButtonDown="rctHeader_MouseLeftButtonDown">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Icono -->
+            <Image Source="/MiWord;component/Images/icono_libro.png"
+                   VerticalAlignment="Center"
+                   Margin="10,2,10,0"
+                   Height="24"
+                   Width="24"/>
+
+            <!-- Menú simple -->
+            <Menu Grid.Column="1"
+                  Background="Transparent"
+                  VerticalAlignment="Center"
+                  Margin="0,10,0,0">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Background="Transparent"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="Archivo"/>
+                <MenuItem Header="Editar"/>
+                <MenuItem Header="Ver"/>
+            </Menu>
+
+            <!-- Botones de ventana -->
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,6,0">
+
+                <Button x:Name="btnMinimize"
+                        Width="40"
+                        Height="28"
+                        ToolTip="Minimizar"
+                        Click="Minimize_Click"
+                        Margin="2,0">
+                    <Path Stroke="White"
+                          StrokeThickness="1"
+                          Data="M 0,5 L 10,5"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"/>
+                </Button>
+
+                <Button x:Name="btnMaxRestore"
+                        Width="40"
+                        Height="28"
+                        ToolTip="Maximizar / Restaurar"
+                        Click="MaximizeRestore_Click"
+                        Margin="2,0">
+                    <Rectangle Stroke="White"
+                               StrokeThickness="1"
+                               Width="10"
+                               Height="10"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Button>
+
+                <Button x:Name="btnClose"
+                        Width="40"
+                        Height="28"
+                        ToolTip="Cerrar"
+                        Click="Close_Click"
+                        Margin="2,0">
+                    <Path Stroke="White"
+                          StrokeThickness="1"
+                          Data="M 0,0 L 10,10 M 10,0 L 0,10"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- RIBBON -->
+        <Fluent:Ribbon DockPanel.Dock="Top">
+            <Fluent:RibbonTabItem Header="Inicio">
+                <Fluent:RibbonGroupBox Header="Portapapeles">
+                    <Fluent:Button Header="Copiar" Click="Copy_Click"/>
+                    <Fluent:Button Header="Pegar" Click="Paste_Click"/>
+                    <Fluent:Button Header="Cortar" Click="Cut_Click"/>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Formato">
+                    <Fluent:ToggleButton Header="Negrita" Click="Bold_Click"/>
+                    <Fluent:ToggleButton Header="Cursiva" Click="Italic_Click"/>
+                    <Fluent:ToggleButton Header="Subrayado" Click="Underline_Click"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+
+        <!-- Área de edición -->
+        <RichTextBox x:Name="editor"
+                     FontSize="16"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Margin="6"/>
+    </DockPanel>
+</Fluent:RibbonWindow>

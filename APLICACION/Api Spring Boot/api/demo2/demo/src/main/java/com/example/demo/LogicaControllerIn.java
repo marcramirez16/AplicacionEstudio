@@ -1,8 +1,11 @@
 package com.example.demo;
 
-import com.example.demo.Controladores.UsuarioRepository;
-import com.example.demo.Entidades.EUsuario;
+import com.example.demo.Controladores.*;
+import com.example.demo.Entidades.*;
 import com.example.demo.Servidor_Archivos.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.apache.commons.math3.analysis.function.Asin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,14 +25,34 @@ public class LogicaControllerIn {
 //Atributos
     Servidor_Archivo servidor = new Servidor_Archivo();
 
+
+    @PersistenceContext
+    private EntityManager entityManager;
     /**
      * Poner los controladores
      */
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-//Metodos para crear carpetas y archivos
+    @Autowired
+    private AsignaturaRepository asignaturaRepository;
 
+    @Autowired
+    private TemaRepository temaRepository;
+
+    @Autowired
+    private ResumenRepository resumenRepository;
+
+    @Autowired
+    private AsignaturaRepositorysql asignaturaRepositorysql;
+
+    @Autowired
+    private TemaRepositorysql temaRepositorysql;
+
+    @Autowired
+    private ResumenRepositorysql resumenRepositorysql;
+
+//Metodos para crear carpetas y archivos
     /**
      * Metodo para crear una nueva Asignatura
      * @param nombre
@@ -202,4 +226,99 @@ public class LogicaControllerIn {
 
         return servidor.DeseleccionarArchivo();
     }
-}
+
+    //METODOS PARA AGREGAR LAS ASIGNATURAS, TEMAS, RESUMEN DEL USUARIO EN LA BD
+
+    /**
+    * Metodo para buscar todas las asignaturas
+    * */
+    @PostMapping("/InsertarServidorMysql")
+    @Transactional
+    public void insertarcarpetasusuarioensql(){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        System.out.println("Usuario ID: " + longid);
+
+        // Limpiar datos existentes en orden inverso (por dependencias de FK)
+        resumenRepositorysql.deleteByIdUsuario(longid);
+        temaRepositorysql.deleteByIdUsuario(longid);
+        asignaturaRepositorysql.deleteByIdUsuario(longid);
+
+        List<String> asignaturas = servidor.DevolverListaAssignaturas();
+        System.out.println("Asignaturas obtenidas: " + asignaturas.size());
+        System.out.println("Contenido de asignaturas: " + asignaturas); // ← AÑADIDO
+
+        if (asignaturas.isEmpty()) {
+            System.out.println("¡ADVERTENCIA: No se encontraron asignaturas!");
+            return; // Salir si no hay datos
+        }
+
+        for(String asignatura : asignaturas){
+            System.out.println("Procesando asignatura: " + asignatura); // ← AÑADIDO
+            String[] partes = asignatura.split("\\.", 2);
+
+            // Verifica que el split funcione correctamente
+            if (partes.length < 2) {
+                System.out.println("¡ERROR: Formato incorrecto en asignatura: " + asignatura);
+                continue;
+            }
+
+            Long numerolong = Long.parseLong(partes[0]);
+            String nombre = partes[1];
+            Long usuariolong = longid;
+
+            System.out.println("ID Asignatura: " + numerolong + ", Nombre: " + nombre);
+
+            // Crear y guardar asignatura
+            EAsignaturasql asignaturaEntity = new EAsignaturasql(numerolong, usuariolong, nombre);
+            EAsignaturasql savedAsignatura = asignaturaRepositorysql.save(asignaturaEntity);
+            System.out.println("Asignatura guardada: " + savedAsignatura.getNombre());
+
+            // Procesar temas...
+            List<String> temas = servidor.DevolverListaTemas(asignatura);
+            System.out.println("Temas obtenidos: " + temas.size() + " para asignatura: " + asignatura);
+
+            for (String tema : temas){
+                System.out.println("Procesando tema: " + tema);
+                String[] partes2 = tema.split("\\.", 2);
+
+                if (partes2.length < 2) {
+                    System.out.println("¡ERROR: Formato incorrecto en tema: " + tema);
+                    continue;
+                }
+
+                Long numerotemalong = Long.parseLong(partes2[0]);
+                String nombretema = partes2[1];
+
+                ETemasql temaEntity = new ETemasql(numerotemalong, numerolong, usuariolong, nombretema);
+                ETemasql savedTema = temaRepositorysql.save(temaEntity);
+                System.out.println("Tema guardado: " + savedTema.getNombre());
+
+                // Procesar resúmenes...
+                List<String> resumenes = servidor.DevolverListaArchivos(asignatura, tema);
+                System.out.println("Resúmenes obtenidos: " + resumenes.size() + " para tema: " + tema);
+
+                int numerolista = 0;
+                for (String resumen : resumenes){
+                    numerolista++;
+                    System.out.println("Procesando resumen: " + resumen);
+                    String[] partes3 = resumen.split("\\.", 2);
+
+                    if (partes3.length < 2) {
+                        System.out.println("¡ERROR: Formato incorrecto en resumen: " + resumen);
+                        continue;
+                    }
+
+                    Long numeroresumenlong = (long) numerolista;
+                    String nombreresumen = partes3[1];
+
+                    EResumensql resumenEntity = new EResumensql(numeroresumenlong, numerotemalong, numerolong, usuariolong, nombreresumen);
+                    EResumensql savedResumen = resumenRepositorysql.save(resumenEntity);
+                    System.out.println("Resumen guardado: " + savedResumen.getNombre());
+                }
+            }
+        }
+
+    }}

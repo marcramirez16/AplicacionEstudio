@@ -1,0 +1,13 @@
+{
+  "name": "mi-plugin-personal",
+  "guid": "mi-plugin-personal-guid",
+  "version": "1.0.0",
+  "title": "Mi Plugin Personal",
+  "description": "Este es un plugin de prueba con un panel lateral.",
+  "icons": ["icon.png"],
+  "isViewer": false,
+  "isVisual": true,
+  "isModal": false,
+  "initOnOpen": true,
+  "url": "index.html"
+}

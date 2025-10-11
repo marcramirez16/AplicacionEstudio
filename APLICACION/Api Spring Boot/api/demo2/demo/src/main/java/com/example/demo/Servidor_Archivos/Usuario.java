@@ -98,6 +98,7 @@ public class Usuario {
             e.printStackTrace();
         }
     }
+
     /**
      * Metodo para obtener el id usuario iniciado
      */

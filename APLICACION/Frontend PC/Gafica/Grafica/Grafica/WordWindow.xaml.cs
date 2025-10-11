@@ -201,7 +201,7 @@ namespace Grafica
 
 
         //METODO PARA APLICAR EL SALTO DE LINEA ANARQUICO
-        /*
+        
         private void Editor_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -226,9 +226,10 @@ namespace Grafica
                     }
                 }), System.Windows.Threading.DispatcherPriority.Background);
             }
-        }*/
+        }
 
         //METODO PARA QUE EL SALTO DE LINEA SE AGA CON LOS BOTONES
+        /*
         private void Editor_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // Bloquear Enter manual
@@ -255,8 +256,7 @@ namespace Grafica
                     }
                 }), System.Windows.Threading.DispatcherPriority.Background);
             }
-        }
-
+        }*/
 
         private void UpdateRichTextBoxMargins()
         {
@@ -1064,7 +1064,7 @@ namespace Grafica
         /// Método para agregar estilos al escribir en el RichTextBox
         /// </summary>
         /// 
-        /**
+        
         public void Editor_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = true;
@@ -1114,8 +1114,8 @@ namespace Grafica
                 rtb.CaretPosition = nuevoTexto.ElementEnd;
             }
         }
-        */
-
+        
+        /*
         public void Editor_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = true;
@@ -1183,7 +1183,7 @@ namespace Grafica
             rtb.CaretPosition = nuevoTexto.ElementEnd;
         }
 
-
+        */
 
         /// <summary>
         /// Obtiene todos los estilos desde el XML, incluyendo subrayado

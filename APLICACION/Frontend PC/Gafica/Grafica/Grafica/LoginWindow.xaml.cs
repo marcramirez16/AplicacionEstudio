@@ -41,7 +41,7 @@ namespace Grafica
                 if (iniciado)
                 {
                     EUsuario nulo = null;
-                    MainWindow main = new MainWindow(nulo);
+                    MainWindow main = new MainWindow();
                     main.WindowState = WindowState.Maximized;
                     main.Show();
                     this.Close();
@@ -85,7 +85,7 @@ namespace Grafica
                     ErrorText.Text = respuesta.usuario;
                     ErrorText.Visibility = Visibility.Visible;
 
-                    MainWindow main = new MainWindow(respuesta); // pasar el usuario como parametro
+                    MainWindow main = new MainWindow(); // pasar el usuario como parametro
                     main.WindowState = WindowState.Maximized;
                     main.Show();
                     this.Close();

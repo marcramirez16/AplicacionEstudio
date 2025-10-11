@@ -453,7 +453,7 @@ namespace Grafica
 
         private void boton_menu4_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
