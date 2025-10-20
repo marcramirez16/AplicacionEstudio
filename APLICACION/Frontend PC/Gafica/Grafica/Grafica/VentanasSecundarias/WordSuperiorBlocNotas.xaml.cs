@@ -285,11 +285,5 @@ namespace Grafica.VentanasSecundarias
                 MessageBox.Show("Error: no se encontró el archivo XML de subrayado.");
             }
         }
-
-
-
-
-
-
     }
 }

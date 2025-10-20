@@ -30,7 +30,6 @@ public class ConexionApi {
             }
 
             int responseCode = con.getResponseCode();
-            System.out.println("Respuesta del servidor: " + responseCode);
             con.disconnect();
 
         } catch (Exception e) {

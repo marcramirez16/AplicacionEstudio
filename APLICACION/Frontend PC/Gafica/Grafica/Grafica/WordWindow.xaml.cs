@@ -98,7 +98,6 @@ namespace Grafica
         //---------------------------------------------------------
         //METODOS QUE REALIZAN ACCIONES
         //---------------------------------------------------------
-
         /// <summary>
         /// Metodo para iniciar los botones de la regla
         /// </summary>
@@ -201,7 +200,6 @@ namespace Grafica
 
 
         //METODO PARA APLICAR EL SALTO DE LINEA ANARQUICO
-        
         private void Editor_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -340,7 +338,6 @@ namespace Grafica
 
 
 
-
         private void Lista_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var listbox = sender as ListBox;
@@ -359,7 +356,6 @@ namespace Grafica
 
         private async Task agregarArchivoSeleccionadoAsync(String asignatura, String tema, String archivo)
         {
-
             await ControllerApiOut.SeleccionarArchivo(asignatura, tema, archivo);
 
             Archivo archivo2 = await ControllerApiOut.ObtenerArchivoSeleccionado();
@@ -367,8 +363,6 @@ namespace Grafica
             //MessageBox.Show(archivo2.nombreArchivo);
 
         }
-
-
 
 
 
@@ -533,10 +527,14 @@ namespace Grafica
 
                 if (result2 == MessageBoxResult.Yes)
                 {
+
                     Boolean resultado = await ControllerApiOut.borrarAsignatura(asignatura);
                     if (!resultado)
                     {
                         MessageBox.Show("Error al borrar la asignatura.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else {
+                        await ControllerApiOut.InsertarServidorMysql();
                     }
                 }
             }
@@ -583,9 +581,14 @@ namespace Grafica
                 if (result2 == MessageBoxResult.Yes)
                 {
                     Boolean resultado = await ControllerApiOut.borrarTema(asignatura, tema);
+
                     if (!resultado)
                     {
                         MessageBox.Show("Error al borrar el tema.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else {
+                        await ControllerApiOut.InsertarServidorMysql();
+
                     }
                 }
 
@@ -643,6 +646,9 @@ namespace Grafica
                     if (!resultado)
                     {
                         MessageBox.Show("Error al borrar el archivo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else {
+                        await ControllerApiOut.InsertarServidorMysql();
                     }
                 }
 

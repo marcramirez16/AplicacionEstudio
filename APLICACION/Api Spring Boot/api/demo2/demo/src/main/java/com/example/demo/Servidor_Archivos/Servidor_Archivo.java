@@ -103,6 +103,7 @@ public class Servidor_Archivo {
     }
 
 
+
 //Devolver lista de los archivos/temas/assignaturas....
     /**
      * Devolver Archvios de un tema
@@ -174,7 +175,6 @@ public class Servidor_Archivo {
     public List<String> DevolverListaAssignaturas(){
         String ruta = RutaServidor.rutaServidor + "Servidor de Archivos\\" + usuario.getIdusuario();
 
-        System.out.println(ruta);
         File carpeta = new File(ruta);
         List<String> nombresAssignaturas = new ArrayList<>();
 
@@ -182,7 +182,6 @@ public class Servidor_Archivo {
             File[] archivos = carpeta.listFiles();
             if (archivos != null) {
                 for (File archivo : archivos) {
-                    System.out.println(archivo.getName());
                     if (archivo.isDirectory()) {
                         nombresAssignaturas.add(archivo.getName());
                     }

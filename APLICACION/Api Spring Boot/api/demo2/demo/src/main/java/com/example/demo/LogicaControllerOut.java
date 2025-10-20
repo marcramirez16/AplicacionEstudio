@@ -1,6 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.Controladores.UsuarioRepository;
+import com.example.demo.Controladores.*;
+import com.example.demo.Entidades.EPregunta;
+import com.example.demo.Entidades.ERespuesta;
 import com.example.demo.Entidades.EUsuario;
 import com.example.demo.Servidor_Archivos.*;
 import org.apache.commons.math3.analysis.function.Asin;
@@ -19,7 +21,12 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -31,11 +38,27 @@ public class LogicaControllerOut {
     //Atributos
     Servidor_Archivo servidor = new Servidor_Archivo();
 
+
     /**
      * Poner los controladores
      */
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PreguntaRepository preguntaRepository;
+
+    @Autowired
+    private RespuestaRepository respuestaRepository;
+
+    @Autowired
+    private AsignaturaRepositorysql asignaturaRepositorysql;
+
+    @Autowired
+    private TemaRepositorysql temaRepositorysql;
+
+    @Autowired
+    private ResumenRepositorysql resumenRepositorysql;
 
 //Metodos para retornar servidor archivos
     /**
@@ -119,8 +142,9 @@ public class LogicaControllerOut {
 
         Assignatura asignatura = new Assignatura(servidor.usuario, nombreAsignatura);
 
-        return asignatura.borrarAsignatura();
+        borrarpreguntasassignatura(nombreAsignatura);
 
+            return asignatura.borrarAsignatura();
     }
 
     /**
@@ -137,7 +161,10 @@ public class LogicaControllerOut {
         Assignatura asignatura = new Assignatura(servidor.usuario, nombreAsignatura);
         Tema tema = new Tema(asignatura, nombreTema);
 
-        return tema.borrarTema();
+        borrarpreguntastema(nombreAsignatura, nombreTema);
+
+
+            return tema.borrarTema();
     }
 
     /**
@@ -155,9 +182,105 @@ public class LogicaControllerOut {
         Tema tema = new Tema(asignatura, nombreTema);
         Archivo archivo = new Archivo(tema, nombreArchivo);
 
-        return archivo.borrarArchivo();
+       borrarpregutnasarchivo(nombreAsignatura, nombreTema, nombreArchivo);
+
+            return archivo.borrarArchivo();
     }
 
+
+//Metodos para borrar preguntas de una assignatura
+    /**
+     * Metodos para borrar las assignaturas y sus preguntas y respuesta del sql
+     * @param nombreassignatura
+     */
+    public void borrarpreguntasassignatura(String nombreassignatura){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        String[] partes = nombreassignatura.split("\\.", 2);
+
+
+        Long numerolong = Long.parseLong(partes[0]);
+        String nombre = partes[1];
+        Long usuariolong = longid;
+
+        List<Long> idspreguntas = preguntaRepository.findIdsByIdAsignatura(numerolong);
+
+        //borrar preguntas y respuestas
+        for(Long id : idspreguntas){
+            respuestaRepository.deleteByIdPregunta(id);
+            preguntaRepository.deleteByIdPregunta(id);
+        }
+        //borrar asignatura, temas y resumenes de sql...
+        asignaturaRepositorysql.deleteByIdAsignatura(numerolong, usuariolong);
+
+    }
+
+    /**
+     * Metodo para borrar las preguntas y respuestas del tema + el tema y sus resumenes del sql
+     * @param nombretema
+     */
+    public void borrarpreguntastema(String nombreassignatura, String nombretema){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        String[] partes = nombretema.split("\\.", 2);
+        String[] partesass = nombreassignatura.split("\\.", 2);
+
+
+        Long numerolong = Long.parseLong(partes[0]);
+        Long numerolong2 = Long.parseLong(partesass[0]);
+
+        String nombre = partes[1];
+        Long usuariolong = longid;
+
+        List<Long> idspreguntas = preguntaRepository.findIdsByIdTema(numerolong);
+
+        //borrar preguntas y respuestas
+        for(Long id : idspreguntas){
+            respuestaRepository.deleteByIdPregunta(id);
+            preguntaRepository.deleteByIdPregunta(id);
+        }
+        //borrar temas y resumenes de sql...
+        temaRepositorysql.deleteByIdTema(numerolong, numerolong2, usuariolong);
+    }
+
+    /**
+     * Metodo para borrar las preguntas y respuestas de un resumen
+     * @param nombreassignatura
+     * @param nombretema
+     * @param nombrearchivo
+     */
+    public void borrarpregutnasarchivo(String nombreassignatura, String nombretema, String nombrearchivo){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        String[] partes = nombretema.split("\\.", 2);
+        String[] partesass = nombreassignatura.split("\\.", 2);
+        String[] partesarch = nombreassignatura.split("\\.", 2);
+
+
+        Long numerolong = Long.parseLong(partes[0]); //tema
+        Long numerolong2 = Long.parseLong(partesass[0]); //assignatura
+        Long numerolong3 = Long.parseLong(partesarch[0]); //resumen
+
+        String nombre = partes[1];
+        Long usuariolong = longid;
+
+        List<Long> idspreguntas = preguntaRepository.findIdsByIdResumen(numerolong);
+
+        //borrar preguntas y respuestas
+        for(Long id : idspreguntas){
+            respuestaRepository.deleteByIdPregunta(id);
+            preguntaRepository.deleteByIdPregunta(id);
+        }
+
+        //borrar temas y resumenes de sql...
+        resumenRepositorysql.deleteByIdResumen(numerolong3, numerolong, numerolong2, usuariolong);
+    }
     /**
      * Metodo para devolver la ruta de una asignatura
      * @param nombreAsignatura
@@ -173,4 +296,66 @@ public class LogicaControllerOut {
         return asignatura.getrutaAssignatura();
     }
 
-}
+    /**
+     * Metodo para retornar todas las preguntas del archivo
+     * @return lista de preguntas EPregunta
+     */
+    @PostMapping("/ObtenerPreguntas")
+    public List<EPregunta> obtenerPreguntas(){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        //RetorarArchivoRuta
+        Archivo archivo = new Archivo();
+        archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
+
+        List<EPregunta> preguntas = preguntaRepository.findByIdResumen(archivo.getIdArchivo());
+
+        return preguntas;
+    }
+
+    /**
+     * Metodo para obtener respuesta de la bd
+     * @param idpregunta
+     * @return
+     */
+    @PostMapping("/ObtenerRespuesta")
+    public String obtenerRespuesta(Long idpregunta){
+
+        ERespuesta respuestas = respuestaRepository.findByIdPregunta(idpregunta);
+
+
+        if (respuestas == null) {
+            return "_";
+        }
+
+
+
+        return respuestas.getRespuesta();
+    }
+
+    /**
+     * Metodo para obtener la imagen de la ecuacion echa con latex que esta en la carpeta Imagenes de la api
+     * @param nombre
+     * @return
+     */
+    @GetMapping("/ObtenerImagenBase64")
+    public ResponseEntity<String> obtenerImagenBase64(@RequestParam String nombre) {
+        try {
+            Path ruta = Paths.get("imagenes/" + nombre);
+
+            if (!Files.exists(ruta)) {
+                return ResponseEntity.status(404).body("No se encontró la imagen.");
+            }
+
+            byte[] bytes = Files.readAllBytes(ruta);
+            String base64 = Base64.getEncoder().encodeToString(bytes);
+
+            return ResponseEntity.ok(base64);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error al obtener imagen: " + e.getMessage());
+        }
+}}

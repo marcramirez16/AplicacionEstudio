@@ -2,6 +2,7 @@
 using Grafica.Themes;
 using Grafica.VentanasSecundarias;
 using MahApps.Metro.Controls;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,8 +19,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.WindowsAPICodePack.Dialogs;
-
+using XamlMath;
+using WpfMath;
+using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 namespace Grafica
 {
     /// <summary>
@@ -51,6 +54,9 @@ namespace Grafica
             deseleccionararchivoselec();
 
             ResetearMysqlServidorArchivos(); //insertar los documentos servidor de archivos del usuario al mysql
+
+
+
         }
 
         //---------------------------------------------------------
@@ -63,9 +69,10 @@ namespace Grafica
 
         //metodo para ingresar "resetear" el servidor de archivos del usuario en el mysql
         private async void ResetearMysqlServidorArchivos() {
-            MessageBox.Show("sincronizando sql");
             await ControllerApiOut.InsertarServidorMysql();
         }
+
+ 
 
         //----metodos que cargan datos de la api en la ventana...
         /// <summary>
@@ -229,6 +236,12 @@ namespace Grafica
             Archivo archivo2 = await ControllerApiOut.ObtenerArchivoSeleccionado();
             ArchivoSelect.Text = archivo2.nombreArchivo;
             //MessageBox.Show(archivo2.nombreArchivo);
+
+
+            //prueva abrir el wordwindow
+            WordWindow wordWindow = new WordWindow();
+            wordWindow.Show();
+            Window.GetWindow(this)?.Close();
 
         }
 
@@ -522,6 +535,11 @@ namespace Grafica
                     {
                         MessageBox.Show("Error al borrar la asignatura.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+                    else
+                    {
+                        await ControllerApiOut.InsertarServidorMysql();
+
+                    }
                 }  }
         }
 
@@ -566,9 +584,14 @@ namespace Grafica
                 if (result2 == MessageBoxResult.Yes)
                 {
                     Boolean resultado = await ControllerApiOut.borrarTema(asignatura, tema);
+
+
                     if (!resultado)
                     {
                         MessageBox.Show("Error al borrar el tema.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else {
+                        await ControllerApiOut.InsertarServidorMysql();
                     }
                 }
 
@@ -626,6 +649,10 @@ namespace Grafica
                     if (!resultado)
                     {
                         MessageBox.Show("Error al borrar el archivo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else {
+                        await ControllerApiOut.InsertarServidorMysql();
+
                     }
                 }
 
@@ -686,6 +713,8 @@ namespace Grafica
 
                     Titulo_Lista.Text = "Lista asignautras";
 
+                    await ControllerApiOut.InsertarServidorMysql();
+
                 }
                 else
                 {
@@ -736,6 +765,9 @@ namespace Grafica
                     CargarTemasAsync(asignatura);
                     CargarTemasEnLista(asignatura);
                     Titulo_Lista.Text = "Lista Temas de " + asignatura;
+
+                    await ControllerApiOut.InsertarServidorMysql();
+
                 }
                 else
                 {
@@ -790,6 +822,9 @@ namespace Grafica
                     CargarTemasAsync(asignatura);
                     CargarTemasEnLista(asignatura);
                     Titulo_Lista.Text = "Lista Temas de " + asignatura;
+
+                    await ControllerApiOut.InsertarServidorMysql();
+
                 }
                 else
                 {

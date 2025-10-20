@@ -85,6 +85,7 @@ public class Assignatura extends Usuario{
     public String crearNombreAssignaturaNueva(){
         //Saver el id de la ultima Assignatura
         long ultimoid = buscarUltimoId(this.getRutaPadreAssignatura());
+
         ultimoid = ultimoid + 1;
 
         //agregar ruta con su +id.nombre+
@@ -194,10 +195,11 @@ public class Assignatura extends Usuario{
                             numeromaximo = num;
                         }
                     }}}}
+        /*
         if(numeromaximo == 0){ //si es 0 poner a 1
             numeromaximo++;
         }
-
+*/
         return numeromaximo;
     }
 

@@ -1,7 +1,10 @@
 ﻿using Grafica.entidades;
+using Grafica.VentanasSecundarias;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -168,6 +171,7 @@ public class ControllerApiOut
             }
         }
     }
+
     /// <summary>
     /// Metodo para obtener la lista de temas a partir de asignatura y tema, des de la api
     /// </summary>
@@ -339,6 +343,8 @@ public class ControllerApiOut
             }
         }
     }
+
+   
 
     /// <summary>
     /// Metodo para obtener el archivo seleccionado
@@ -533,6 +539,418 @@ public class ControllerApiOut
             }
         }
     }
+
+    /// <summary>
+    /// Metodo para agregar una pregunta al mysql
+    /// </summary>
+    /// <summary>
+    /// Metodo para agregar una pregunta al mysql y obtener el ID generado
+    /// </summary>
+    public static async Task<long?> AgregarPregunta(string texto, String tipo)
+    {
+        string url = RutaApi.ruta + "AgregarPregunta";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "preguntat", texto },
+            { "tipo", tipo }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (long.TryParse(result, out long idGenerado))
+                {
+                    return idGenerado;
+                }
+                else
+                {
+                    // Si algo raro pasa con el parseo
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para obtener una lista de el objeto de todas las preguntas del archivo actual...
+    /// </summary>
+    /// <returns></returns>
+    public static async Task<ObservableCollection<EPregunta>> ObtenerPreguntas()
+    {
+        string url = RutaApi.ruta + "ObtenerPreguntas";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.PostAsync(url, null);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+
+                // Deserializamos la lista de EPregunta
+                var lista = JsonConvert.DeserializeObject<List<EPregunta>>(json);
+
+                // Convertimos a ObservableCollection para binding WPF
+                return new ObservableCollection<EPregunta>(lista);
+            }
+            else
+            {
+                return new ObservableCollection<EPregunta>();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para borrar una pregunta a partir de su id
+    /// </summary>
+    /// <param name="texto"></param>
+    /// <param name="tipo"></param>
+    /// <returns></returns>
+    public static async Task<bool> BorrarPregunta(string idpregunta)
+    {
+        string url = RutaApi.ruta + "BorrarPregunta";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para editar una pregunta a partir de su id
+    /// </summary>
+    /// <param name="idpregunta"></param>
+    /// <param name="pregunta"></param>
+    /// <param name="tipo"></param>
+    /// <returns></returns>
+    public static async Task<bool> EditarPregunta(string idpregunta, String pregunta, String tipo)
+    {
+        string url = RutaApi.ruta + "EditarPregunta";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta },
+            { "pregunta", pregunta },
+            { "tipo", tipo }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Metodo para agregar una respuesta a partir de su id de pregunta
+    /// </summary>
+    /// <param name="idpregunta"></param>
+    /// <param name="texto"></param>
+    /// <returns></returns>
+    public static async Task<long?> AgregarRespuesta(String idpregunta, String texto)
+    {
+        string url = RutaApi.ruta + "AgregarRespuesta";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta},
+            { "texto", texto }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (long.TryParse(result, out long idGenerado))
+                {
+                    return idGenerado;
+                }
+                else
+                {
+                    // Si algo raro pasa con el parseo
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para borrar la respuesta por su id de la pregunta
+    /// </summary>
+    /// <param name="idpregunta"></param>
+    /// <returns></returns>
+    public static async Task<bool> BorrarRespuesta(string idpregunta)
+    {
+        string url = RutaApi.ruta + "BorrarRespuesta"; 
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para obtener respuestas
+    /// </summary>
+    /// <param name="idpregunta"></param>
+    /// <returns></returns>
+    public static async Task<string> ObtenerRespuesta(string idpregunta)
+    {
+        string url = RutaApi.ruta + "ObtenerRespuesta";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo para editar la respuesta por el id de la pregunta
+    /// </summary>
+    /// <param name="idpregunta">Id de la pregunta</param>
+    /// <param name="nuevaRespuesta">Texto de la nueva respuesta</param>
+    /// <returns></returns>
+    public static async Task<bool> EditarRespuesta(string idpregunta, string nuevaRespuesta)
+    {
+        string url = RutaApi.ruta + "EditarRespuesta"; 
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta },
+            { "nuevaRespuesta", nuevaRespuesta } 
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+
+    /// <summary>
+    /// Borra todas las preguntas y respuestas de una asignatura y la asignatura misma
+    /// </summary>
+    /// <param name="nombreAsignatura">Formato esperado: "id.Nombre"</param>
+    public static async Task<bool> BorrarPreguntasAsignatura(string nombreAsignatura)
+    {
+        string url = RutaApi.ruta + "BorrarPreguntasAsignatura";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "nombreassignatura", nombreAsignatura }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    /// <summary>
+    /// Borra todas las preguntas y respuestas de un tema, el tema y sus resúmenes
+    /// </summary>
+    /// <param name="nombreAsignatura">Formato: "id.Nombre"</param>
+    /// <param name="nombreTema">Formato: "id.Nombre"</param>
+    public static async Task<bool> BorrarPreguntasTema(string nombreAsignatura, string nombreTema)
+    {
+        string url = RutaApi.ruta + "BorrarPreguntasTema";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "nombreassignatura", nombreAsignatura },
+            { "nombretema", nombreTema }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    /// <summary>
+    /// Borra todas las preguntas y respuestas de un resumen y el resumen mismo
+    /// </summary>
+    /// <param name="nombreAsignatura">Formato: "id.Nombre"</param>
+    /// <param name="nombreTema">Formato: "id.Nombre"</param>
+    /// <param name="nombreArchivo">Formato: "id.Nombre"</param>
+    public static async Task<bool> BorrarPreguntasArchivo(string nombreAsignatura, string nombreTema, string nombreArchivo)
+    {
+        string url = RutaApi.ruta + "BorrarPreguntasArchivo";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "nombreassignatura", nombreAsignatura },
+            { "nombretema", nombreTema },
+            { "nombrearchivo", nombreArchivo }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    /// <summary>
+    /// Metodos para obtener la ecuacion resuelta por la api
+    /// </summary>
+    /// <param name="ecuacion"></param>
+    /// <returns></returns>
+    /// 
+    public static async Task<string> AbrirCalculadoraAsync()
+    {
+        string url = "http://localhost:8080/api/abrirCalculadora";
+        using (HttpClient client = new HttpClient())
+        {
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return "Error al abrir calculadora";
+            }
+        }
+    }
+
+    public static async Task<string> ObtenerImagenBase64Async()
+    {
+        string url = $"http://localhost:8080/api/ObtenerImagenBase64?nombre={"ecuacion.png"}";
+        using (HttpClient client = new HttpClient())
+        {
+            var response = await client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            string base64 = await response.Content.ReadAsStringAsync();
+            return base64;
+        }
+    }
+
+    /**
+    public static async Task<string> ObtenerEcuacion(string ecuacion)
+    {
+        string url = "http://localhost:8080/api/ObtenerEcuacion"; 
+
+        using (HttpClient client = new HttpClient())
+        {
+            // Crear los valores que se enviarán en x-www-form-urlencoded
+            var values = new Dictionary<string, string>
+        {
+            { "ecuacion", ecuacion }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+
+            // Hacer la petición POST
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Leer el contenido de la respuesta como string
+                string resultado = await response.Content.ReadAsStringAsync();
+                return resultado;
+            }
+            else
+            {
+                // Opcional: manejar error
+                return null;
+            }
+        }
+    }
+    */
+
+
 
 }
 

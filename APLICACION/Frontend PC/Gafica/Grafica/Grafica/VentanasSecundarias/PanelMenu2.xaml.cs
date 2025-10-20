@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grafica.VentanasSecundarias;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -92,7 +93,7 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton negrita");
+                //MessageBox.Show("Error con el boton negrita");
             }
         }
 
@@ -137,7 +138,7 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton curvado");
+                //MessageBox.Show("Error con el boton curvado");
             }
         }
 
@@ -200,7 +201,7 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton color_letra");
+                //MessageBox.Show("Error con el boton color_letra");
             }
         }
 
@@ -313,7 +314,7 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton subrallado");
+                //MessageBox.Show("Error con el boton subrallado");
             }
         }
 
@@ -366,7 +367,7 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton color_letra");
+                //MessageBox.Show("Error con el boton color_letra");
             }
         }
 
@@ -411,7 +412,7 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton color_letra");
+                //MessageBox.Show("Error con el boton color_letra");
             }
         }
 
@@ -447,13 +448,22 @@ namespace Grafica
             }
             else
             {
-                MessageBox.Show("Error con el boton color_letra");
+                //MessageBox.Show("Error con el boton color_letra");
             }
         }
 
         private void boton_menu4_Click(object sender, RoutedEventArgs e)
         {
-            
+            PopupPreguntas.IsOpen = !PopupPreguntas.IsOpen;
+
+        }
+
+        private void PreguntasManuales_Click(object sender, RoutedEventArgs e)
+        {
+
+            VentanaPreguntasManual ventana = new VentanaPreguntasManual();
+            ventana.Owner = Window.GetWindow(this);  
+            ventana.ShowDialog();
         }
     }
 }

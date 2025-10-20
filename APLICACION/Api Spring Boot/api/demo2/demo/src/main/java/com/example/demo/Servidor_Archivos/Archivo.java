@@ -60,7 +60,6 @@ public class Archivo extends Tema{
     public Archivo(Tema tema, String nombreArchivo){
         super(tema.getIdusuario(), tema.getIdAssignatura(), tema.getNombreAssignatura(), tema.getIdTema(), tema.getNombreTema());
 
-        System.out.println("nombre archivo: " + nombreArchivo);
         String[] partes = nombreArchivo.split("\\.");
         this.idArchivo = Long.parseLong(partes[0]);
 
@@ -69,7 +68,6 @@ public class Archivo extends Tema{
         this.nombreArchivo = nombreArchivo;
         this.rutaPadreArchivo = tema.getRutaTema();
         this.rutaArchivo = this.rutaPadreArchivo + "\\" +  this.nombreArchivo;
-        System.out.println("nombreArchivo: " + this.nombreArchivo + "ruta: " + this.rutaArchivo + " ruta tema: " + this.rutaPadreArchivo);
     }
     public Archivo(){
 
@@ -80,14 +78,14 @@ public class Archivo extends Tema{
      * @return
      */
     public Archivo RetorarArchivoRuta(Servidor_Archivo servidor, String rutaArchivo){
-
-        System.out.println("Ruta archivo: " + rutaArchivo);
+        System.out.println(rutaArchivo);
         Path path = Paths.get(rutaArchivo);
         int nameCount = path.getNameCount();
 
         String dato1 = path.getName(nameCount - 3).toString(); //nombreAsignatura
         String dato2 = path.getName(nameCount - 2).toString(); //nomretema
         String dato3 = path.getName(nameCount - 1).toString(); //nombreArchivo
+        System.out.println("asignatura: " + dato1 + " tema: " + dato2 + " archivo: " + dato3);
 
         String idusuario = servidor.obteneridusuarioiniciado();
 
@@ -99,6 +97,10 @@ public class Archivo extends Tema{
         Tema tema = new Tema(asignatura, dato2);
 
         Archivo archivo2= new Archivo(tema, dato3);
+
+        System.out.println("tema: " + tema.getIdTema() + " "+ tema.getNombreTema());
+        System.out.println("archivo: " + archivo2.getIdArchivo()+" " + archivo2.getNombreArchivo());
+        System.out.println("asignatura: " + asignatura.getIdAssignatura() +" " + asignatura.getNombreAssignatura());
 
         return archivo2;
     }
@@ -244,7 +246,6 @@ public class Archivo extends Tema{
     public boolean seleccionarArchivo() {
         // Primero deseleccionas
         DeseleccionarArchivo();
-        System.out.println("he guardado: " + this.rutaArchivo);
 
         Properties props = new Properties();
 
@@ -347,5 +348,13 @@ public class Archivo extends Tema{
 
     public void setRutaArchivo(String rutaArchivo) {
         this.rutaArchivo = rutaArchivo;
+    }
+
+    public long getIdArchivo() {
+        return idArchivo;
+    }
+
+    public void setIdArchivo(long idArchivo) {
+        this.idArchivo = idArchivo;
     }
 }

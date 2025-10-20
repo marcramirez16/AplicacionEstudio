@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.Controladores.*;
 import com.example.demo.Entidades.*;
+import com.example.demo.OtrosProyectos.EjecutarTeclado;
 import com.example.demo.Servidor_Archivos.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -9,14 +10,22 @@ import jakarta.transaction.Transactional;
 import org.apache.commons.math3.analysis.function.Asin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -51,6 +60,12 @@ public class LogicaControllerIn {
 
     @Autowired
     private ResumenRepositorysql resumenRepositorysql;
+
+    @Autowired
+    private PreguntaRepository preguntaRepository;
+
+    @Autowired
+    private RespuestaRepository respuestaRepository;
 
 //Metodos para crear carpetas y archivos
     /**
@@ -97,7 +112,6 @@ public class LogicaControllerIn {
     @PostMapping("/crearArchivo")
     public boolean crearArchivo(String nombreAssignatura , String nombreTema, String nombreArchivo) {
 
-        System.out.println("nombreasignatura: " + nombreAssignatura + " nombretema: " + nombreTema + " nombreArchivo: " + nombreArchivo);
         //obtener id usuario
         String stringid = servidor.obteneridusuarioiniciado();
         long longid = Long.parseLong(stringid);
@@ -161,7 +175,6 @@ public class LogicaControllerIn {
         try {
             EUsuario guardado = usuarioRepository.save(usuario); // guarda en SQL
 
-            System.out.println(usuario.getUsuario() + usuario.getContraseña() + usuario.getEmail() + "id" + usuario.getId());
 
             usuario2.setIdusuario(guardado.getId()); //agregar id del usuario des de sql...
             servidor.crearCarpetaUsuario(usuario2); // crea carpeta
@@ -214,6 +227,10 @@ public class LogicaControllerIn {
         Tema tema = new Tema(asignatura, nombreTema);
         Archivo archivo= new Archivo(tema, nombreArchivo);
 
+        System.out.println("-------------------");
+        System.out.println("archivo seleccionado: " + archivo.getIdArchivo() + " nombre: " + archivo.getNombreArchivo() + " ruta: " + archivo.getRutaArchivo());
+        System.out.println("-------------------");
+
         return archivo.seleccionarArchivo();
     }
 
@@ -228,7 +245,6 @@ public class LogicaControllerIn {
     }
 
     //METODOS PARA AGREGAR LAS ASIGNATURAS, TEMAS, RESUMEN DEL USUARIO EN LA BD
-
     /**
     * Metodo para buscar todas las asignaturas
     * */
@@ -239,16 +255,12 @@ public class LogicaControllerIn {
         long longid = Long.parseLong(stringid);
         servidor.usuario.setIdusuario(longid);
 
-        System.out.println("Usuario ID: " + longid);
-
         // Limpiar datos existentes en orden inverso (por dependencias de FK)
         resumenRepositorysql.deleteByIdUsuario(longid);
         temaRepositorysql.deleteByIdUsuario(longid);
         asignaturaRepositorysql.deleteByIdUsuario(longid);
 
         List<String> asignaturas = servidor.DevolverListaAssignaturas();
-        System.out.println("Asignaturas obtenidas: " + asignaturas.size());
-        System.out.println("Contenido de asignaturas: " + asignaturas); // ← AÑADIDO
 
         if (asignaturas.isEmpty()) {
             System.out.println("¡ADVERTENCIA: No se encontraron asignaturas!");
@@ -256,12 +268,10 @@ public class LogicaControllerIn {
         }
 
         for(String asignatura : asignaturas){
-            System.out.println("Procesando asignatura: " + asignatura); // ← AÑADIDO
             String[] partes = asignatura.split("\\.", 2);
 
             // Verifica que el split funcione correctamente
             if (partes.length < 2) {
-                System.out.println("¡ERROR: Formato incorrecto en asignatura: " + asignatura);
                 continue;
             }
 
@@ -269,45 +279,37 @@ public class LogicaControllerIn {
             String nombre = partes[1];
             Long usuariolong = longid;
 
-            System.out.println("ID Asignatura: " + numerolong + ", Nombre: " + nombre);
 
             // Crear y guardar asignatura
             EAsignaturasql asignaturaEntity = new EAsignaturasql(numerolong, usuariolong, nombre);
             EAsignaturasql savedAsignatura = asignaturaRepositorysql.save(asignaturaEntity);
-            System.out.println("Asignatura guardada: " + savedAsignatura.getNombre());
 
             // Procesar temas...
             List<String> temas = servidor.DevolverListaTemas(asignatura);
-            System.out.println("Temas obtenidos: " + temas.size() + " para asignatura: " + asignatura);
 
             for (String tema : temas){
-                System.out.println("Procesando tema: " + tema);
                 String[] partes2 = tema.split("\\.", 2);
 
                 if (partes2.length < 2) {
-                    System.out.println("¡ERROR: Formato incorrecto en tema: " + tema);
                     continue;
                 }
 
                 Long numerotemalong = Long.parseLong(partes2[0]);
                 String nombretema = partes2[1];
 
+
                 ETemasql temaEntity = new ETemasql(numerotemalong, numerolong, usuariolong, nombretema);
                 ETemasql savedTema = temaRepositorysql.save(temaEntity);
-                System.out.println("Tema guardado: " + savedTema.getNombre());
 
                 // Procesar resúmenes...
                 List<String> resumenes = servidor.DevolverListaArchivos(asignatura, tema);
-                System.out.println("Resúmenes obtenidos: " + resumenes.size() + " para tema: " + tema);
 
                 int numerolista = 0;
                 for (String resumen : resumenes){
                     numerolista++;
-                    System.out.println("Procesando resumen: " + resumen);
                     String[] partes3 = resumen.split("\\.", 2);
 
                     if (partes3.length < 2) {
-                        System.out.println("¡ERROR: Formato incorrecto en resumen: " + resumen);
                         continue;
                     }
 
@@ -316,9 +318,158 @@ public class LogicaControllerIn {
 
                     EResumensql resumenEntity = new EResumensql(numeroresumenlong, numerotemalong, numerolong, usuariolong, nombreresumen);
                     EResumensql savedResumen = resumenRepositorysql.save(resumenEntity);
-                    System.out.println("Resumen guardado: " + savedResumen.getNombre());
                 }
             }
         }
+    }
 
-    }}
+    /**
+     * Metodo apra agregar pregunta nueva
+     * @param preguntat "texto de la pregunta"
+     * @param tipo "tipo de pregunta"
+     * @return retorna el id generado de la nueva pregunta
+     */
+    @PostMapping("/AgregarPregunta")
+    public Long agregarpregunta(@RequestParam String preguntat, @RequestParam String tipo) {
+        //usuario
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        //RetorarArchivoRuta
+        Archivo archivo = new Archivo();
+        archivo = archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
+
+        EPregunta pregunta = new EPregunta(archivo.getIdArchivo(), archivo.getIdTema(), archivo.getIdAssignatura(), longid, preguntat, tipo);
+
+        EPregunta preg = preguntaRepository.save(pregunta);
+
+        return preg.getId_pregunta();
+        }
+
+    /**
+     * Metodo para borrar la pregunta a partir de su id
+     * @param idpregunta "el id de la pregunta a borrar"
+     */
+    @PostMapping("/BorrarPregunta")
+    public void borrarpregunta(@RequestParam("idpregunta") Long idpregunta) {
+        // usuario actual
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        // archivo activo
+        Archivo archivo = new Archivo();
+        archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
+
+        // borrar
+        preguntaRepository.deleteByIdPregunta(idpregunta);
+    }
+
+    /**
+     * Metodo para remplazar pregunta a partir de su id
+     */
+    @PostMapping("/EditarPregunta")
+    public ResponseEntity<String> editarPregunta(@RequestParam Long idpregunta, @RequestParam String pregunta, @RequestParam String tipo) {
+
+        preguntaRepository.updatePregunta(idpregunta, pregunta, tipo);
+        return ResponseEntity.ok("Pregunta actualizada correctamente");
+    }
+
+    /**
+     * Metood para agregar respuesta
+     */
+    @PostMapping("/AgregarRespuesta")
+    public Long agregarrespuesta(@RequestParam Long idpregunta, @RequestParam String texto) {
+        ERespuesta respuesta = new ERespuesta(idpregunta, texto);
+
+        ERespuesta resp = respuestaRepository.save(respuesta);
+
+        return resp.getId_respuesta();
+    }
+
+    /**
+     * Metodo para borrar la respuesta a partir de su id pregunta
+     * @param idpregunta "el id de la pregunta para orrar su respuesta"
+     */
+    @PostMapping("/BorrarRespuesta")
+    public boolean borrarrespuesta(@RequestParam("idpregunta") Long idpregunta) {
+
+        // borrar
+        respuestaRepository.deleteByIdPregunta(idpregunta);
+        return true;
+    }
+
+    /**
+     * Metodo para editar la respuesta a partir de su id pregunta
+     * @param idpregunta
+     * @param nuevaRespuesta
+     * @return
+     */
+    @PostMapping("/EditarRespuesta")
+    public ResponseEntity<String> editarRespuesta(@RequestParam Long idpregunta, @RequestParam String nuevaRespuesta) {
+        ERespuesta respuesta = respuestaRepository.findByIdPregunta(idpregunta);
+
+
+        respuesta.setRespuesta(nuevaRespuesta);  // O el nombre del campo que uses para la respuesta
+        respuestaRepository.save(respuesta);
+
+        return ResponseEntity.ok("Respuesta actualizada correctamente");
+    }
+
+    /**
+     * Metodo para abrir el creador de formulas LATEX echo en python para agregar ecuacion
+     */
+    @GetMapping("/abrirCalculadora")
+    public ResponseEntity<String> abrirCalculadora() {
+        try {
+            EjecutarTeclado teclado = new EjecutarTeclado();
+            teclado.localizaruta(); // 🔥 Aquí se abre el teclado Python
+            return ResponseEntity.ok("Calculadora abierta correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error al abrir la calculadora.");
+        }
+    }
+
+    /**
+     * Metodo para agregar la imagen de la ecuacion en la carpeta Imagenes de la api
+     */
+    @PostMapping("/SubirImagenBase64")
+    public ResponseEntity<String> subirImagenBase64(@RequestBody Map<String, String> payload) {
+        try {
+            String nombre = payload.get("nombre");
+            String base64 = payload.get("imagen");
+
+            byte[] bytes = Base64.getDecoder().decode(base64);
+            Path ruta = Paths.get("imagenes/" + nombre);
+            Files.createDirectories(ruta.getParent());
+            Files.write(ruta, bytes);
+
+            // Aquí podrías notificar al frontend, o simplemente devolver la imagen
+            return ResponseEntity.ok(base64);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error al recibir imagen: " + e.getMessage());
+        }
+    }
+
+    /*
+        @PostMapping("/SubirImagenBase64")
+        public void subirImagenBase64(@RequestBody Map<String, String> payload) {
+            try {
+                String nombre = payload.get("nombre");
+                String base64 = payload.get("imagen");
+
+                byte[] bytes = Base64.getDecoder().decode(base64);
+
+                LogicaControllerOut log = new LogicaControllerOut();
+                log.obtenerEcuacion(base64);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }*/
+    }
+

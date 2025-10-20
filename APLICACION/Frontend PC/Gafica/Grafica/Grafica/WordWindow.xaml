@@ -6,9 +6,7 @@
        Title="WordWindow" Background="#1A1B24" WindowStyle="None" Height="788" Width="1287"
        ResizeMode="CanResize" AllowsTransparency="False"
           WindowState="Maximized"
-        
-        xmlns:fluent="urn:fluent-ribbon"
->
+        xmlns:fluent="urn:fluent-ribbon">
 
 
     <!---Referenciar los estilos de la pagina...-->

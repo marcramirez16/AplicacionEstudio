@@ -86,6 +86,7 @@ public class Tema extends Assignatura{
     public String crearNombreTemaNuevo(){
         //Saver el id de la ultima Assignatura
         long ultimoid = buscarUltimoId(this.getrutaAssignatura());
+        ultimoid = ultimoid + 1;
 
         //agregar ruta con su +id.nombre+
         String nombre = ultimoid + "." + this.solonombreTema;
@@ -143,6 +144,7 @@ public class Tema extends Assignatura{
 
         } catch (Exception e) {
             return false;
+
         }
 
     }
@@ -182,9 +184,10 @@ public class Tema extends Assignatura{
                             numeromaximo = num;
                         }
                     }}}}
+        /*
         if(numeromaximo == 0){ //si es 0 poner a 1
             numeromaximo++;
-        }
+        }*/
         return numeromaximo;
     }
 
