@@ -1,0 +1,19 @@
+﻿<Window x:Class="Grafica.VentanasSecundarias.PreguntaConfiguracion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Grafica.VentanasSecundarias"
+        mc:Ignorable="d"
+        Title="PreguntaConfiguracion" Height="450" Width="800">
+    
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Opciones de la pregunta:" FontWeight="Bold" Margin="0,0,0,10"/>
+            <CheckBox Content="Respuesta múltiple" Margin="0,5"/>
+            <CheckBox Content="Respuesta obligatoria" Margin="0,5"/>
+            <TextBox Margin="0,10,0,10"/>
+            <Button Content="Aceptar" Width="80" HorizontalAlignment="Right" Click="Aceptar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
