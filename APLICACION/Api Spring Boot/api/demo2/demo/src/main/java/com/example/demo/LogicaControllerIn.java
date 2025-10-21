@@ -330,7 +330,7 @@ public class LogicaControllerIn {
      * @return retorna el id generado de la nueva pregunta
      */
     @PostMapping("/AgregarPregunta")
-    public Long agregarpregunta(@RequestParam String preguntat, @RequestParam String tipo) {
+    public Long agregarpregunta(@RequestParam String preguntat, @RequestParam String tipo, @RequestParam String imagen) {
         //usuario
         String stringid = servidor.obteneridusuarioiniciado();
         long longid = Long.parseLong(stringid);
@@ -341,6 +341,8 @@ public class LogicaControllerIn {
         archivo = archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
 
         EPregunta pregunta = new EPregunta(archivo.getIdArchivo(), archivo.getIdTema(), archivo.getIdAssignatura(), longid, preguntat, tipo);
+
+        pregunta.setImagen(imagen);
 
         EPregunta preg = preguntaRepository.save(pregunta);
 
@@ -370,9 +372,9 @@ public class LogicaControllerIn {
      * Metodo para remplazar pregunta a partir de su id
      */
     @PostMapping("/EditarPregunta")
-    public ResponseEntity<String> editarPregunta(@RequestParam Long idpregunta, @RequestParam String pregunta, @RequestParam String tipo) {
+    public ResponseEntity<String> editarPregunta(@RequestParam Long idpregunta, @RequestParam String pregunta, @RequestParam String tipo, @RequestParam String imagen) {
 
-        preguntaRepository.updatePregunta(idpregunta, pregunta, tipo);
+        preguntaRepository.updatePregunta(idpregunta, pregunta, tipo, imagen);
         return ResponseEntity.ok("Pregunta actualizada correctamente");
     }
 

@@ -308,10 +308,13 @@ public class LogicaControllerOut {
 
         //RetorarArchivoRuta
         Archivo archivo = new Archivo();
-        archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
+        archivo = archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
 
         List<EPregunta> preguntas = preguntaRepository.findByIdResumen(archivo.getIdArchivo());
 
+        System.out.println("-------------------------------");
+        System.out.println("idarchivo: " + archivo.getIdArchivo() + " usuario: " + longid);
+        System.out.println(preguntas);
         return preguntas;
     }
 

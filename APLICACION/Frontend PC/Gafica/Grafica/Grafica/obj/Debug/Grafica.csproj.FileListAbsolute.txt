@@ -155,3 +155,5 @@ C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\Grafica_Content.g.cs
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\XamlMath.Shared.dll
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\PasosOperacion.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\PasosOperacion.baml

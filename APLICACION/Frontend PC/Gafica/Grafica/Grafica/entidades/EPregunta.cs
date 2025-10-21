@@ -17,6 +17,7 @@ namespace Grafica.entidades
         public string pregunta { get; set; }
         public String Tipo { get; set; }
 
+        public String Imagen { get; set; }
     }
 }
 

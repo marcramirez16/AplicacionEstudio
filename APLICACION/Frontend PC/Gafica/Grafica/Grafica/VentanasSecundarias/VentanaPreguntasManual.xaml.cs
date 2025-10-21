@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -68,15 +69,56 @@ namespace Grafica.VentanasSecundarias
                     Guardado = true,
                     OpcionSeleccionada = pe.Tipo,
                     Respuesta = respuesta,
-                    //imagen = pe.Imagen
+                    imagen = pe.Imagen
                 };
 
-
                 Preguntas.Add(p);
+                MarcarTipoPregunta(p);
+
             }
 
             // Actualizamos el ItemsSource
             ListaPreguntas.ItemsSource = Preguntas;
+        }
+
+
+        private void MarcarTipoPregunta(Pregunta pregunta)
+        {
+            if (pregunta == null) return;
+
+            void marcar()
+            {
+                var container = ListaPreguntas.ItemContainerGenerator.ContainerFromItem(pregunta) as FrameworkElement;
+                if (container != null)
+                {
+                    var radios = FindVisualChildren<RadioButton>(container).ToList();
+                    foreach (var r in radios)
+                    {
+                        if (r.Tag?.ToString() == pregunta.OpcionSeleccionada)
+                        {
+                            r.IsChecked = true;
+                            break;
+                        }
+                    }
+
+                    // Una vez marcado, quitar el evento
+                    ListaPreguntas.ItemContainerGenerator.StatusChanged -= statusChangedHandler;
+                }
+            }
+
+            void statusChangedHandler(object sender, EventArgs e)
+            {
+                if (ListaPreguntas.ItemContainerGenerator.Status == System.Windows.Controls.Primitives.GeneratorStatus.ContainersGenerated)
+                {
+                    marcar();
+                }
+            }
+
+            // Suscribirse al evento
+            ListaPreguntas.ItemContainerGenerator.StatusChanged += statusChangedHandler;
+
+            // Intentar marcar por si acaso ya está generado
+            marcar();
         }
 
 
@@ -116,8 +158,9 @@ namespace Grafica.VentanasSecundarias
             {
                 Preguntas.Remove(pregunta);
 
-                await ControllerApiOut.BorrarPregunta(pregunta.idpregunta.ToString());
                 await ControllerApiOut.BorrarRespuesta(pregunta.idpregunta.ToString());
+
+                await ControllerApiOut.BorrarPregunta(pregunta.idpregunta.ToString());
             }
         }
 
@@ -131,6 +174,7 @@ namespace Grafica.VentanasSecundarias
             var nueva = new Pregunta { Texto = "Nueva pregunta", Guardado = false };
 
             Preguntas.Add(nueva);
+            MarcarTipoPregunta(nueva);
 
             // Esperamos a que se genere el contenedor visual
             Dispatcher.BeginInvoke(new Action(() =>
@@ -193,7 +237,27 @@ namespace Grafica.VentanasSecundarias
                     var seleccionado = radios.FirstOrDefault(r => r.IsChecked == true);
                     if (seleccionado != null)
                     {
-                        pregunta.OpcionSeleccionada = seleccionado.Tag.ToString(); 
+                        pregunta.OpcionSeleccionada = seleccionado.Tag.ToString();
+                    }
+                }
+
+                // Asignar imagen por defecto si no tiene ninguna
+                if (string.IsNullOrEmpty(pregunta.imagen))
+                {
+                    try
+                    {
+                        var uri = new Uri(pregunta.ImagenPorDefecto); // ruta de la imagen embebida
+                        using (var stream = Application.GetResourceStream(uri).Stream)
+                        using (var ms = new MemoryStream())
+                        {
+                            stream.CopyTo(ms);
+                            pregunta.imagen = Convert.ToBase64String(ms.ToArray());
+                        }
+                    }
+                    catch
+                    {
+                        // En caso de fallo, dejar null o manejar el error
+                        pregunta.imagen = null;
                     }
                 }
 
@@ -207,17 +271,19 @@ namespace Grafica.VentanasSecundarias
 
             if (pregunta.idpregunta == 0)
             {
-                long? idGenerado = await ControllerApiOut.AgregarPregunta(pregunta.Texto, pregunta.OpcionSeleccionada);
+                long? idGenerado = await ControllerApiOut.AgregarPregunta(pregunta.Texto, pregunta.OpcionSeleccionada, pregunta.imagen);
                 //retornar el id agregado en la bd y agregarle a la pregunta existente
                 pregunta.idpregunta = (int)idGenerado;
 
                 //guardar respusta
                 await ControllerApiOut.AgregarRespuesta(pregunta.idpregunta.ToString(), pregunta.Respuesta);
+
+
             }
             //Editar pregunta si no es 0 "pregunta ya existente-----------------"
             if (pregunta.idpregunta != 0)
             {
-                await ControllerApiOut.EditarPregunta(pregunta.idpregunta.ToString(), pregunta.Texto, pregunta.OpcionSeleccionada);
+                await ControllerApiOut.EditarPregunta(pregunta.idpregunta.ToString(), pregunta.Texto, pregunta.OpcionSeleccionada, pregunta.imagen);
 
                 //editar respuesta
                 await ControllerApiOut.EditarRespuesta(pregunta.idpregunta.ToString(), pregunta.Respuesta);
@@ -238,42 +304,42 @@ namespace Grafica.VentanasSecundarias
 
             if (pregunta != null)
             {
-                    // Si el texto cambia, la pregunta ya no está guardada
-                    pregunta.Guardado = false;
+                // Si el texto cambia, la pregunta ya no está guardada
+                pregunta.Guardado = false;
 
-                    // Esperamos un instante para que el árbol visual esté listo
-                    Dispatcher.BeginInvoke(new Action(async () =>
+                // Esperamos un instante para que el árbol visual esté listo
+                Dispatcher.BeginInvoke(new Action(async () =>
+                {
+                    var container = ListaPreguntas.ItemContainerGenerator.ContainerFromItem(pregunta) as FrameworkElement;
+
+                    //obtener el tipo de pregunta "matematica, normal, etc"
+                    if (container != null)
                     {
-                        var container = ListaPreguntas.ItemContainerGenerator.ContainerFromItem(pregunta) as FrameworkElement;
+                        // Buscar todos los RadioButtons dentro del contenedor
+                        var radios = FindVisualChildren<RadioButton>(container).ToList();
 
-                        //obtener el tipo de pregunta "matematica, normal, etc"
-                        if (container != null)
+                        // Tomar el primero que esté seleccionado
+                        var seleccionado = radios.FirstOrDefault(r => r.IsChecked == true);
+                        if (seleccionado != null)
                         {
-                            // Buscar todos los RadioButtons dentro del contenedor
-                            var radios = FindVisualChildren<RadioButton>(container).ToList();
-
-                            // Tomar el primero que esté seleccionado
-                            var seleccionado = radios.FirstOrDefault(r => r.IsChecked == true);
-                            if (seleccionado != null)
-                            {
-                                pregunta.OpcionSeleccionada = seleccionado.Tag.ToString();
-                            }
+                            pregunta.OpcionSeleccionada = seleccionado.Tag.ToString();
                         }
-                        //si la pregunta seleccionada es matematicas, abrir escritor de ecuaciones...
-                        if (pregunta.OpcionSeleccionada == "mates")
-                        {
-
-
-                      
-
-                            //            await ControllerApiOut.ObtenerListaArchivos();
-                            //          MessageBox.Show("abriendo creador de formulas");
+                    }
+                    //si la pregunta seleccionada es matematicas, abrir escritor de ecuaciones...
+                    if (pregunta.OpcionSeleccionada == "mates")
+                    {
 
 
 
 
+                        //            await ControllerApiOut.ObtenerListaArchivos();
+                        //          MessageBox.Show("abriendo creador de formulas");
 
-                        }
+
+
+
+
+                    }
 
 
                 }), System.Windows.Threading.DispatcherPriority.Background);
@@ -282,13 +348,23 @@ namespace Grafica.VentanasSecundarias
         }
 
         /*Cambiar imagen mates*/
-        private async void Imagen_Click(object sender, MouseButtonEventArgs e) { 
+        private async void Imagen_Click(object sender, MouseButtonEventArgs e)
+        {
             string result = await ControllerApiOut.AbrirCalculadoraAsync();
             MessageBox.Show(result);
 
-            String base64 = await ControllerApiOut.ObtenerImagenBase64Async();
-            byte[] bytes = Convert.FromBase64String(base64);
+            string base64 = await ControllerApiOut.ObtenerImagenBase64Async();
 
+            // Guardar la imagen en la pregunta
+            var imageControl = sender as Image;
+            var pregunta = imageControl?.DataContext as Pregunta;
+            if (pregunta != null)
+            {
+                pregunta.imagen = base64;
+            }
+
+            // Convertir Base64 a BitmapImage para mostrar en la UI
+            byte[] bytes = Convert.FromBase64String(base64);
             var bitmap = new BitmapImage();
             using (var ms = new MemoryStream(bytes))
             {
@@ -296,14 +372,15 @@ namespace Grafica.VentanasSecundarias
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.StreamSource = ms;
                 bitmap.EndInit();
-                bitmap.Freeze(); 
+                bitmap.Freeze();
             }
 
-            var imageControl = sender as Image;
-            if (imageControl == null) return;
-
-            imageControl.Source = bitmap;
+            if (imageControl != null)
+            {
+                imageControl.Source = bitmap;
+            }
         }
+
 
 
         /*respuesta*/
@@ -433,6 +510,31 @@ namespace Grafica.VentanasSecundarias
             }));
         }
 
+        /// <summary>
+        /// Metodo para abrir ayuda con la respuesta "pasos calcular o otras ayudas"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BotonExtra_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            // Obtener la pregunta asociada a este botón
+            var pregunta = button.DataContext as Pregunta;
+            if (pregunta == null) return;
+
+            // Detectar el tipo de pregunta
+            if (pregunta.OpcionSeleccionada == "mates")
+            {
+              PasosOperacion ventanaPasos = new PasosOperacion();
+                ventanaPasos.ShowDialog();
+            }
+            else if (pregunta.OpcionSeleccionada == "normal")
+            {
+     
+            }
+        }
 
 
         /*_-----------------------------------_*/
@@ -448,18 +550,68 @@ namespace Grafica.VentanasSecundarias
             public bool Guardado { get; set; } = false;
 
             public string OpcionSeleccionada { get; set; } = "normal";
-
             public int idpregunta { get; set; } = 0;
+
+            public string imagen { get; set; }
+
+            public string ImagenPorDefecto => "pack://application:,,,/Image/ecu.png";
+
+            // Propiedad que devuelve la imagen correcta
+            public object FuenteImagen
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(imagen))
+                    {
+                        try
+                        {
+                            byte[] bytes = Convert.FromBase64String(imagen);
+                            using (var ms = new MemoryStream(bytes))
+                            {
+                                var bitmap = new BitmapImage();
+                                bitmap.BeginInit();
+                                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmap.StreamSource = ms;
+                                bitmap.EndInit();
+                                bitmap.Freeze();
+                                return bitmap;
+                            }
+                        }
+                        catch
+                        {
+                            return ImagenPorDefecto; // si hay error con Base64, usar imagen por defecto
+                        }
+                    }
+                    else
+                    {
+                        return ImagenPorDefecto; // si no hay imagen, usar por defecto
+                    }
+                }
+            }
 
             public Visibility MostrarImagen
             {
                 get => OpcionSeleccionada == "mates" ? Visibility.Visible : Visibility.Collapsed;
             }
+        }
 
-            public string ImagenPorDefecto => "pack://application:,,,/Image/ecu.png";
+    }
 
-//            public string imagen { get; set; }
 
+    namespace Grafica.VentanasSecundarias
+    {
+        public class TipoToBoolConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                return value?.ToString() == parameter?.ToString();
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                if ((bool)value) return parameter?.ToString();
+                return Binding.DoNothing;
+            }
         }
     }
 }

@@ -21,10 +21,20 @@ public interface PreguntaRepository extends JpaRepository<EPregunta, Long> {
     @Query("DELETE FROM EPregunta p WHERE p.id_pregunta = :idPregunta")
     void deleteByIdPregunta(@Param("idPregunta") Long idPregunta);
 
+    /*
     @Modifying
     @Transactional
     @Query("UPDATE EPregunta p SET p.pregunta = :pregunta, p.tipo = :tipo WHERE p.id_pregunta = :idPregunta")
     void updatePregunta(@Param("idPregunta") Long idPregunta, @Param("pregunta") String pregunta, @Param("tipo") String tipo);
+*/
+    @Modifying
+    @Transactional
+    @Query("UPDATE EPregunta p SET p.pregunta = :pregunta, p.tipo = :tipo, p.imagen = :imagen WHERE p.id_pregunta = :idPregunta")
+    void updatePregunta(
+            @Param("idPregunta") Long idPregunta,
+            @Param("pregunta") String pregunta,
+            @Param("tipo") String tipo,
+            @Param("imagen") String imagen);
 
     //buscar preguntas por assignaturao tema:
     //obtener todos los id de preguntas de una asignatura

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Grafica.VentanasSecundarias"
 
     mc:Ignorable="d"
         Title="Crear Pregunta Manualmente"
@@ -12,6 +13,9 @@
         WindowStyle="SingleBorderWindow"
         Background="White">
 
+    <Window.Resources>
+        <local:TipoToBoolConverter x:Key="TipoToBoolConverter"/>
+    </Window.Resources>
 
     <Grid Margin="20">
         <StackPanel>
@@ -89,26 +93,27 @@
                                 </StackPanel>
 
                                 <Image Height="100"
-                               Margin="30,5,0,5"
-                               Stretch="Uniform"
-                               Visibility="{Binding MostrarImagen}"
-                               Source="{Binding ImagenPorDefecto}"
-                               MouseLeftButtonUp="Imagen_Click"/>
-                                
+       Margin="30,5,0,5"
+       Stretch="Uniform"
+       Visibility="{Binding MostrarImagen}"
+       Source="{Binding FuenteImagen}"
+       MouseLeftButtonUp="Imagen_Click"/>
+
+
                                 <!-- Panel de configuración oculto -->
                                 <Expander x:Name="ExpanderConfig" Header="Opciones" IsExpanded="False" Margin="30,5,0,0">
                                     <StackPanel>
-                                        <RadioButton Content="Matematicas 'calculadora'" Margin="0,5"
-                                                         GroupName="{Binding grupo}" 
-                                                    Checked="RadioButton_Changed"
-                                                     Tag="mates"/>
-                                        <RadioButton Content="Respuesta Texto Normal" Margin="0,5"
-                                                         GroupName="{Binding grupo}" 
-                                                    Checked="RadioButton_Changed"
-                                                     Tag="normal"
-                                                     IsChecked="True"/>
+                                        <RadioButton Content="Normal" Tag="normal"
+             IsChecked="{Binding OpcionSeleccionada, Converter={StaticResource TipoToBoolConverter}, ConverterParameter=normal}"
+             Checked="RadioButton_Changed" />
+                                        <RadioButton Content="Mates" Tag="mates"
+             IsChecked="{Binding OpcionSeleccionada, Converter={StaticResource TipoToBoolConverter}, ConverterParameter=mates}"
+             Checked="RadioButton_Changed" />
 
-                                        <TextBox Text="{Binding Respuesta}" 
+                                        <StackPanel Orientation="Horizontal" Margin="0,2">
+
+
+                                            <TextBox Text="{Binding Respuesta}" 
                                                  Width="230" 
                                                  AcceptsReturn="True" 
                                                  TextWrapping="Wrap" 
@@ -117,8 +122,19 @@
                                                  Margin="0,2"
                                                  TextChanged="TextBoxRespuesta_TextChanged"
                                         />
+
+                                            <Button Width="30" Height="30" Margin="5,0,0,0" Click="BotonExtra_Click">
+                                                <Image Source="/image/ayuda.png" Stretch="Uniform"/>
+
+                                            </Button>
+                                        </StackPanel>
                                     </StackPanel>
                                 </Expander>
+
+                                <Border Height="1"
+                    Margin="0,10,0,10"
+                    Background="#CCC"
+                    CornerRadius="1"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

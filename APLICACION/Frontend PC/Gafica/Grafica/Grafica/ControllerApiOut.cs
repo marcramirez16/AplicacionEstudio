@@ -546,7 +546,7 @@ public class ControllerApiOut
     /// <summary>
     /// Metodo para agregar una pregunta al mysql y obtener el ID generado
     /// </summary>
-    public static async Task<long?> AgregarPregunta(string texto, String tipo)
+    public static async Task<long?> AgregarPregunta(string texto, String tipo, String imagen)
     {
         string url = RutaApi.ruta + "AgregarPregunta";
 
@@ -555,7 +555,8 @@ public class ControllerApiOut
             var values = new Dictionary<string, string>
         {
             { "preguntat", texto },
-            { "tipo", tipo }
+            { "tipo", tipo },
+            { "imagen", imagen }
         };
 
             var content = new FormUrlEncodedContent(values);
@@ -650,7 +651,7 @@ public class ControllerApiOut
     /// <param name="pregunta"></param>
     /// <param name="tipo"></param>
     /// <returns></returns>
-    public static async Task<bool> EditarPregunta(string idpregunta, String pregunta, String tipo)
+    public static async Task<bool> EditarPregunta(string idpregunta, String pregunta, String tipo, String imagen)
     {
         string url = RutaApi.ruta + "EditarPregunta";
 
@@ -660,7 +661,8 @@ public class ControllerApiOut
         {
             { "idpregunta", idpregunta },
             { "pregunta", pregunta },
-            { "tipo", tipo }
+            { "tipo", tipo },
+            { "imagen", imagen}
         };
 
             var content = new FormUrlEncodedContent(values);

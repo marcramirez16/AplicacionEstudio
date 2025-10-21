@@ -163,6 +163,9 @@
       <DependentUpon>PanelMenu3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Themes\ThemeManager.cs" />
+    <Compile Include="VentanasSecundarias\PasosOperacion.xaml.cs">
+      <DependentUpon>PasosOperacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasSecundarias\PreguntaConfiguracion.xaml.cs">
       <DependentUpon>PreguntaConfiguracion.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,7 @@
     <Compile Include="VentanasSecundarias\SoloCombobox3.xaml.cs">
       <DependentUpon>SoloCombobox3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasSecundarias\TipoToBoolConverter.cs" />
     <Compile Include="VentanasSecundarias\VentanaPreguntasManual.xaml.cs">
       <DependentUpon>VentanaPreguntasManual.xaml</DependentUpon>
     </Compile>
@@ -245,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\LightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasSecundarias\PasosOperacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -378,6 +386,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\ecu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\ayuda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
