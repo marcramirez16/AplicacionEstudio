@@ -157,3 +157,6 @@ C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\XamlMath.Shared.dll
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\PasosOperacion.g.cs
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\PasosOperacion.baml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\Elementos\Calculadora.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\Elementos\Calculadora.baml
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\NCalc.dll

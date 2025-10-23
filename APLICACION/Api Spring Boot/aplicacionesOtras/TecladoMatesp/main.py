@@ -7,7 +7,6 @@ import io
 
 root = tk.Tk()
 root.title("Teclado de Ecuaciones LaTeX Avanzado")
-
 equation = tk.StringVar()
 
 def render():
@@ -35,7 +34,6 @@ def delete_last():
 def guardar():
     text = equation.get().strip()
     if not text: return
-
     # Crear imagen
     temp_fig = Figure(figsize=(6,2))
     temp_fig.text(0.05,0.5,f"${text}$", fontsize=20)
@@ -58,17 +56,19 @@ def guardar():
         print("Error conexión:", e)
     root.destroy()
 
-# Entry y botones
-entry = tk.Entry(root,textvariable=equation,font=("Arial",16),width=40)
+# Entry
+entry = tk.Entry(root, textvariable=equation, font=("Arial",16), width=40)
 entry.pack(pady=10)
 
+# Botones básicos
 button_frame = tk.Frame(root)
 button_frame.pack()
-buttons = [("7","7"),("8","8"),("9","9"),("+","+"),("-","-"),
-           ("4","4"),("5","5"),("6","6"),("*","\\cdot "),("/","/"),
-           ("1","1"),("2","2"),("3","3"),("0","0"),(".","."),
-           ("(", "("),(")", ")"),("π","\\pi "),("∞","\\infty ")]
-
+buttons = [
+    ("7","7"),("8","8"),("9","9"),("+","+"),("-","-"),
+    ("4","4"),("5","5"),("6","6"),("*","\\cdot "),("/","/"),
+    ("1","1"),("2","2"),("3","3"),("0","0"),(".","."),
+    ("(", "("),(")", ")"),("π","\\pi "),("∞","\\infty ")
+]
 row=0; col=0
 for t,s in buttons:
     b = tk.Button(button_frame,text=t,width=5,height=2,command=lambda x=s: insert(x))
@@ -76,15 +76,19 @@ for t,s in buttons:
     col+=1
     if col>4: col=0; row+=1
 
-special_buttons = [("Fracción","\\frac{}{}",6),
-                   ("Raíz","\\sqrt{}",6),
-                   ("Potencia","^{}",2),
-                   ("Subíndice","_{}",2),
-                   ("Σ","\\sum_{}^{}",6),
-                   ("∫","\\int_{}^{}",6),
-                   ("← Borrar","del",0),
-                   ("Guardar","guardar",0)]
-
+# Botones especiales
+special_buttons = [
+    ("Fracción","\\frac{}{}",6),
+    ("Raíz","\\sqrt{}",6),
+    ("Potencia","^{}",2),
+    ("Subíndice","_{}",2),
+    ("Σ","\\sum_{}^{}",6),
+    ("∏","\\prod_{}^{}",6),
+    ("∫","\\int_{}^{}",6),
+    ("∂","\\partial ",0),
+    ("← Borrar","del",0),
+    ("Guardar","guardar",0)
+]
 special_frame = tk.Frame(root)
 special_frame.pack(pady=5)
 for t,s,c in special_buttons:
@@ -96,6 +100,31 @@ for t,s,c in special_buttons:
         b = tk.Button(special_frame,text=t,width=10,height=2,command=lambda x=s,y=c: insert(x,y))
     b.pack(side=tk.LEFT,padx=2,pady=2)
 
+# Letras griegas
+greek_letters = [
+    ("α","\\alpha "), ("β","\\beta "), ("γ","\\gamma "), ("δ","\\delta "),
+    ("ε","\\epsilon "), ("ζ","\\zeta "), ("η","\\eta "), ("θ","\\theta "),
+    ("λ","\\lambda "), ("μ","\\mu "), ("ν","\\nu "), ("ξ","\\xi "),
+    ("ρ","\\rho "), ("σ","\\sigma "), ("τ","\\tau "), ("φ","\\phi "),
+    ("ψ","\\psi "), ("ω","\\omega ")
+]
+greek_frame = tk.Frame(root)
+greek_frame.pack(pady=5)
+for t,s in greek_letters:
+    b = tk.Button(greek_frame, text=t, width=5, height=2, command=lambda x=s: insert(x))
+    b.pack(side=tk.LEFT, padx=1, pady=1)
+
+# Otros símbolos
+other_symbols = [
+    ("≈","\\approx "), ("≠","\\neq "), ("<","<"), (">",">")
+]
+symbol_frame = tk.Frame(root)
+symbol_frame.pack(pady=5)
+for t,s in other_symbols:
+    b = tk.Button(symbol_frame, text=t, width=5, height=2, command=lambda x=s: insert(x))
+    b.pack(side=tk.LEFT, padx=1, pady=1)
+
+# Renderizador
 fig = Figure(figsize=(6,2))
 canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.get_tk_widget().pack()

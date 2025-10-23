@@ -4,6 +4,7 @@ import com.example.demo.Controladores.*;
 import com.example.demo.Entidades.EPregunta;
 import com.example.demo.Entidades.ERespuesta;
 import com.example.demo.Entidades.EUsuario;
+import com.example.demo.OtrosProyectos.EjecutarTeclado;
 import com.example.demo.Servidor_Archivos.*;
 import org.apache.commons.math3.analysis.function.Asin;
 import org.apache.coyote.Response;
@@ -361,4 +362,21 @@ public class LogicaControllerOut {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error al obtener imagen: " + e.getMessage());
         }
-}}
+
+
+}
+    /**
+     * Metodo para abrir el creador de formulas LATEX echo en python para agregar ecuacion
+     */
+    @GetMapping("/abrirCalculadora")
+    public ResponseEntity<String> abrirCalculadora() {
+        try {
+            EjecutarTeclado teclado = new EjecutarTeclado();
+            teclado.localizaruta(); // 🔥 Aquí se abre el teclado Python
+            return ResponseEntity.ok("Calculadora abierta correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error al abrir la calculadora.");
+        }
+    }
+}

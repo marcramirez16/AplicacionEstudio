@@ -67,6 +67,12 @@ public class LogicaControllerIn {
     @Autowired
     private RespuestaRepository respuestaRepository;
 
+    @Autowired
+    private PasoRepository pasoRepository;
+
+    @Autowired
+    private OperacionRepository operacionRepository;
+
 //Metodos para crear carpetas y archivos
     /**
      * Metodo para crear una nueva Asignatura
@@ -419,20 +425,6 @@ public class LogicaControllerIn {
         return ResponseEntity.ok("Respuesta actualizada correctamente");
     }
 
-    /**
-     * Metodo para abrir el creador de formulas LATEX echo en python para agregar ecuacion
-     */
-    @GetMapping("/abrirCalculadora")
-    public ResponseEntity<String> abrirCalculadora() {
-        try {
-            EjecutarTeclado teclado = new EjecutarTeclado();
-            teclado.localizaruta(); // 🔥 Aquí se abre el teclado Python
-            return ResponseEntity.ok("Calculadora abierta correctamente.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Error al abrir la calculadora.");
-        }
-    }
 
     /**
      * Metodo para agregar la imagen de la ecuacion en la carpeta Imagenes de la api
@@ -457,21 +449,30 @@ public class LogicaControllerIn {
         }
     }
 
-    /*
-        @PostMapping("/SubirImagenBase64")
-        public void subirImagenBase64(@RequestBody Map<String, String> payload) {
-            try {
-                String nombre = payload.get("nombre");
-                String base64 = payload.get("imagen");
+    /**
+     * Metood para agregar Paso
+     */
+    @PostMapping("/AgregarPaso")
+    public Long agregarPaso(@RequestParam Long id_respuesta, @RequestParam Long numero, @RequestParam String texto) {
+        EPaso paso = new EPaso(id_respuesta, numero, texto);
 
-                byte[] bytes = Base64.getDecoder().decode(base64);
+        EPaso resp = pasoRepository.save(paso);
 
-                LogicaControllerOut log = new LogicaControllerOut();
-                log.obtenerEcuacion(base64);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
+        return resp.getId_respuesta();
     }
+
+    /**
+     * Metodo para agregar operacion
+     */
+    @PostMapping("/AgregarOperacion")
+    public Long agregarOperacion(@RequestParam Long id_operacion, @RequestParam Long id_paso, @RequestParam String operacion) {
+        EOperacion operaciono = new EOperacion(id_operacion, id_paso, operacion);
+
+        EOperacion resp = operacionRepository.save(operaciono);
+
+        return resp.getId_operacion();
+    }
+
+
+}
 

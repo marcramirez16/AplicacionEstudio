@@ -51,23 +51,29 @@ CREATE TABLE Respuesta(
 	id_respuesta BIGINT PRIMARY KEY auto_increment,
     id_pregunta BIGINT,
     respuesta VARCHAR(800),
-	FOREIGN KEY (id_pregunta) REFERENCES Pregunta(id_pregunta)
+	FOREIGN KEY (id_pregunta) REFERENCES Pregunta(id_pregunta) ON DELETE CASCADE
+);
+
+CREATE TABLE PasoMates(
+    id_paso INT PRIMARY KEY auto_increment,
+	id_respuesta BIGINT,
+    numero INT,
+    TextoPaso VARCHAR(200),
+    FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE
 );
 
 CREATE TABLE OperacionMates(
-    id_operacion INT PRIMARY KEY,
-    numero INT,
-    id_respuesta BIGINT,
-    TextoPaso VARCHAR(200),
-    Operacion VARCHAR(200),
-    FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta)
+	id_operacion INT PRIMARY KEY auto_increment,
+	id_paso INT,
+    operacion VARCHAR(200),
+    FOREIGN KEY(id_paso) REFERENCES PasoMates(id_paso) ON DELETE CASCADE
 );
 
-CREATE TABLE OperacionNormal(
-    id_operacion INT PRIMARY KEY,
+CREATE TABLE PasoNormal(
+    id_paso INT PRIMARY KEY,
     id_respuesta BIGINT,
     Texto VARCHAR(200),
-    FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta)
+    FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE
 );
 
 -- El resto de tus tablas...
