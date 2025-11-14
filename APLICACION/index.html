@@ -1,0 +1,22 @@
+INSTRUCTIONS FOR USING THE PROTOTYPE      "Remember that this is just a small, poorly done initial version."
+
+1. Activate the Java API for Spring Boot:
+"APLICACION\Api Spring Boot\api\demo2\demo\src\main\java\com\example\demo\DemoApplication.java"
+
+2. Open the frontend application: "APLICACION\Frontend PC\Gafica"
+
+3. If you want a different port for the C# frontend API connection (other than 8080), go to:
+"APLICACION\FrontendPC\Gafica\Grafica\Grafica\entidades\RutaApi.cs"
+
+internal class ApiRoute
+{
+public const string route = "http://localhost:8080/api/";
+
+}
+
+4. If you want to change the database path or password, modify the following lines:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/AplicacionEstudio
+spring.datasource.password=marcrami16
+
+Go to the path: "APLICACION\Servidor\Servidor Mysql"
