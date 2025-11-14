@@ -135,8 +135,11 @@
     </Compile>
     <Compile Include="ControllerApiOut.cs" />
     <Compile Include="entidades\Archivo.cs" />
+    <Compile Include="entidades\EOperacion.cs" />
+    <Compile Include="entidades\EPaso.cs" />
     <Compile Include="entidades\EPregunta.cs" />
     <Compile Include="entidades\EUsuario.cs" />
+    <Compile Include="entidades\ERespuesta.cs" />
     <Compile Include="entidades\RutaApi.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -169,6 +172,9 @@
       <DependentUpon>PanelMenu3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Themes\ThemeManager.cs" />
+    <Compile Include="VentanasSecundarias\PasoNormal.xaml.cs">
+      <DependentUpon>PasoNormal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasSecundarias\PasosOperacion.xaml.cs">
       <DependentUpon>PasosOperacion.xaml</DependentUpon>
     </Compile>
@@ -259,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\LightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasSecundarias\PasoNormal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

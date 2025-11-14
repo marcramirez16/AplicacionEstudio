@@ -54,7 +54,7 @@ CREATE TABLE Respuesta(
 	FOREIGN KEY (id_pregunta) REFERENCES Pregunta(id_pregunta) ON DELETE CASCADE
 );
 
-CREATE TABLE PasoMates(
+CREATE TABLE Pasomates(
     id_paso INT PRIMARY KEY auto_increment,
 	id_respuesta BIGINT,
     numero INT,
@@ -62,15 +62,16 @@ CREATE TABLE PasoMates(
     FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE
 );
 
-CREATE TABLE OperacionMates(
+CREATE TABLE Operacionmates(
 	id_operacion INT PRIMARY KEY auto_increment,
 	id_paso INT,
+    numero INT,
     operacion VARCHAR(200),
     FOREIGN KEY(id_paso) REFERENCES PasoMates(id_paso) ON DELETE CASCADE
 );
 
-CREATE TABLE PasoNormal(
-    id_paso INT PRIMARY KEY,
+CREATE TABLE Pasonormal(
+    id_paso INT PRIMARY KEY auto_increment,
     id_respuesta BIGINT,
     Texto VARCHAR(200),
     FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE
@@ -84,8 +85,10 @@ select * from Asignatura;
 select * from Tema;
 select * from Resumen;
 select * from Pregunta;
+select * from OperacionMates;
+select * from PasoMates;
+select * from PasoNormal;
 select * from Respuesta;
-
 
 /*
 para crear preguntas de un resumen, recuerda seleccionar la parte del resumen del que quieres que haga la pregunta con chatgpt

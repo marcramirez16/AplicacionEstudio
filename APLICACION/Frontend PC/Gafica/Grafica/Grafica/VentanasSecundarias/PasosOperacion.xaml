@@ -29,6 +29,7 @@
 
                                         <DockPanel Margin="10,0,0,0" LastChildFill="False">
                                             <TextBox Text="{Binding NombrePaso, UpdateSourceTrigger=PropertyChanged}"
+                                                     
                                                      Width="400"
                                                      Padding="5"
                                                      FontSize="14"
@@ -77,10 +78,18 @@
                 </ItemsControl>
             </ScrollViewer>
 
-            <Button Content="➕ Agregar Paso" Width="150" Height="35" Margin="0,15,0,0" HorizontalAlignment="Left"
-                    Background="#3A5C4A" Foreground="White" BorderBrush="black" BorderThickness="0" FontWeight="Bold"
-                    Cursor="Hand"
-                    Click="AgregarPaso_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <Button Content="➕ Agregar Paso" Width="150" Height="35" Margin="0,15,0,0" HorizontalAlignment="Left"
+                Background="#3A5C4A" Foreground="White" BorderBrush="black" BorderThickness="0" FontWeight="Bold"
+                Cursor="Hand"
+                Click="AgregarPaso_Click"/>
+
+                <Button Content="💾 Guardar"
+                Width="150" Height="35" Margin="10,15,0,0"
+                Background="#3A5C4A" Foreground="White" BorderBrush="black" BorderThickness="0" 
+                FontWeight="Bold" Cursor="Hand"
+                Click="GuardarPaso_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

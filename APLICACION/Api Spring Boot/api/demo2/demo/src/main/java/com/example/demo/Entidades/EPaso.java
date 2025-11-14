@@ -4,11 +4,12 @@ package com.example.demo.Entidades;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PasoMates")
+@Table(name = "Pasomates")
 public class EPaso  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_paso;
+
     private Long id_respuesta;
     private Long numero;
     private String textopaso;
@@ -18,6 +19,8 @@ public class EPaso  {
         this.numero = numero;
         this.textopaso = textopaso;
     }
+
+    public EPaso(){}
 
     public Long getId_paso() {
         return id_paso;

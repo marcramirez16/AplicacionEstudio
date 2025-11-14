@@ -1,9 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.Controladores.*;
-import com.example.demo.Entidades.EPregunta;
-import com.example.demo.Entidades.ERespuesta;
-import com.example.demo.Entidades.EUsuario;
+import com.example.demo.Entidades.*;
 import com.example.demo.OtrosProyectos.EjecutarTeclado;
 import com.example.demo.Servidor_Archivos.*;
 import org.apache.commons.math3.analysis.function.Asin;
@@ -60,6 +58,18 @@ public class LogicaControllerOut {
 
     @Autowired
     private ResumenRepositorysql resumenRepositorysql;
+
+    @Autowired
+    private PasoRepository pasoRepository;
+
+    @Autowired
+    private OperacionRepository operacionRepository;
+
+    @Autowired
+    private PasoNormalRepository pasonormalRepository;
+
+    @Autowired
+    private PasoNormalRepository pasoNormalRepository;
 
 //Metodos para retornar servidor archivos
     /**
@@ -340,6 +350,22 @@ public class LogicaControllerOut {
     }
 
     /**
+     * Metodo para obtener entidad respuesta
+     * @param idpregunta
+     * @return
+     */
+    @PostMapping("/ObtenerRespuestaCompleta")
+    public ERespuesta obtenerRespuestaCompleta(Long idpregunta){
+        ERespuesta respuesta = respuestaRepository.findByIdPregunta(idpregunta);
+
+        if (respuesta == null) {
+            return new ERespuesta(); // O null, según tu lógica
+        }
+
+        return respuesta; // Esto se serializará automáticamente como JSON
+    }
+
+    /**
      * Metodo para obtener la imagen de la ecuacion echa con latex que esta en la carpeta Imagenes de la api
      * @param nombre
      * @return
@@ -356,27 +382,62 @@ public class LogicaControllerOut {
             byte[] bytes = Files.readAllBytes(ruta);
             String base64 = Base64.getEncoder().encodeToString(bytes);
 
+
             return ResponseEntity.ok(base64);
 
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error al obtener imagen: " + e.getMessage());
         }
-
-
-}
+    }
     /**
      * Metodo para abrir el creador de formulas LATEX echo en python para agregar ecuacion
      */
     @GetMapping("/abrirCalculadora")
-    public ResponseEntity<String> abrirCalculadora() {
+    public ResponseEntity<Long> abrirCalculadora() {
         try {
             EjecutarTeclado teclado = new EjecutarTeclado();
-            teclado.localizaruta(); // 🔥 Aquí se abre el teclado Python
-            return ResponseEntity.ok("Calculadora abierta correctamente.");
+            Process process = teclado.localizaruta();
+
+            if (process != null) {
+                long pid = process.pid();
+                return ResponseEntity.ok(pid);
+
+            }else{
+                return ResponseEntity.status(500).body(0L);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(500).body("Error al abrir la calculadora.");
+            return ResponseEntity.status(500).body(0L);
         }
     }
+
+    /**
+     * Metodo para obtener paso
+     */
+    @PostMapping("/obtenerPasos")
+    public List<EPaso> obtenerPasos(@RequestParam Long id_respuesta) {
+        return pasoRepository.findById_respuesta(id_respuesta);
+    }
+
+    /**
+     * Metodo para obtener operacion
+     */
+    @PostMapping("/obtenerOperaciones")
+    public List<EOperacion> obtenerOperaciones(@RequestParam Long id_paso) {
+        return operacionRepository.findById_paso(id_paso);
+    }
+
+
+    /**
+     * Obtener paso normal
+     * @return
+     */
+    @GetMapping("/ObtenerPasoNormal/{id_respuesta}")
+    public String obtenerPasoNormal(@PathVariable Long id_respuesta) {
+        Optional<EPasonormal> pasoOpt = pasoNormalRepository.findByIdRespuesta(id_respuesta);
+
+        return pasoOpt.map(EPasonormal::getTexto).orElse(" ");
+    }
+
 }

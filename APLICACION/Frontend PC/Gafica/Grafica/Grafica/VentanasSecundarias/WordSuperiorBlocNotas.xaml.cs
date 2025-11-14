@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 
+
 namespace Grafica.VentanasSecundarias
 {
     /// <summary>

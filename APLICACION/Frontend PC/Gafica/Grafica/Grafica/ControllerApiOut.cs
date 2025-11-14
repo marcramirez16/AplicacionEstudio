@@ -9,12 +9,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static Grafica.VentanasSecundarias.PasosOperacion;
 
 
 public class ControllerApiOut
 {
     private static readonly HttpClient client = new HttpClient();
-//-----------------------METODOS USUARIO
+    //-----------------------METODOS USUARIO
     /// <summary>
     /// Metodo apra crear usuario api
     /// </summary>
@@ -22,14 +23,14 @@ public class ControllerApiOut
     /// <returns></returns>
     public static async Task<String> EnviarUsuario(EUsuario usuario)
     {
- 
+
         string json = JsonConvert.SerializeObject(usuario);
 
         using (HttpClient client = new HttpClient())
         {
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            
-            string url = RutaApi.ruta + "crearusuario"; 
+
+            string url = RutaApi.ruta + "crearusuario";
 
             HttpResponseMessage response = await client.PostAsync(url, content);
 
@@ -72,7 +73,7 @@ public class ControllerApiOut
     /// Metodo para saver si hay un usuario iniciado...
     /// </summary>
     /// <returns></returns>
-    public static async Task<bool> UsuarioIniciado(){
+    public static async Task<bool> UsuarioIniciado() {
 
         string url = RutaApi.ruta + "usuarioiniciado";
 
@@ -219,16 +220,16 @@ public class ControllerApiOut
         HttpResponseMessage response = await client.PostAsync(url, content);
 
         if (response.IsSuccessStatusCode)
-            {
-                await response.Content.ReadAsStringAsync();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        {
+            await response.Content.ReadAsStringAsync();
+            return true;
         }
-    
+        else
+        {
+            return false;
+        }
+    }
+
 
 
     /// <summary>
@@ -315,7 +316,7 @@ public class ControllerApiOut
         if (response.IsSuccessStatusCode)
         {
             string result = await response.Content.ReadAsStringAsync();
-            return bool.Parse(result); 
+            return bool.Parse(result);
         }
 
         return false;
@@ -331,7 +332,7 @@ public class ControllerApiOut
 
         using (HttpClient client = new HttpClient())
         {
-            HttpResponseMessage response = await client.PostAsync(url, null); 
+            HttpResponseMessage response = await client.PostAsync(url, null);
 
             if (response.IsSuccessStatusCode)
             {
@@ -339,12 +340,11 @@ public class ControllerApiOut
             }
             else
             {
-                return null; 
+                return null;
             }
         }
     }
 
-   
 
     /// <summary>
     /// Metodo para obtener el archivo seleccionado
@@ -503,7 +503,7 @@ public class ControllerApiOut
 
         if (response.IsSuccessStatusCode)
         {
-            
+
             return await response.Content.ReadAsStringAsync();
         }
         else
@@ -529,12 +529,12 @@ public class ControllerApiOut
             if (response.IsSuccessStatusCode)
             {
                 return true;
-                MessageBox.Show("true");
+                //MessageBox.Show("true");
             }
             else
             {
                 return false;
-                MessageBox.Show("false");
+                //MessageBox.Show("false");
 
             }
         }
@@ -687,7 +687,7 @@ public class ControllerApiOut
     /// <param name="idpregunta"></param>
     /// <param name="texto"></param>
     /// <returns></returns>
-    public static async Task<long?> AgregarRespuesta(String idpregunta, String texto)
+    public static async Task<long> AgregarRespuesta(String idpregunta, String texto)
     {
         string url = RutaApi.ruta + "AgregarRespuesta";
 
@@ -710,16 +710,11 @@ public class ControllerApiOut
                 {
                     return idGenerado;
                 }
-                else
-                {
-                    // Si algo raro pasa con el parseo
-                    return null;
-                }
+
             }
-            else
-            {
-                return null;
-            }
+            return 0;
+
+
         }
     }
 
@@ -730,7 +725,7 @@ public class ControllerApiOut
     /// <returns></returns>
     public static async Task<bool> BorrarRespuesta(string idpregunta)
     {
-        string url = RutaApi.ruta + "BorrarRespuesta"; 
+        string url = RutaApi.ruta + "BorrarRespuesta";
 
         using (HttpClient client = new HttpClient())
         {
@@ -776,6 +771,38 @@ public class ControllerApiOut
             {
                 string result = await response.Content.ReadAsStringAsync();
                 return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Obtener respuesta en forma de entidad
+    /// </summary>
+    /// <param name="idpregunta"></param>
+    /// <returns></returns>
+    public static async Task<ERespuesta> ObtenerRespuestaCompleta(string idpregunta)
+    {
+        string url = RutaApi.ruta + "ObtenerRespuestaCompleta";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var values = new Dictionary<string, string>
+        {
+            { "idpregunta", idpregunta }
+        };
+
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ERespuesta>(result);
             }
             else
             {
@@ -887,7 +914,6 @@ public class ControllerApiOut
     /// </summary>
     /// <param name="ecuacion"></param>
     /// <returns></returns>
-    /// 
     public static async Task<string> AbrirCalculadoraAsync()
     {
         string url = "http://localhost:8080/api/abrirCalculadora";
@@ -896,11 +922,12 @@ public class ControllerApiOut
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsStringAsync();
+                string pid = await response.Content.ReadAsStringAsync();
+                return pid;
             }
             else
             {
-                return "Error al abrir calculadora";
+                return "0"; 
             }
         }
     }
@@ -918,6 +945,283 @@ public class ControllerApiOut
             return base64;
         }
     }
+
+    /// <summary>
+    /// Agregar paso al sql
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <param name="numero"></param>
+    /// <param name="texto"></param>
+    /// <returns></returns>
+    public static async Task<long> AgregarPasoAsync(long id_respuesta, long numero, string texto)
+    {
+        string url = "http://localhost:8080/api/AgregarPaso";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_respuesta", id_respuesta.ToString()),
+            new KeyValuePair<string, string>("numero", numero.ToString()),
+            new KeyValuePair<string, string>("texto", texto)
+        });
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                if (long.TryParse(content, out long result))
+                    return result;
+            }
+
+            return 0; 
+        }
+    }
+
+    /// <summary>
+    /// Agregar operacion al sql
+    /// </summary>
+    /// <param name="id_paso"></param>
+    /// <param name="operacion"></param>
+    /// <returns></returns>
+    public static async Task<long?> AgregarOperacionAsync(long id_paso, string operacion, long num)
+    {
+        string url = "http://localhost:8080/api/AgregarOperacion";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_paso", id_paso.ToString()),
+            new KeyValuePair<string, string>("operacion", operacion),
+             new KeyValuePair<string, string>("numero", num.ToString())
+        });
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                if (long.TryParse(content, out long result))
+                    return result;
+            }
+
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Metodo para obtener pasos
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <returns></returns>
+    public static async Task<List<EPaso>> ObtenerPasos(long id_respuesta)
+    {
+        string url = "http://localhost:8080/api/obtenerPasos";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_respuesta", id_respuesta.ToString())
+            });
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<EPaso>>(content);
+            }
+            return new List<EPaso>();
+        }
+    }
+
+    /// <summary>
+    /// Metodo para obtener operaciones
+    /// </summary>
+    /// <param name="id_paso"></param>
+    /// <returns></returns>
+    public static async Task<List<EOperacion>> ObtenerOperaciones(long id_paso)
+    {
+        string url = "http://localhost:8080/api/obtenerOperaciones";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_paso", id_paso.ToString())
+            });
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<EOperacion>>(content);
+            }
+            return new List<EOperacion>();
+        }
+    }
+
+    
+    /// <summary>
+    /// Metodo para actualizar operacion
+    /// </summary>
+    /// <param name="id_operacion"></param>
+    /// <param name="operacion"></param>
+    /// <returns></returns>
+    public static async Task<bool> ActualizarOperacion(long id_operacion, EOperacion operacion)
+    {
+        string url = $"http://localhost:8080/api/actualizarOperacion?id_operacion={id_operacion}";
+
+        using (HttpClient client = new HttpClient())
+        {
+            string json = JsonConvert.SerializeObject(operacion);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    /// <summary>
+    /// Metodo para actualizar paso
+    /// </summary>
+    /// <param name="id_paso"></param>
+    /// <param name="paso"></param>
+    /// <returns></returns>
+    public static async Task<bool> ActualizarPaso(long id_paso, EPaso paso)
+    {
+        string url = $"http://localhost:8080/api/actualizarPaso?id_paso={id_paso}";
+        using (HttpClient client = new HttpClient())
+        {
+            string json = JsonConvert.SerializeObject(paso);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    /// <summary>
+    /// Metodo para borrar paso
+    /// </summary>
+    /// <param name="id_paso"></param>
+    /// <returns></returns>
+    public static async Task<bool> BorrarPaso(long id_paso)
+    {
+        string url = $"http://localhost:8080/api/borrarPaso?id_paso={id_paso}";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.DeleteAsync(url);
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    /// <summary>
+    /// Metodo para borrar operacion
+    /// </summary>
+    /// <param name="id_operacion"></param>
+    /// <returns></returns>
+    public static async Task<bool> BorrarOperacion(long id_operacion)
+    {
+        string url = $"http://localhost:8080/api/borrarOperacion?id_operacion={id_operacion}";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.DeleteAsync(url);
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+ 
+
+    /// <summary>
+    /// Metodo para obtener paso normal
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <returns></returns>
+    public static async Task<string> ObtenerPasoNormal(long id_respuesta)
+    {
+        string url = RutaApi.ruta + $"ObtenerPasoNormal/{id_respuesta}";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return "";
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Metodo para guardar o actualizar paso normal
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <param name="texto"></param>
+    /// <returns></returns>
+    public static async Task<long?> GuardarPasoNormal(long id_respuesta, string texto)
+    {
+        string url = RutaApi.ruta + "GuardarPasoNormal";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_respuesta", id_respuesta.ToString()),
+            new KeyValuePair<string, string>("texto", texto)
+        });
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                if (long.TryParse(result, out long idPaso))
+                    return idPaso;
+            }
+
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Metodo para borrar paso normal
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <returns></returns>
+    public static async Task<bool> BorrarPasoNormal(long id_respuesta)
+    {
+        string url = RutaApi.ruta + "BorrarPasoNormal";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_respuesta", id_respuesta.ToString())
+        });
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                return result == "OK";
+            }
+
+            return false;
+        }
+    }
+
+
 
     /**
     public static async Task<string> ObtenerEcuacion(string ecuacion)

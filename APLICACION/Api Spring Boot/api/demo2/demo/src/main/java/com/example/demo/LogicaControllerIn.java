@@ -73,6 +73,8 @@ public class LogicaControllerIn {
     @Autowired
     private OperacionRepository operacionRepository;
 
+    @Autowired
+    private PasoNormalRepository pasoNormalRepository;
 //Metodos para crear carpetas y archivos
     /**
      * Metodo para crear una nueva Asignatura
@@ -454,25 +456,157 @@ public class LogicaControllerIn {
      */
     @PostMapping("/AgregarPaso")
     public Long agregarPaso(@RequestParam Long id_respuesta, @RequestParam Long numero, @RequestParam String texto) {
+
+        if (!respuestaRepository.existsById(id_respuesta)) {
+            throw new IllegalArgumentException("La respuesta con id " + id_respuesta + " no existe.");
+        }
+
         EPaso paso = new EPaso(id_respuesta, numero, texto);
 
         EPaso resp = pasoRepository.save(paso);
 
-        return resp.getId_respuesta();
+        System.out.println("----------------------");
+        System.out.println("id paso: " + resp.getId_paso());
+        return resp.getId_paso();
     }
+
 
     /**
      * Metodo para agregar operacion
      */
     @PostMapping("/AgregarOperacion")
-    public Long agregarOperacion(@RequestParam Long id_operacion, @RequestParam Long id_paso, @RequestParam String operacion) {
-        EOperacion operaciono = new EOperacion(id_operacion, id_paso, operacion);
+    public Long agregarOperacion(@RequestParam Long id_paso, @RequestParam String operacion, @RequestParam long numero) {
+        EOperacion operaciono = new EOperacion(id_paso, operacion, numero);
 
         EOperacion resp = operacionRepository.save(operaciono);
 
         return resp.getId_operacion();
     }
 
+    /**
+     * Metodo para actualizar un paso
+     */
+    @PostMapping("/actualizarPaso")
+    public ResponseEntity<EPaso> actualizarPaso(@RequestParam Long id_paso, @RequestBody EPaso pasoNuevo) {
+        Optional<EPaso> pasoOpt = pasoRepository.findById(id_paso);
+            EPaso pasoExistente = pasoOpt.get();
+            pasoExistente.setId_respuesta(pasoNuevo.getId_respuesta());
+            pasoExistente.setNumero(pasoNuevo.getNumero());
+            pasoExistente.setTextopaso(pasoNuevo.getTextopaso());
+
+            pasoRepository.save(pasoExistente);
+            return ResponseEntity.ok(pasoExistente);
+    }
+
+    /**
+     * Metodo para actualizar una operacion
+     */
+    @PostMapping("/actualizarOperacion")
+    public ResponseEntity<EOperacion> actualizarOperacion(@RequestParam Long id_operacion, @RequestBody EOperacion operacionNueva) {
+        Optional<EOperacion> operacionOpt = operacionRepository.findById(id_operacion);
+        if (operacionOpt.isPresent()) {
+            EOperacion operacionExistente = operacionOpt.get();
+            operacionExistente.setId_paso(operacionNueva.getId_paso());
+            operacionExistente.setOperacion(operacionNueva.getOperacion());
+            operacionExistente.setNumero(operacionNueva.getNumero());
+
+            operacionRepository.save(operacionExistente);
+            return ResponseEntity.ok(operacionExistente);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    /**
+     * Metodo para borrar un paso
+     */
+    @DeleteMapping("/borrarPaso")
+    public ResponseEntity<String> borrarPaso(@RequestParam Long id_paso) {
+        if (!pasoRepository.existsById(id_paso)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("El paso con id " + id_paso + " no existe.");
+        }
+
+        // Eliminar todas las operaciones asociadas primero (por integridad)
+        operacionRepository.deleteAllById_paso(id_paso);
+
+        pasoRepository.deleteById(id_paso);
+        return ResponseEntity.ok("Paso eliminado correctamente.");
+    }
+
+    /**
+     * Metodo para borrar una operacion
+     */
+    @DeleteMapping("/borrarOperacion")
+    public ResponseEntity<String> borrarOperacion(@RequestParam Long id_operacion) {
+        if (!operacionRepository.existsById(id_operacion)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("La operación con id " + id_operacion + " no existe.");
+        }
+
+        operacionRepository.deleteById(id_operacion);
+        return ResponseEntity.ok("Operación eliminada correctamente.");
+    }
+
+    /**
+     * Metodo para agregar pasos en la bd
+     */
+    @PostMapping("/AgregarPasoNormal")
+    public Long agregarPasoNormal(@RequestParam Long id_respuesta,
+                                  @RequestParam String texto) {
+
+
+        EPasonormal pasoNormal = new EPasonormal(id_respuesta, texto);
+
+        EPasonormal resp = pasoNormalRepository.save(pasoNormal);
+        return resp.getId_paso();
+    }
+
+    /**
+     * Metodo Para guardar o actualizar paso
+    */
+    @PostMapping("/GuardarPasoNormal")
+    public Long guardarPasoNormal(@RequestParam Long id_respuesta,
+                                  @RequestParam String texto) {
+
+        // Buscar si ya existe un paso normal con este id_respuesta
+        Optional<EPasonormal> pasoOpt = pasoNormalRepository.findByIdRespuesta(id_respuesta);
+
+        EPasonormal paso;
+        if (pasoOpt.isPresent()) {
+            // Actualizar el texto si existe
+            paso = pasoOpt.get();
+            paso.setTexto(texto);
+        } else {
+            // Crear nuevo paso si no existe
+            paso = new EPasonormal(id_respuesta, texto);
+        }
+
+        // Guardar (insert o update según JPA)
+        EPasonormal resp = pasoNormalRepository.save(paso);
+
+        return resp.getId_paso();
+    }
+
+    /**
+     * Metodo para borrar paso normal
+     * @param id_respuesta
+     * @return
+     */
+    @PostMapping("/BorrarPasoNormal")
+    public String borrarPasoNormal(@RequestParam Long id_respuesta) {
+        // Buscar el paso normal por id_respuesta
+        Optional<EPasonormal> pasoOpt = pasoNormalRepository.findByIdRespuesta(id_respuesta);
+
+        if (pasoOpt.isPresent()) {
+            // Si existe, eliminarlo
+            pasoNormalRepository.delete(pasoOpt.get());
+            return "OK";
+        } else {
+            return "No encontrado";
+        }
+    }
 
 }
 

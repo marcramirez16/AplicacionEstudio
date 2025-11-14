@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static Grafica.VentanasSecundarias.VentanaPreguntasManual;
 
+
 namespace Grafica.VentanasSecundarias
 {
     /// <summary>
@@ -27,6 +31,7 @@ namespace Grafica.VentanasSecundarias
         public ObservableCollection<Pregunta> Preguntas { get; set; }
         //public ObservableCollection<Pregunta> Preguntas { get; set; } = new ObservableCollection<Pregunta>();
 
+        public String idrespuesta;
         public VentanaPreguntasManual()
         {
             InitializeComponent();
@@ -61,6 +66,8 @@ namespace Grafica.VentanasSecundarias
             foreach (var pe in preguntasE)
             {
                 string respuesta = await ControllerApiOut.ObtenerRespuesta(pe.id_pregunta.ToString());
+                ERespuesta respuestaEntidad = await ControllerApiOut.ObtenerRespuestaCompleta(pe.id_pregunta.ToString());
+
 
                 var p = new Pregunta
                 {
@@ -69,7 +76,8 @@ namespace Grafica.VentanasSecundarias
                     Guardado = true,
                     OpcionSeleccionada = pe.Tipo,
                     Respuesta = respuesta,
-                    imagen = pe.Imagen
+                    imagen = pe.Imagen,
+                    idrespuesta = respuestaEntidad.id_respuesta
                 };
 
                 Preguntas.Add(p);
@@ -161,6 +169,22 @@ namespace Grafica.VentanasSecundarias
                 await ControllerApiOut.BorrarRespuesta(pregunta.idpregunta.ToString());
 
                 await ControllerApiOut.BorrarPregunta(pregunta.idpregunta.ToString());
+
+                await ControllerApiOut.BorrarPasoNormal(pregunta.idpregunta);
+
+                //borrar los pasos y operaciones de todo tipo
+                List<EPaso> pasoss = await ControllerApiOut.ObtenerPasos(pregunta.idpregunta);
+
+                foreach (EPaso paso in pasoss)
+                {
+                    List<EOperacion> operacioness = await ControllerApiOut.ObtenerOperaciones(paso.id_paso);
+
+                    foreach (EOperacion operacion in operacioness)
+                    {
+                        await ControllerApiOut.BorrarOperacion(operacion.id_operacion);
+                    }
+                    await ControllerApiOut.BorrarPaso(paso.id_paso);
+                }
             }
         }
 
@@ -276,8 +300,9 @@ namespace Grafica.VentanasSecundarias
                 pregunta.idpregunta = (int)idGenerado;
 
                 //guardar respusta
-                await ControllerApiOut.AgregarRespuesta(pregunta.idpregunta.ToString(), pregunta.Respuesta);
-
+                int id = (int)await ControllerApiOut.AgregarRespuesta(pregunta.idpregunta.ToString(), pregunta.Respuesta);
+                idrespuesta = id.ToString();
+                pregunta.idrespuesta = id; //guardar la idrespuesta de la pregunta actual
 
             }
             //Editar pregunta si no es 0 "pregunta ya existente-----------------"
@@ -297,87 +322,109 @@ namespace Grafica.VentanasSecundarias
          * </summary>
          */
         /*pregunta*/
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+          private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
             var pregunta = textBox?.DataContext as Pregunta;
 
             if (pregunta != null)
             {
-                // Si el texto cambia, la pregunta ya no está guardada
+                // La pregunta ya no está guardada
                 pregunta.Guardado = false;
 
-                // Esperamos un instante para que el árbol visual esté listo
-                Dispatcher.BeginInvoke(new Action(async () =>
+                // Actualizamos la opción seleccionada si hay un RadioButton marcado
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
                     var container = ListaPreguntas.ItemContainerGenerator.ContainerFromItem(pregunta) as FrameworkElement;
-
-                    //obtener el tipo de pregunta "matematica, normal, etc"
                     if (container != null)
                     {
-                        // Buscar todos los RadioButtons dentro del contenedor
                         var radios = FindVisualChildren<RadioButton>(container).ToList();
-
-                        // Tomar el primero que esté seleccionado
                         var seleccionado = radios.FirstOrDefault(r => r.IsChecked == true);
                         if (seleccionado != null)
                         {
                             pregunta.OpcionSeleccionada = seleccionado.Tag.ToString();
                         }
+
+                        // Activar el botón de guardar igual que en TextBoxRespuesta_TextChanged
+                        var botones = FindVisualChildren<Button>(container).ToList();
+                        if (botones.Count >= 2)
+                        {
+                            var botonGuardar = botones[1]; // el botón ✓
+                            botonGuardar.IsEnabled = true;
+                            botonGuardar.Background = Brushes.LightGreen;
+                            botonGuardar.Foreground = Brushes.White;
+                        }
                     }
-                    //si la pregunta seleccionada es matematicas, abrir escritor de ecuaciones...
-                    if (pregunta.OpcionSeleccionada == "mates")
-                    {
-
-
-
-
-                        //            await ControllerApiOut.ObtenerListaArchivos();
-                        //          MessageBox.Show("abriendo creador de formulas");
-
-
-
-
-
-                    }
-
-
                 }), System.Windows.Threading.DispatcherPriority.Background);
             }
-
         }
 
         /*Cambiar imagen mates*/
+        private static Process calculadoraProceso = null;
+
         private async void Imagen_Click(object sender, MouseButtonEventArgs e)
         {
-            string result = await ControllerApiOut.AbrirCalculadoraAsync();
-            MessageBox.Show(result);
-
-            string base64 = await ControllerApiOut.ObtenerImagenBase64Async();
-
-            // Guardar la imagen en la pregunta
-            var imageControl = sender as Image;
-            var pregunta = imageControl?.DataContext as Pregunta;
-            if (pregunta != null)
+            // Si ya hay una calculadora abierta, no hacer nada
+            if (calculadoraProceso != null && !calculadoraProceso.HasExited)
             {
-                pregunta.imagen = base64;
+                MessageBox.Show("La calculadora ya está abierta.");
+                return;
             }
 
-            // Convertir Base64 a BitmapImage para mostrar en la UI
-            byte[] bytes = Convert.FromBase64String(base64);
-            var bitmap = new BitmapImage();
-            using (var ms = new MemoryStream(bytes))
+            // Abrir la calculadora y obtener el PID
+            string pidString = await ControllerApiOut.AbrirCalculadoraAsync();
+            if (!long.TryParse(pidString, out long pid) || pid == 0)
             {
-                bitmap.BeginInit();
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.StreamSource = ms;
-                bitmap.EndInit();
-                bitmap.Freeze();
+                MessageBox.Show("No se pudo abrir la calculadora.");
+                return;
             }
 
-            if (imageControl != null)
+            try
             {
-                imageControl.Source = bitmap;
+                calculadoraProceso = Process.GetProcessById((int)pid);
+
+                // Deshabilitamos la ventana principal
+                this.IsEnabled = false;
+
+                // Esperamos a que el proceso se cierre (esto bloquea la UI de forma modal)
+                calculadoraProceso.WaitForExit();
+
+                // Una vez cerrada la calculadora, habilitamos la ventana
+                this.IsEnabled = true;
+
+                // Continuamos con la carga de la imagen
+                string base64 = await ControllerApiOut.ObtenerImagenBase64Async();
+                var imageControl = sender as Image;
+                var pregunta = imageControl?.DataContext as Pregunta;
+                if (pregunta != null)
+                {
+                    pregunta.imagen = base64;
+                }
+
+                byte[] bytes = Convert.FromBase64String(base64);
+                var bitmap = new BitmapImage();
+                using (var ms = new MemoryStream(bytes))
+                {
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = ms;
+                    bitmap.EndInit();
+                    bitmap.Freeze();
+                }
+
+                if (imageControl != null)
+                {
+                    imageControl.Source = bitmap;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al monitorear la calculadora: " + ex.Message);
+                this.IsEnabled = true;
+            }
+            finally
+            {
+                calculadoraProceso = null;
             }
         }
 
@@ -525,17 +572,24 @@ namespace Grafica.VentanasSecundarias
             if (pregunta == null) return;
 
             // Detectar el tipo de pregunta
-            if (pregunta.OpcionSeleccionada == "mates")
+            if (pregunta.Guardado)
             {
-              PasosOperacion ventanaPasos = new PasosOperacion();
-                ventanaPasos.ShowDialog();
-            }
-            else if (pregunta.OpcionSeleccionada == "normal")
-            {
-     
-            }
-        }
+                if (pregunta.OpcionSeleccionada == "mates")
+                {
+                    //PasosOperacion ventanaPasos = new PasosOperacion(idrespuesta);
+                    PasosOperacion ventanaPasos = new PasosOperacion(pregunta.idrespuesta.ToString());
+                    ventanaPasos.ShowDialog();
+                }
+                if (pregunta.OpcionSeleccionada == "normal")
+                {
 
+                    PasoNormal ventanaPasonorm = new PasoNormal(pregunta.idrespuesta.ToString());
+                    ventanaPasonorm.ShowDialog();
+                }
+            }
+            else { MessageBox.Show("guarde la pregunta antes"); }
+
+        }
 
         /*_-----------------------------------_*/
         /*-------------------------------------*/
@@ -545,6 +599,8 @@ namespace Grafica.VentanasSecundarias
          */
         public class Pregunta
         {
+            public long idrespuesta { get; set; } = 0;
+
             public string Texto { get; set; }
             public string Respuesta { get; set; }
             public bool Guardado { get; set; } = false;

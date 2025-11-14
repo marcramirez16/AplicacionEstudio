@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class EUsuario
 {
-    public long? idusuario { get; set; } 
+    public long id { get; set; } //cambie el nombre idusuario por id
     public string usuario { get; set; }
     public string contraseña { get; set; }
     public string email { get; set; }

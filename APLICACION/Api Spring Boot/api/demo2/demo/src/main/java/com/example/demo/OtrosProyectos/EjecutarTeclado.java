@@ -11,7 +11,7 @@ import java.util.List;
 public class EjecutarTeclado {
 
 
-    public void localizaruta(){
+    public Process localizaruta(){
         String raizProyecto = System.getProperty("user.dir");
 
         Path carpeta2 = Paths.get(raizProyecto);
@@ -29,9 +29,11 @@ public class EjecutarTeclado {
         File carpet5 = new File(ruta);
         System.out.println(carpet5.exists());
 
-        lanzarteclado(carpet5);
+        return lanzarteclado(carpet5);
+        //lanzarteclado(carpet5);
     }
 
+    /*
     public void lanzarteclado(File file){
 
         try {
@@ -58,8 +60,36 @@ public class EjecutarTeclado {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }*/
+
+    public Process lanzarteclado(File file) {
+        try {
+            List<String> comando = Arrays.asList("python", file.getPath());
+
+            ProcessBuilder pb = new ProcessBuilder(comando);
+            pb.redirectErrorStream(true);
+            Process process = pb.start();
+
+            // Opcional: imprimir salida en consola
+            new Thread(() -> {
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                    String linea;
+                    while ((linea = reader.readLine()) != null) {
+                        System.out.println("[Python] " + linea);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
+            return process; // 🔹 Devuelve el proceso para monitoreo
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
-    }
+
+}
 
