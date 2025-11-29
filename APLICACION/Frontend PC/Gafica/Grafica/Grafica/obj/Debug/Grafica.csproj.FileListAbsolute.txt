@@ -162,3 +162,5 @@ C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\NCalc.dll
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\PasoNormal.baml
 C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\obj\Debug\VentanasSecundarias\PasoNormal.g.cs
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\AODL.dll
+C:\Users\marcr\Desktop\Escritorio\APLICACION\Frontend PC\Gafica\Grafica\Grafica\bin\Debug\ICSharpCode.SharpZipLib.dll

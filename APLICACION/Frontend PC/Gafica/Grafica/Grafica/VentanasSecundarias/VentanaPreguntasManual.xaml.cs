@@ -184,9 +184,7 @@ namespace Grafica.VentanasSecundarias
                         await ControllerApiOut.BorrarOperacion(operacion.id_operacion);
                     }
                     await ControllerApiOut.BorrarPaso(paso.id_paso);
-                }
-            }
-        }
+                }}}
 
         /// <summary>
         /// Metodo para agregar una nueva pregunta, boton + 

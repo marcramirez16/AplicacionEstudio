@@ -56,7 +56,6 @@ namespace Grafica
             ResetearMysqlServidorArchivos(); //insertar los documentos servidor de archivos del usuario al mysql
 
 
-
         }
 
         //---------------------------------------------------------
@@ -237,9 +236,9 @@ namespace Grafica
             ArchivoSelect.Text = archivo2.nombreArchivo;
             //MessageBox.Show(archivo2.nombreArchivo);
 
-
+            
             //prueva abrir el wordwindow
-            WordWindow wordWindow = new WordWindow();
+            WordWindow wordWindow = new WordWindow(archivo2);
             wordWindow.Show();
             Window.GetWindow(this)?.Close();
 

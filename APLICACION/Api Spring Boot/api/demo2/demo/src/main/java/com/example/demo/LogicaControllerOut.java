@@ -273,7 +273,6 @@ public class LogicaControllerOut {
         String[] partesass = nombreassignatura.split("\\.", 2);
         String[] partesarch = nombreassignatura.split("\\.", 2);
 
-
         Long numerolong = Long.parseLong(partes[0]); //tema
         Long numerolong2 = Long.parseLong(partesass[0]); //assignatura
         Long numerolong3 = Long.parseLong(partesarch[0]); //resumen
@@ -427,7 +426,6 @@ public class LogicaControllerOut {
     public List<EOperacion> obtenerOperaciones(@RequestParam Long id_paso) {
         return operacionRepository.findById_paso(id_paso);
     }
-
 
     /**
      * Obtener paso normal

@@ -1,0 +1,232 @@
+package com.example.ConexionServidor.Servidor_Archivos;
+
+import java.io.File;
+
+public class Assignatura extends Usuario{
+
+//atributos
+    private long idAssignatura;
+    private String nombreAssignatura;
+
+    private String solonombreAssignatura;
+
+    private String rutaPadreAssignatura;
+    private String rutaAssignatura;
+
+//Sobrecarga constructores
+    /**
+     * Constructor para crear la assignatura a partir de parametros
+     * @param idusuario
+     * @param idAssignatura
+     * @param nombreAssignatura
+     */
+    //constructor crear Assignatura por parametro
+    public Assignatura(long idusuario, Long idAssignatura, String nombreAssignatura) {
+        super(idusuario);
+        this.idAssignatura = idAssignatura;
+        this.nombreAssignatura = nombreAssignatura;
+
+        String[] partes = nombreAssignatura.split("\\.");
+        this.solonombreAssignatura = partes[1];
+
+        this.rutaPadreAssignatura = super.getRutaUsuario() + "\\";
+        this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
+    }
+
+    public Assignatura(){
+
+    }
+    /**
+     * Metodo para recuperar la assignatura
+     * @param usuario
+     * @param nombreAssignatura 'id + nombreassignatura'
+     */
+    //constructor recuperar Assignatura
+    public Assignatura(Usuario usuario, String nombreAssignatura){
+        super(usuario.getIdusuario());
+        //obtener id del nombre de la carpeta...
+        String[] partes = nombreAssignatura.split("\\.");
+
+        this.nombreAssignatura = nombreAssignatura;
+        this.idAssignatura = Long.parseLong(partes[0]);
+        this.solonombreAssignatura = partes[1];
+        this.rutaPadreAssignatura = super.getRutaUsuario();
+        this.rutaAssignatura = rutaPadreAssignatura + "\\" + this.getNombreAssignatura();
+    }
+
+
+    /**
+     * constructor para crear una nueva assignatura
+     * @param solonombreAssignatura
+     * @param usuario
+     */
+    //constructor, util cuando cuando no hay nombre y "id". Se crea automaticamente...
+    //constructor crear Assignatura "crea id automaticamente"
+    public Assignatura(String solonombreAssignatura, Usuario usuario){
+        super(usuario.getIdusuario());
+
+        this.solonombreAssignatura = solonombreAssignatura;
+        this.rutaPadreAssignatura = super.getRutaUsuario() + "\\";
+
+        this.nombreAssignatura = crearNombreAssignaturaNueva();
+        this.rutaAssignatura = rutaPadreAssignatura + this.getNombreAssignatura();
+
+        String[] partes = this.nombreAssignatura.split("\\.");
+        this.idAssignatura = Long.parseLong(partes[0]);
+
+    }
+
+    /**
+     * Metodo para crear nuevo nombre de la assignatura con su id correspondiente
+     * Este metodo se utliza con el metodo buscarUltimoId
+     * @return nombre '+id y nombre+'
+     */
+    //Crear un nuevo nombre con un id superior al maximo...
+    public String crearNombreAssignaturaNueva(){
+        //Saver el id de la ultima Assignatura
+        long ultimoid = buscarUltimoId(this.getRutaPadreAssignatura());
+
+        ultimoid = ultimoid + 1;
+
+        //agregar ruta con su +id.nombre+
+        String nombre = ultimoid + "." + this.solonombreAssignatura;
+
+        return nombre;
+    }
+
+    /**
+     * Agregar un Assignatura carpeta
+     * @param 'nombre assignatura'
+     **/
+    public boolean agregarAssignatura(){
+        if(!this.solonombreAssignatura.contains(".")){
+        try {
+
+            File carpeta = new File(this.rutaAssignatura);
+        if (carpeta.mkdirs()) {
+            System.out.println("Carpeta creada exitosamente en: " + carpeta.getAbsolutePath());
+            return true;
+        } else {
+            System.out.println("No se pudo crear la carpeta o ya existe.");
+            return false;
+        }
+        } catch (SecurityException se) {
+            System.out.println("Permiso denegado: " + se.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error inesperado: " + e.getMessage());
+            return false;
+        }
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Metodo para borrar la carpeta de la asignatura
+     * @return
+     */
+    public boolean borrarAsignatura() {
+        long idmax = this.idAssignatura; //obtener el id
+        File carpeta = new File(this.rutaAssignatura);
+        try {
+            if (borrarCarpetaRecursiva(carpeta)) {
+                // luego renombrar las demás carpetas
+                File[] archivos = carpeta.getParentFile().listFiles();
+                if (archivos != null) {
+                    for (File archivo : archivos) {
+                        if (archivo.isDirectory()) {
+                            String[] partes = archivo.getName().split("\\.", 2);
+                            long numeroid = Long.parseLong(partes[0]);
+                            if (numeroid > idmax) {
+                                long nuevoNumero = numeroid - 1;
+                                String nuevoNombre = nuevoNumero + "." + partes[1];
+                                File carpetaNueva = new File(archivo.getParent(), nuevoNombre);
+                                archivo.renameTo(carpetaNueva);
+                            }
+                        }
+                    }
+                }
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    private boolean borrarCarpetaRecursiva(File carpeta) {
+        if (carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    borrarCarpetaRecursiva(archivo);
+                }
+            }
+        }
+        return carpeta.delete(); // una vez vacía, se elimina
+    }
+
+
+    /**
+     * Metodo para retornar el nuevo id de la assignatura, recorre todas las assignaturas para ver id
+     * @param 'ruta del usuario'
+     * @return id de la assignatura nueva a crear
+     */
+    //metodo para buscar el ultimo numero de la carpeta:
+    public Long buscarUltimoId(String rutaPadre){
+        File carpeta = new File(rutaPadre);
+
+        //Recorrer los directorios y guardar el id mas alto en la variable numeromaximo
+        long numeromaximo = 0;
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles();
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    if (archivo.isDirectory()) {
+                        String nombre = archivo.getName();
+
+                        String numero = nombre.split("\\.")[0];
+                        long num = Long.parseLong(numero);
+                        if(num > numeromaximo){
+                            numeromaximo = num;
+                        }
+                    }}}}
+        /*
+        if(numeromaximo == 0){ //si es 0 poner a 1
+            numeromaximo++;
+        }
+*/
+        return numeromaximo;
+    }
+
+
+    //getters y setters
+    public long getIdAssignatura() {
+        return idAssignatura;
+    }
+
+    public void setIdAssignatura(long idAssignatura) {
+        this.idAssignatura = idAssignatura;
+    }
+
+    public String getNombreAssignatura() {
+        return nombreAssignatura;
+    }
+
+    public void setNombreAssignatura(String nombreAssignatura) {
+        this.nombreAssignatura = nombreAssignatura;
+    }
+
+
+    public String getRutaPadreAssignatura() {
+        return rutaPadreAssignatura;
+    }
+
+    public String getrutaAssignatura() {
+        return rutaAssignatura;
+    }
+}

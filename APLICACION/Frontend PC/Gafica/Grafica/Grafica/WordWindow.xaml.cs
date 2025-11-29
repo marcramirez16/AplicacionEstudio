@@ -20,6 +20,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 
+using ParagraphAODL = AODL.Document.Content.Text.Paragraph;
+using TextAODL = AODL.Document.Content.Text.FormatedText;
+using TextStyleAODL = AODL.Document.Styles.TextStyle;
+
 
 namespace Grafica
 {
@@ -35,7 +39,9 @@ namespace Grafica
         private bool isDraggingRight = false;
         private bool isDraggingFirstLine = false;
         private double canvasWidth;
-        public WordWindow()
+
+        Archivo archivo;
+        public WordWindow(Archivo archivo)
         {
             InitializeComponent();
             //Activar modo oscuro por defecto
@@ -46,11 +52,14 @@ namespace Grafica
             this.StateChanged += MainWindow_StateChanged;
 
 
+            this.archivo = archivo;
+            CargarODT(archivo.rutaArchivo);
 
             Titulo_Lista.Text = "RESUMEN: ..."; //AGREGAR TITULO ASIGNATURAS
 
             iniciarregla();
             ReiniciarXML();
+
 
         }
 
@@ -533,7 +542,8 @@ namespace Grafica
                     {
                         MessageBox.Show("Error al borrar la asignatura.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    else {
+                    else
+                    {
                         await ControllerApiOut.InsertarServidorMysql();
                     }
                 }
@@ -586,7 +596,8 @@ namespace Grafica
                     {
                         MessageBox.Show("Error al borrar el tema.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    else {
+                    else
+                    {
                         await ControllerApiOut.InsertarServidorMysql();
 
                     }
@@ -647,7 +658,8 @@ namespace Grafica
                     {
                         MessageBox.Show("Error al borrar el archivo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    else {
+                    else
+                    {
                         await ControllerApiOut.InsertarServidorMysql();
                     }
                 }
@@ -673,7 +685,7 @@ namespace Grafica
             else { MessageBox.Show("Ningun Archivo Seleccionado!"); }
 
         }
-  
+
 
 
 
@@ -755,7 +767,7 @@ namespace Grafica
 
         //-----
         //Metodo para iniciar la lista grande con estilos
-    
+
 
         //----METODOS TEMA COLOR
         //metodo para cambiar el tema oscuro o no
@@ -1039,10 +1051,7 @@ namespace Grafica
             Editor.Focus();
         }
 
-        private void Boton_NuevoBloque_Click(object sender, RoutedEventArgs e)
-        {
-            CrearNuevoBloque();
-        }
+
 
 
         //----------------METODOS PARA WORD BIDIRECCIONAL "AGRANDAR"
@@ -1053,7 +1062,7 @@ namespace Grafica
         {
             if (ventanaBlocNotas == null || !ventanaBlocNotas.IsLoaded)
             {
-                ventanaBlocNotas = new WordSuperiorBlocNotas(Editor); 
+                ventanaBlocNotas = new WordSuperiorBlocNotas(Editor);
                 //ventanaBlocNotas.Owner = this;
                 ventanaBlocNotas.Show();
             }
@@ -1070,7 +1079,11 @@ namespace Grafica
         /// Método para agregar estilos al escribir en el RichTextBox
         /// </summary>
         /// 
-        
+        /// <summary>
+        /// Método para agregar estilos al escribir en el RichTextBox
+        /// </summary>
+        /// 
+
         public void Editor_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = true;
@@ -1120,7 +1133,7 @@ namespace Grafica
                 rtb.CaretPosition = nuevoTexto.ElementEnd;
             }
         }
-        
+
         /*
         public void Editor_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -1367,6 +1380,349 @@ namespace Grafica
             else
             {
                 MessageBox.Show("Error: no se encontró el archivo XML de subrayado.");
+            }
+        }
+
+
+
+        ///--------------------------METODOS Para EXPORTAR A ODT------------------------
+        ///---------------------------
+        ///------------------------------------------------
+        // ---------------------- EXPORTAR A ODT EN UNA DIRECCION DEL PC --------------------------
+        private string ObtenerTextoDelFlowDocument(FlowDocument doc)
+        {
+            if (doc == null) return string.Empty;
+            return new TextRange(doc.ContentStart, doc.ContentEnd).Text;
+        }
+
+        // ---------------------- Botón Exportar --------------------------
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new Microsoft.Win32.SaveFileDialog
+            {
+                Filter = "Documento ODT (*.odt)|*.odt"
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                await ExportarA_ODT_Async(dlg.FileName);
+            }
+        }
+
+        // ---------------------- Exportar a ODT --------------------------
+        public async Task<bool> ExportarA_ODT_Async(string rutaDestinoOdt)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(rutaDestinoOdt))
+                    throw new ArgumentNullException(nameof(rutaDestinoOdt));
+
+                // 1) Crear carpeta temporal
+                string tempDir = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "miAppExport");
+                Directory.CreateDirectory(tempDir);
+
+                string tempPath = System.IO.Path.Combine(
+                    tempDir, $"document_{Guid.NewGuid():N}.rtf");
+
+                // 2) Guardar FlowDocument como RTF
+                TextRange range = new TextRange(Editor.Document.ContentStart, Editor.Document.ContentEnd);
+                using (FileStream fs = new FileStream(tempPath, FileMode.Create))
+                {
+                    range.Save(fs, DataFormats.Rtf);
+                }
+
+                // 3) Buscar LibreOffice
+                string[] posiblesRutas =
+                {
+            @"C:\Program Files\LibreOffice\program\soffice.exe",
+            @"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
+            "soffice"
+        };
+
+                string sofficePath = null;
+
+                foreach (string ruta in posiblesRutas)
+                {
+                    if (ruta == "soffice")
+                    {
+                        try
+                        {
+                            var test = new ProcessStartInfo("soffice")
+                            {
+                                UseShellExecute = false,
+                                RedirectStandardOutput = true,
+                                RedirectStandardError = true
+                            };
+                            using (var procTest = Process.Start(test))
+                            {
+                                procTest.Kill();
+                            }
+                            sofficePath = "soffice";
+                            break;
+                        }
+                        catch { }
+                    }
+                    else if (File.Exists(ruta))
+                    {
+                        sofficePath = ruta;
+                        break;
+                    }
+                }
+
+                if (sofficePath == null)
+                {
+                    MessageBox.Show("LibreOffice no encontrado.");
+                    return false;
+                }
+
+                // 4) Convertir RTF a ODT
+                string outputDir = System.IO.Path.GetDirectoryName(rutaDestinoOdt);
+                Directory.CreateDirectory(outputDir);
+
+                var psi = new ProcessStartInfo
+                {
+                    FileName = sofficePath,
+                    Arguments = $"--headless --convert-to odt \"{tempPath}\" --outdir \"{outputDir}\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+
+                var proc = Process.Start(psi);
+
+                // Compatible con .NET Framework
+                await Task.Run(() => proc.WaitForExit());
+
+                // 5) Buscar archivo generado
+                string selectedOdt = Directory.GetFiles(outputDir, "*.odt")
+                    .OrderByDescending(f => File.GetLastWriteTime(f))
+                    .FirstOrDefault();
+
+                if (selectedOdt == null)
+                {
+                    MessageBox.Show("LibreOffice no generó el archivo ODT.");
+                    return false;
+                }
+
+                // 6) Mover al destino final
+                if (File.Exists(rutaDestinoOdt))
+                    File.Delete(rutaDestinoOdt);
+
+                File.Move(selectedOdt, rutaDestinoOdt);
+
+                // 7) Eliminación del archivo temporal
+                try { File.Delete(tempPath); } catch { }
+
+                MessageBox.Show("Documento ODT exportado correctamente.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error exportando a ODT:\n" + ex.Message);
+                return false;
+            }
+        }
+
+        ///---------------------Metodo para guardar el archivo a odt "remplazar..."
+        ///------------------------------
+        ///-----------------------------------------
+        public async Task<bool> GuardarODT(string rutaDestinoOdt)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(rutaDestinoOdt))
+                    throw new ArgumentNullException(nameof(rutaDestinoOdt));
+
+                // 1) Carpeta temporal
+                string tempDir = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "miAppExport");
+                Directory.CreateDirectory(tempDir);
+
+                string tempPath = System.IO.Path.Combine(tempDir, $"document_{Guid.NewGuid():N}.rtf");
+
+                // 2) Guardar editor como RTF
+                TextRange range = new TextRange(Editor.Document.ContentStart, Editor.Document.ContentEnd);
+                using (FileStream fs = new FileStream(tempPath, FileMode.Create))
+                {
+                    range.Save(fs, DataFormats.Rtf);
+                }
+
+                // 3) Buscar LibreOffice
+                string[] posiblesRutas =
+                {
+            @"C:\Program Files\LibreOffice\program\soffice.exe",
+            @"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
+            "soffice"
+        };
+
+                string sofficePath = null;
+
+                foreach (string ruta in posiblesRutas)
+                {
+                    if (ruta == "soffice")
+                    {
+                        try
+                        {
+                            var test = new ProcessStartInfo("soffice")
+                            {
+                                UseShellExecute = false,
+                                RedirectStandardOutput = true,
+                                RedirectStandardError = true
+                            };
+                            using (var p = Process.Start(test)) { p.Kill(); }
+                            sofficePath = "soffice";
+                            break;
+                        }
+                        catch { }
+                    }
+                    else if (File.Exists(ruta))
+                    {
+                        sofficePath = ruta;
+                        break;
+                    }
+                }
+
+                if (sofficePath == null)
+                    throw new Exception("LibreOffice no encontrado");
+
+                // 4) Convertir RTF -> ODT
+                string outputDir = System.IO.Path.GetDirectoryName(rutaDestinoOdt);
+                Directory.CreateDirectory(outputDir);
+
+                var psi = new ProcessStartInfo
+                {
+                    FileName = sofficePath,
+                    Arguments = $"--headless --convert-to odt \"{tempPath}\" --outdir \"{outputDir}\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+
+                var proc = Process.Start(psi);
+                await Task.Run(() => proc.WaitForExit());
+
+                // 5) Buscar el ODT generado
+                string generatedOdt = Directory.GetFiles(outputDir, "*.odt")
+                    .OrderByDescending(f => File.GetLastWriteTime(f))
+                    .FirstOrDefault();
+
+                if (generatedOdt == null)
+                    throw new Exception("LibreOffice no generó el archivo ODT.");
+
+                // 6) Reemplazar el archivo destino
+                if (File.Exists(rutaDestinoOdt))
+                    File.Delete(rutaDestinoOdt);
+
+                File.Move(generatedOdt, rutaDestinoOdt);
+
+                // 7) Borrar temporales
+                try { File.Delete(tempPath); } catch { }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private async void Boton_NuevoBloque_Click(object sender, RoutedEventArgs e)
+        {
+            bool ok = await GuardarODT(this.archivo.rutaArchivo);
+
+            if (!ok)
+                MessageBox.Show("Error al reemplazar el documento.");
+        }
+
+        ///----------------------------mETODO PARA ABRIR EL DOCUMENTO
+        ///------------------------------------------
+        ///---------------
+        public async Task<bool> CargarODT(string rutaOdt)
+        {
+            try
+            {
+                if (!File.Exists(rutaOdt))
+                    throw new FileNotFoundException("No se encontró el archivo ODT.");
+
+                // 1) Carpeta temporal
+                string tempDir = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "miAppLoad");
+                Directory.CreateDirectory(tempDir);
+
+                string tempRtf = System.IO.Path.Combine(tempDir, $"temp_{Guid.NewGuid():N}.rtf");
+
+                // 2) Buscar LibreOffice igual que antes
+                string[] posiblesRutas =
+                {
+            @"C:\Program Files\LibreOffice\program\soffice.exe",
+            @"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
+            "soffice"
+        };
+
+                string sofficePath = null;
+
+                foreach (var ruta in posiblesRutas)
+                {
+                    if (ruta == "soffice")
+                    {
+                        try
+                        {
+                            var test = new ProcessStartInfo("soffice")
+                            {
+                                UseShellExecute = false,
+                                RedirectStandardOutput = true,
+                                RedirectStandardError = true
+                            };
+                            using (var p = Process.Start(test)) { p.Kill(); }
+
+                            sofficePath = "soffice";
+                            break;
+                        }
+                        catch { }
+                    }
+                    else if (File.Exists(ruta))
+                    {
+                        sofficePath = ruta;
+                        break;
+                    }
+                }
+
+                if (sofficePath == null)
+                    throw new Exception("LibreOffice no encontrado.");
+
+                // 3) Convertir ODT → RTF
+                var psi = new ProcessStartInfo
+                {
+                    FileName = sofficePath,
+                    Arguments = $"--headless --convert-to rtf \"{rutaOdt}\" --outdir \"{tempDir}\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                var proc = Process.Start(psi);
+                await Task.Run(() => proc.WaitForExit());
+
+                // 4) Buscar el RTF generado
+                string generatedRtf = Directory.GetFiles(tempDir, "*.rtf")
+                    .OrderByDescending(f => File.GetLastWriteTime(f))
+                    .FirstOrDefault();
+
+                if (generatedRtf == null)
+                    throw new Exception("LibreOffice no generó el archivo RTF.");
+
+                // 5) Cargar el RTF en el RichTextBox
+                using (FileStream fs = new FileStream(generatedRtf, FileMode.Open))
+                {
+                    TextRange range = new TextRange(Editor.Document.ContentStart, Editor.Document.ContentEnd);
+                    range.Load(fs, DataFormats.Rtf);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar ODT:\n" + ex.Message);
+                return false;
             }
         }
 
