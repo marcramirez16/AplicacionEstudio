@@ -344,7 +344,6 @@ public class LogicaControllerOut {
         }
 
 
-
         return respuestas.getRespuesta();
     }
 

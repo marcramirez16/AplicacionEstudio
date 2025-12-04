@@ -1,10 +1,7 @@
 package com.example.ConexionServidor;
 
-import com.example.ConexionServidor.Controladores.PreguntaRepository;
-import com.example.ConexionServidor.Controladores.RespuestaRepository;
-import com.example.ConexionServidor.Entidades.EPregunta;
-import com.example.ConexionServidor.Entidades.ERespuesta;
-import com.example.ConexionServidor.Entidades.EUsuario;
+import com.example.ConexionServidor.Controladores.*;
+import com.example.ConexionServidor.Entidades.*;
 import com.example.ConexionServidor.Servidor_Archivos.Archivo;
 import com.example.ConexionServidor.Servidor_Archivos.Servidor_Archivo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,15 @@ public class LogicaControllerOut {
 
     @Autowired
     RespuestaRepository respuestaRepository;
+
+    @Autowired
+    PasoRepository pasoRepository;
+
+    @Autowired
+    PasoNormalRepository pasoNormalRepository;
+
+    @Autowired
+    OperacionRepository operacionRepository;
 
     /**
      * Retornar usuario: Retornar el usuario iniciado
@@ -117,6 +123,34 @@ public class LogicaControllerOut {
         }
 
         return respuestas.getRespuesta();
+    }
+
+
+    /**
+     * Metodo para obtener paso
+     */
+    @PostMapping("/obtenerPasos")
+    public List<EPaso> obtenerPasos(@RequestParam Long id_respuesta) {
+        return pasoRepository.findById_respuesta(id_respuesta);
+    }
+
+    /**
+     * Metodo para obtener operacion
+     */
+    @PostMapping("/obtenerOperaciones")
+    public List<EOperacion> obtenerOperaciones(@RequestParam Long id_paso) {
+        return operacionRepository.findById_paso(id_paso);
+    }
+
+    /**
+     * Obtener paso normal
+     * @return
+     */
+    @GetMapping("/ObtenerPasoNormal/{id_respuesta}")
+    public String obtenerPasoNormal(@PathVariable Long id_respuesta) {
+        Optional<EPasonormal> pasoOpt = pasoNormalRepository.findByIdRespuesta(id_respuesta);
+
+        return pasoOpt.map(EPasonormal::getTexto).orElse(" ");
     }
 
 
