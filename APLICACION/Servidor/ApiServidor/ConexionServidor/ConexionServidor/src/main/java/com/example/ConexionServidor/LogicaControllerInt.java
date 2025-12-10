@@ -103,7 +103,6 @@ public class LogicaControllerInt {
 
             return "Error al guardar usuario o crear carpeta: " + e.getMessage();
         }
-
     }
 
     /**

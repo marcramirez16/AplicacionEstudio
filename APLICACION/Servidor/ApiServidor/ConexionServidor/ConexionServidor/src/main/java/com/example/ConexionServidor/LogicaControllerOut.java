@@ -128,11 +128,15 @@ public class LogicaControllerOut {
 
     /**
      * Metodo para obtener paso
-     */
-    @PostMapping("/obtenerPasos")
+    */
+    @GetMapping("/obtenerPasos")
     public List<EPaso> obtenerPasos(@RequestParam Long id_respuesta) {
-        return pasoRepository.findById_respuesta(id_respuesta);
+        System.out.println("ID Respuesta recibido: " + id_respuesta);
+        List<EPaso> pasos = pasoRepository.findById_respuesta(id_respuesta);
+        System.out.println("Cantidad de pasos: " + pasos.size());
+        return pasos;
     }
+
 
     /**
      * Metodo para obtener operacion
@@ -153,6 +157,20 @@ public class LogicaControllerOut {
         return pasoOpt.map(EPasonormal::getTexto).orElse(" ");
     }
 
+    /**
+     * Metodo para obtener entidad respuesta
+     * @param idpregunta
+     * @return
+     */
+    @PostMapping("/ObtenerRespuestaCompleta")
+    public ERespuesta obtenerRespuestaCompleta(Long idpregunta){
+        ERespuesta respuesta = respuestaRepository.findByIdPregunta(idpregunta);
 
+        if (respuesta == null) {
+            return new ERespuesta();
+        }
+
+        return respuesta;
+    }
 }
 
