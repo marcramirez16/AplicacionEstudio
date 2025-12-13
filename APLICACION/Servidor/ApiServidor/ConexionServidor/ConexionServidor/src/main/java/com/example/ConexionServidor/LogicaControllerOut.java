@@ -89,7 +89,7 @@ public class LogicaControllerOut {
     /**
      * Metodo para retornar todas las preguntas del archivo
      * @return lista de preguntas EPregunta
-     */
+     *//*
     @PostMapping("/ObtenerPreguntas")
     public List<EPregunta> obtenerPreguntas(){
         String stringid = servidor.obteneridusuarioiniciado();
@@ -102,6 +102,32 @@ public class LogicaControllerOut {
 
         List<EPregunta> preguntas = preguntaRepository.findByIdResumen(archivo.getIdArchivo());
 
+        System.out.println("-------------------------------");
+        System.out.println("idarchivo: " + archivo.getIdArchivo() + " usuario: " + longid);
+        System.out.println(preguntas);
+        return preguntas;
+    }*/
+
+    @PostMapping("/ObtenerPreguntas")
+    public List<EPregunta> obtenerPreguntas(){
+        String stringid = servidor.obteneridusuarioiniciado();
+        long longid = Long.parseLong(stringid);
+        servidor.usuario.setIdusuario(longid);
+
+        //RetorarArchivoRuta
+        Archivo archivo = new Archivo();
+        archivo = archivo.RetorarArchivoRuta(servidor, servidor.retornarArchivoSeleccionado());
+
+        Long idResumen = archivo.getIdArchivo();
+        Long idTema = archivo.getIdTema();
+        Long idAsignatura = archivo.getIdAssignatura();
+        Long idUsuario = servidor.usuario.getIdusuario();
+        List<EPregunta> preguntas = preguntaRepository.findPreguntas(
+                idResumen,
+                idTema,
+                idAsignatura,
+                idUsuario
+        );
         System.out.println("-------------------------------");
         System.out.println("idarchivo: " + archivo.getIdArchivo() + " usuario: " + longid);
         System.out.println(preguntas);

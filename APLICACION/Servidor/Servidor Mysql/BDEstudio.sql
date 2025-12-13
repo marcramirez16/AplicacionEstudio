@@ -77,6 +77,30 @@ CREATE TABLE Pasonormal(
     FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE
 );
 
+CREATE TABLE PasoSelector(
+	id_paso INT PRIMARY KEY auto_increment,
+    id_respuesta BIGINT,
+    numero INT,
+    Texto VARCHAR(200),
+    FOREIGN KEY(id_respuesta) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE
+);
+
+CREATE TABLE RespuestaSelector(
+	id_selector INT PRIMARY KEY auto_increment,
+    id_paso INT,
+    numero INT,
+    respuesta VARCHAR(200),
+    FOREIGN KEY (id_paso) REFERENCES PasoSelector(id_paso) ON DELETE CASCADE
+);
+
+
+CREATE TABLE error_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    message TEXT NOT NULL,
+    stacktrace TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- El resto de tus tablas...
 INSERT INTO Usuario (id, usuario, contraseña, email) VALUES (1, "marcr", "1234", "m@gmail.com");
 select * from Usuario;
@@ -89,7 +113,8 @@ select * from OperacionMates;
 select * from PasoMates;
 select * from PasoNormal;
 select * from Respuesta;
-
+select * from error_logs;
+/*id4 y 5*/
 /*
 para crear preguntas de un resumen, recuerda seleccionar la parte del resumen del que quieres que haga la pregunta con chatgpt
 */

@@ -1,7 +1,10 @@
 package com.example.ConexionServidor;
 
+import com.example.ConexionServidor.Controladores.ErrorLogRepository;
 import com.example.ConexionServidor.Controladores.UsuarioRepository;
 import com.example.ConexionServidor.Entidades.EUsuario;
+import com.example.ConexionServidor.Entidades.ErrorLogDTO;
+import com.example.ConexionServidor.Entidades.ErrorLogEntity;
 import com.example.ConexionServidor.Servidor_Archivos.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -147,5 +150,26 @@ public class LogicaControllerInt {
     public String DeSeleccionarArchivo(){
 
         return servidor.DeseleccionarArchivo();
+    }
+
+    @RestController
+    @RequestMapping("/api")
+    public class ErrorLogController {
+
+        @Autowired
+        private ErrorLogRepository errorLogRepository;
+
+        @PostMapping("/errorlog")
+        public void recibirError(@RequestBody ErrorLogDTO logDTO) {
+            // Guardar en base de datos
+            ErrorLogEntity logEntity = new ErrorLogEntity(logDTO.getMessage(), logDTO.getStacktrace());
+            errorLogRepository.save(logEntity);
+
+            // Imprimir en consola
+            System.err.println("ERROR APP: " + logDTO.getMessage());
+            if (logDTO.getStacktrace() != null) {
+                System.err.println(logDTO.getStacktrace());
+            }
+        }
     }
 }

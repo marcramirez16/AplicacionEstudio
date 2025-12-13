@@ -13,52 +13,72 @@
         <TextBox x:Name="txtDisplay" FontSize="24" Height="50" IsReadOnly="True" VerticalAlignment="Top" />
 
         <!-- Botones -->
-        <UniformGrid Grid.Row="1" Columns="5" Rows="7" Margin="0,10,0,10">
-            <!-- Fila 1 -->
-            <Button Content="sin" Click="Btn_Click"/>
-            <Button Content="cos" Click="Btn_Click"/>
-            <Button Content="tan" Click="Btn_Click"/>
-            <Button Content="ln" Click="Btn_Click"/>
-            <Button Content="log" Click="Btn_Click"/>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="600px">
+            
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,0" Height="600px">
 
-            <!-- Fila 2 -->
-            <Button Content="(" Click="Btn_Click"/>
-            <Button Content=")" Click="Btn_Click"/>
-            <Button Content="π" Click="Btn_Click"/>
-            <Button Content="e" Click="Btn_Click"/>
-            <Button Content="^" Click="Btn_Click"/>
+
+                <!-- Fila 1 -->
+            <Button Content="sin" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="cos" Click="Btn_Click"  Height="50px" Width="73px"/>
+                <Button Content="tan" Click="Btn_Click"  Height="50px" Width="73px"/>
+                <Button Content="ln" Click="Btn_Click"  Height="50px" Width="73px"/>
+                <Button Content="log" Click="Btn_Click"  Height="50px" Width="73px"/>
+                <Button Content="Ans" Click="Btn_Click" Height="50px" Width="73px"/>
+
+                <!-- Fila 2 -->
+                <Button Content="(" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content=")" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="π" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="e" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="^" Click="Btn_Click" Height="50px" Width="73px"/>
 
             <!-- Fila 3 -->
-            <Button Content="7" Click="Btn_Click"/>
-            <Button Content="8" Click="Btn_Click"/>
-            <Button Content="9" Click="Btn_Click"/>
-            <Button Content="/" Click="Btn_Click"/>
-            <Button Content="√" Click="Btn_Click"/>
 
-            <!-- Fila 4 -->
-            <Button Content="4" Click="Btn_Click"/>
-            <Button Content="5" Click="Btn_Click"/>
-            <Button Content="6" Click="Btn_Click"/>
-            <Button Content="*" Click="Btn_Click"/>
-            <Button Content="!" Click="Btn_Click"/>
+                <Button Content="/" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="√" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="*" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="!" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="-" Click="Btn_Click" Height="50px" Width="73px"/>
+                
+                
+                <!-- Fila 5 -->
+                <Button Content="0" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="1" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="2" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="3" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="4" Click="Btn_Click" Height="50px" Width="73px"/>
 
-            <!-- Fila 5 -->
-            <Button Content="1" Click="Btn_Click"/>
-            <Button Content="2" Click="Btn_Click"/>
-            <Button Content="3" Click="Btn_Click"/>
-            <Button Content="-" Click="Btn_Click"/>
-            <Button Content="Ans" Click="Btn_Click"/>
+                <Button Content="5" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="6" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="7" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="8" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="9" Click="Btn_Click" Height="50px" Width="73px"/>
 
-            <!-- Fila 6 -->
-            <Button Content="0" Click="Btn_Click"/>
-            <Button Content="." Click="Btn_Click"/>
-            <Button Content="C" Click="BtnClear_Click"/>
-            <Button Content="=" Click="BtnEqual_Click"/>
-            <Button Content="+" Click="Btn_Click"/>
+                <!-- Fila 6 -->
+                <Button Content="." Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="C" Click="BtnClear_Click" Height="50px" Width="73px"/>
+                <Button Content="=" Click="BtnEqual_Click" Height="50px" Width="73px"/>
+                <Button Content="+" Click="Btn_Click" Height="50px" Width="73px"/>
+
+                <Button Content="x" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="y" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="a" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="b" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="c" Click="Btn_Click" Height="50px" Width="73px"/>
+
+            <!-- Fila extra: símbolos matemáticos -->
+                <Button Content="∞" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="±" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="≤" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="≥" Click="Btn_Click" Height="50px" Width="73px"/>
+                <Button Content="÷" Click="Btn_Click" Height="50px" Width="73px"/>
 
             <!-- Fila 7 -->
-            <Button Content="⌫" Click="BtnBackspace_Click"/>
-            <Button Content="Aceptar" Grid.ColumnSpan="4" Click="BtnAceptar_Click"/>
-        </UniformGrid>
+                <Button Content="⌫" Click="BtnBackspace_Click" Height="50px" Width="73px"/>
+                <Button Content="Aceptar" Grid.ColumnSpan="4" Click="BtnAceptar_Click" Height="50px" Width="73px"/>
+        </WrapPanel>
+        </ScrollViewer>
+
     </Grid>
 </Window>

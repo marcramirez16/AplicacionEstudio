@@ -59,6 +59,14 @@ namespace Grafica.VentanasSecundarias
         {
             // Traemos las preguntas del backend
             ObservableCollection<EPregunta> preguntasE = await ControllerApiOut.ObtenerPreguntas();
+            string texto = "";
+
+            for (int i = 0; i < preguntasE.Count; i++)
+            {
+                texto += "|" + preguntasE[i].pregunta + " id: " + preguntasE[i].id_pregunta;
+            }
+            
+            MessageBox.Show(texto);
 
             // Limpiamos la colección actual
             Preguntas = new ObservableCollection<Pregunta>();

@@ -44,10 +44,25 @@ public interface PreguntaRepository extends JpaRepository<EPregunta, Long> {
     @Query("SELECT p.id_pregunta FROM EPregunta p WHERE p.id_tema = :idTema")
     List<Long> findIdsByIdTema(@Param("idTema") Long idTema);
 
-    //Buscar todos los ids de pregutnas de una resumen
+    //corregi findsIdsByIdResumen por findPreguntas donde filtra no por idResumen sino tambien por asignatura y tema
+    //Buscar todos los ids de pregutnas de una resumen    @Query("SELECT p.id_pregunta FROM EPregunta p WHERE p.id_resumen = :idResumen")
     @Query("SELECT p.id_pregunta FROM EPregunta p WHERE p.id_resumen = :idResumen")
     List<Long> findIdsByIdResumen(@Param("idResumen") Long idResumen);
 
+    @Query("""
+       SELECT p 
+       FROM EPregunta p 
+       WHERE p.id_resumen = :idResumen
+       AND p.id_tema = :idTema
+       AND p.id_asignatura = :idAsignatura
+       AND p.id_usuario = :idUsuario
+       """)
+    List<EPregunta> findPreguntas(
+            @Param("idResumen") Long idResumen,
+            @Param("idTema") Long idTema,
+            @Param("idAsignatura") Long idAsignatura,
+            @Param("idUsuario") Long idUsuario
+    );
 }
 
 

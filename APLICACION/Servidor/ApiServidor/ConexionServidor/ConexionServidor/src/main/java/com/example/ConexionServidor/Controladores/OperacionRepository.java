@@ -1,5 +1,6 @@
 package com.example.ConexionServidor.Controladores;
 
+
 import com.example.ConexionServidor.Entidades.EOperacion;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
