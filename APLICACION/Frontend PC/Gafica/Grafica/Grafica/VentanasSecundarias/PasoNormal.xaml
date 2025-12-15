@@ -4,28 +4,84 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Ingreso de Texto" Height="250" Width="600">
+        Title="Ingreso de Texto" Height="400" Width="600">
+
+
+
 
     <Grid Margin="15">
-        <StackPanel>
-            <TextBlock Text="Ingrese la pista" FontWeight="Bold" FontSize="20" Foreground="Black" Margin="0,0,0,15"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 🔘 BOTÓN DE MODO -->
+        <ToggleButton x:Name="ModoToggle"
+              Content="🧩 Modo Selector"
+              Width="160"
+              Height="30"
+              HorizontalAlignment="Right"
+              IsChecked="True"
+              Click="ModoToggle_Click"/>
+
+
+
+        <!-- ================= MODO NORMAL ================= -->
+        <StackPanel x:Name="PanelPasoNormal" Grid.Row="1">
+
+            <TextBlock Text="Ingrese la pista"
+                       FontWeight="Bold"
+                       FontSize="20"
+                       Margin="0,10,0,15"/>
 
             <TextBox x:Name="TextoIngresado"
-                     Width="500"
-                     Height="100"
-                     Padding="5"
-                     FontSize="14"
+                     Height="120"
                      AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"/>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,15,0,0">
-                <Button Content="💾 Guardar"
-                        Width="150" Height="35"
-                        Background="#3A5C4A" Foreground="White" BorderBrush="Black" BorderThickness="0" 
-                        FontWeight="Bold" Cursor="Hand"
-                        Click="GuardarTexto_Click"/>
-            </StackPanel>
+                     TextWrapping="Wrap"/>
         </StackPanel>
+
+        <!-- ================= MODO SELECTOR ================= -->
+        <!-- ================= MODO SELECTOR ================= -->
+        <!-- ================= MODO SELECTOR (OFFLINE) ================= -->
+        <StackPanel x:Name="PanelPasoSelector"
+            Grid.Row="1"
+            Visibility="Collapsed">
+
+            <TextBlock Text="Configurar preguntas y respuestas"
+               FontSize="20"
+               FontWeight="Bold"
+               Margin="0,10,0,15"/>
+
+            <Button Content="➕ Agregar relación"
+            Width="200"
+            Height="35"
+            Margin="0,0,0,10"
+            Click="AgregarRelacion_Click"/>
+
+            <!-- CONTENEDOR CON SCROLL -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  Height="200">
+
+                <StackPanel x:Name="ContenedorRelaciones"
+                    Orientation="Vertical"/>
+            </ScrollViewer>
+
+        </StackPanel>
+
+
+
+        <!-- 💾 GUARDAR (SIEMPRE VISIBLE) -->
+        <Button Grid.Row="2"
+                Content="💾 Guardar"
+                Width="160"
+                Height="40"
+                Margin="0,15,0,0"
+                HorizontalAlignment="Left"
+                Background="#3A5C4A"
+                Foreground="White"
+                FontWeight="Bold"
+                Click="Guardar_Click"/>
     </Grid>
 </Window>

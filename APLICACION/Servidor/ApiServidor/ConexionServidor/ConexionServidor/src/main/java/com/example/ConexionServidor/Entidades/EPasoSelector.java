@@ -1,4 +1,4 @@
-package com.example.demo.Entidades;
+package com.example.ConexionServidor.Entidades;
 
 import jakarta.persistence.*;
 
@@ -12,7 +12,6 @@ public class EPasoSelector {
     private long id_respuesta;
     private String numero;
     private String texto;
-
 
     public EPasoSelector() {}
     public EPasoSelector(long id_respuesta, String numero, String texto) {

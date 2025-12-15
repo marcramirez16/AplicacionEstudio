@@ -1,25 +1,27 @@
-package com.example.demo.Entidades;
+package com.example.ConexionServidor.Entidades;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Pasoselector")
-public class EPasoSelector {
+@Table(name = "Respuestaselector")
+public class ERespuestaSelector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id_respuesta;
+
     private long id_paso;
 
-    private long id_respuesta;
-    private String numero;
+    @Column(name = "respuesta")
     private String texto;
 
+    public ERespuestaSelector() {
+    }
 
-    public EPasoSelector() {}
-    public EPasoSelector(long id_respuesta, String numero, String texto) {
-        this.id_respuesta = id_respuesta;
-        this.numero = numero;
+    public ERespuestaSelector(long id_paso, String texto) {
+        this.id_paso = id_paso;
         this.texto = texto;
     }
+
 
     public long getId_paso() {
         return id_paso;
@@ -37,13 +39,6 @@ public class EPasoSelector {
         this.id_respuesta = id_respuesta;
     }
 
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
 
     public String getTexto() {
         return texto;

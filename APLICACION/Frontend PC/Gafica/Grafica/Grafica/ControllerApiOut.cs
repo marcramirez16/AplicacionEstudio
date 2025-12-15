@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
+using XamlMath.Utils;
 using static Grafica.VentanasSecundarias.PasosOperacion;
 
 
@@ -1221,6 +1223,129 @@ public class ControllerApiOut
         }
     }
 
+    /// <summary>
+    /// Metodo para guardar PasoSelector
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <param name="numero"></param>
+    /// <param name="texto"></param>
+    public static async Task<EPasoSelector> GuardarPasoSelector(
+        long? id_paso,
+        long id_respuesta,
+        string numero,
+        string texto)
+    {
+        string url = RutaApi.ruta + "agregarPasoSelector";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_paso", id_paso?.ToString()),
+            new KeyValuePair<string, string>("id_respuesta", id_respuesta.ToString()),
+            new KeyValuePair<string, string>("numero", numero),
+            new KeyValuePair<string, string>("texto", texto)
+        });
+
+            var response = await client.PostAsync(url, content);
+            if (!response.IsSuccessStatusCode) return null;
+
+            return JsonConvert.DeserializeObject<EPasoSelector>(
+                await response.Content.ReadAsStringAsync());
+        }
+    }
+
+
+
+    /// <summary>
+    /// Metodo para guardar RespuestaSelector
+    /// </summary>
+    /// <param name="id_paso"></param>
+    /// <param name="texto"></param>
+    /// <returns>id_respuesta</returns>
+    public static async Task<ERespuestaSelector> GuardarRespuestaSelector(
+        long? id_respuesta,
+        long id_paso,
+        string texto)
+    {
+        string url = RutaApi.ruta + "agregarRespuestaSelector";
+
+        using (HttpClient client = new HttpClient())
+        {
+            var content = new FormUrlEncodedContent(new[]
+            {
+            new KeyValuePair<string, string>("id_respuesta", id_respuesta?.ToString()),
+            new KeyValuePair<string, string>("id_paso", id_paso.ToString()),
+            new KeyValuePair<string, string>("texto", texto)
+        });
+
+            var response = await client.PostAsync(url, content);
+            if (!response.IsSuccessStatusCode) return null;
+
+            return JsonConvert.DeserializeObject<ERespuestaSelector>(
+                await response.Content.ReadAsStringAsync());
+        }
+    }
+
+
+    /// <summary>
+    /// Metodo para obtener los pasos
+    /// </summary>
+    /// <param name="id_respuesta"></param>
+    /// <returns></returns>
+    public static async Task<List<EPasoSelector>> ObtenerPasosSelectors(long id_respuesta)
+    {
+        string url = RutaApi.ruta + $"obtenerPasosSelector?id_respuesta={id_respuesta}";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (!response.IsSuccessStatusCode) return null;
+
+            string json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<EPasoSelector>>(json);
+        }
+    }
+
+    /// <summary>
+    /// Metodo para obtener las respuestas
+    /// </summary>
+    /// <param name="id_paso"></param>
+    /// <returns></returns>
+    public static async Task<List<ERespuestaSelector>> ObtenerRespuestasSelector(long id_paso)
+    {
+        string url = RutaApi.ruta + $"obtenerRespuestasSelector?id_paso={id_paso}";
+
+        using (HttpClient client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (!response.IsSuccessStatusCode) return null;
+
+            string json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<ERespuestaSelector>>(json);
+        }
+    }
+
+
+    public static async Task<bool> EliminarPasoSelector(long id_paso)
+    {
+        string url = RutaApi.ruta + $"eliminarPasoSelector?id_paso={id_paso}";
+        using (HttpClient client = new HttpClient())
+        {
+            var response = await client.DeleteAsync(url);
+            return response.IsSuccessStatusCode;
+        }
+    }
+
+    public static async Task<bool> EliminarRespuestaSelector(long id_respuesta)
+    {
+        string url = RutaApi.ruta + $"eliminarRespuestaSelector?id_respuesta={id_respuesta}";
+        using (HttpClient client = new HttpClient())
+        {
+            var response = await client.DeleteAsync(url);
+            return response.IsSuccessStatusCode;
+        }
+    }
 
 
     /**

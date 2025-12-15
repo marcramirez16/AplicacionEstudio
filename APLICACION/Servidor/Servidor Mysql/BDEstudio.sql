@@ -86,13 +86,11 @@ CREATE TABLE PasoSelector(
 );
 
 CREATE TABLE RespuestaSelector(
-	id_selector INT PRIMARY KEY auto_increment,
+	id_respuesta INT PRIMARY KEY auto_increment,
     id_paso INT,
-    numero INT,
     respuesta VARCHAR(200),
     FOREIGN KEY (id_paso) REFERENCES PasoSelector(id_paso) ON DELETE CASCADE
 );
-
 
 CREATE TABLE error_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -103,8 +101,14 @@ CREATE TABLE error_logs (
 
 -- El resto de tus tablas...
 INSERT INTO Usuario (id, usuario, contraseña, email) VALUES (1, "marcr", "1234", "m@gmail.com");
+INSERT INTO Usuario (id, usuario, contraseña, email) VALUES (2, "marcr2", "1234", "m2@gmail.com");
 select * from Usuario;
 #DELETE FROM Usuario WHERE id = 3;
+select * from PasoSelector;
+select * from RespuestaSelector;
+drop table PasoSelector;
+drop table RespuestaSelector;
+
 select * from Asignatura;
 select * from Tema;
 select * from Resumen;

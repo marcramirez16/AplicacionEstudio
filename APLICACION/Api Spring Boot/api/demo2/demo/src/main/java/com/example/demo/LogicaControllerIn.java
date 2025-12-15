@@ -75,6 +75,12 @@ public class LogicaControllerIn {
 
     @Autowired
     private PasoNormalRepository pasoNormalRepository;
+
+    @Autowired
+    private PasoSelectorRepository pasoSelectorRepository;
+
+    @Autowired
+    private RespuestaSelectorRepository respuestaSelectorRepository;
 //Metodos para crear carpetas y archivos
     /**
      * Metodo para crear una nueva Asignatura
@@ -607,6 +613,84 @@ public class LogicaControllerIn {
             return "No encontrado";
         }
     }
+
+    /**
+     * Metodo agreegar el paso selector
+     * @param id_respuesta
+     * @param numero
+     * @param texto
+     * @return
+     */
+    @PostMapping("/agregarPasoSelector")
+    public EPasoSelector agregarPasoSelector(
+            @RequestParam(required = false) Long id_paso,
+            @RequestParam Long id_respuesta,
+            @RequestParam String numero,
+            @RequestParam String texto) {
+
+        EPasoSelector paso;
+
+        if (id_paso != null) {
+            paso = pasoSelectorRepository.findById(id_paso)
+                    .orElseThrow(() -> new RuntimeException("Paso no encontrado"));
+            paso.setNumero(numero);
+            paso.setTexto(texto);
+        } else {
+            paso = new EPasoSelector(id_respuesta, numero, texto);
+        }
+
+        return pasoSelectorRepository.save(paso);
+    }
+
+
+
+    /**
+     * Metodo para agregar la respuesta del paso
+     * @param id_paso
+     * @param texto
+     * @return
+     */
+    @PostMapping("/agregarRespuestaSelector")
+    public ERespuestaSelector agregarRespuestaSelector(
+            @RequestParam(required = false) Long id_respuesta,
+            @RequestParam Long id_paso,
+            @RequestParam String texto) {
+
+        ERespuestaSelector respuesta;
+
+        if (id_respuesta != null) {
+            respuesta = respuestaSelectorRepository.findById(id_respuesta)
+                    .orElseThrow(() -> new RuntimeException("Respuesta no encontrada"));
+            respuesta.setTexto(texto);
+        } else {
+            respuesta = new ERespuestaSelector(id_paso, texto);
+        }
+
+        return respuestaSelectorRepository.save(respuesta);
+    }
+
+    /**
+     * Metodo para eliminar paso
+     * @param id_paso
+     */
+    @DeleteMapping("/eliminarPasoSelector")
+    public void eliminarPasoSelector(@RequestParam Long id_paso) {
+        pasoSelectorRepository.deleteById(id_paso);
+    }
+
+    /**
+     * Metodo para eliminar espuesta
+     * @param id_respuesta
+     */
+    @DeleteMapping("/eliminarRespuestaSelector")
+    public void eliminarRespuestaSelector(@RequestParam Long id_respuesta) {
+        respuestaSelectorRepository.deleteById(id_respuesta);
+    }
+
+
+
+
+
 
 }
 

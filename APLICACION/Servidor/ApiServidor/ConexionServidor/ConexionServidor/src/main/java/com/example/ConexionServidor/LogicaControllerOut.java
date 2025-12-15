@@ -32,6 +32,11 @@ public class LogicaControllerOut {
     @Autowired
     OperacionRepository operacionRepository;
 
+    @Autowired
+    PasoSelectorRepository pasoSelectorRepository;
+
+    @Autowired
+    RespuestaSelectorRepository respuestaSelectorRepository;
     /**
      * Retornar usuario: Retornar el usuario iniciado
      */
@@ -175,13 +180,14 @@ public class LogicaControllerOut {
     /**
      * Obtener paso normal
      * @return
-     */
+     *//*
     @GetMapping("/ObtenerPasoNormal/{id_respuesta}")
     public String obtenerPasoNormal(@PathVariable Long id_respuesta) {
         Optional<EPasonormal> pasoOpt = pasoNormalRepository.findByIdRespuesta(id_respuesta);
 
         return pasoOpt.map(EPasonormal::getTexto).orElse(" ");
     }
+*/
 
     /**
      * Metodo para obtener entidad respuesta
@@ -197,6 +203,27 @@ public class LogicaControllerOut {
         }
 
         return respuesta;
+    }
+
+    /**
+     * Metodo para obtener pasos
+     * @param id_respuesta
+     * @return
+     */
+    @GetMapping("/obtenerPasosSelector")
+    public List<EPasoSelector> obtenerPasosSelectors(@RequestParam Long id_respuesta) {
+
+        return pasoSelectorRepository.findById_respuesta(id_respuesta);
+    }
+
+    /**
+     * Metodo para obtener espuestas
+     * @param id_paso
+     * @return
+     */
+    @GetMapping("/obtenerRespuestasSelector")
+    public List<ERespuestaSelector> obtenerRespuestasSelectors(@RequestParam Long id_paso) {
+        return respuestaSelectorRepository.findById_paso(id_paso);
     }
 }
 

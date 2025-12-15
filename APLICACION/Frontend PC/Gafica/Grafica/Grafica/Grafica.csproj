@@ -143,7 +143,9 @@
     <Compile Include="entidades\Archivo.cs" />
     <Compile Include="entidades\EOperacion.cs" />
     <Compile Include="entidades\EPaso.cs" />
+    <Compile Include="entidades\EPasoSelector.cs" />
     <Compile Include="entidades\EPregunta.cs" />
+    <Compile Include="entidades\ERespuestaSelector.cs" />
     <Compile Include="entidades\EUsuario.cs" />
     <Compile Include="entidades\ERespuesta.cs" />
     <Compile Include="entidades\RutaApi.cs" />
